@@ -1,0 +1,198 @@
+@color: 'red';
+
+.icon-wrapper {
+    padding-top: 50px;
+    padding-right: 272px;
+    display: flex;
+}
+.icon-list-wrapper {
+    flex: 1 1;
+    background-color: #ffffff;
+    .icon-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 240px);
+        justify-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 8px 0 0 0;
+        .icon-list-item {
+            margin: 8px;
+            .icon-item-wrapper {
+                border: 1px solid #f0f0f0;
+                border-radius: 4px;
+                height: 64px;
+                width: 224px;
+                display: flex;
+                align-items: center;
+                &:hover {
+                    box-shadow: 0 4px 16px rgba(0,0,0,.1);
+                };
+                .icon-img {
+                    width: 64px;
+                    height: 64px;
+                    line-height: 64px;
+                    text-align: center;
+                    flex: none;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                };
+                .icon-info-wrapper {
+                    width: 160px;
+                    height: 48px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    position: relative;
+                    .icon-info-title {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: normal;
+                        width: 110px;
+                        height: 24px;
+                        line-height: 24px;
+                        font-size: 14px;
+                        color: #333333;
+                    };
+                    .icon-info-name {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: normal;
+                        width: 110px;
+                        height: 24px;
+                        line-height: 24px;
+                        font-size: 12px;
+                        color: #666666;
+                        position: relative;
+                        .copy-option {
+                            position: absolute;
+                            right: 0;
+                            top: 6px;
+                            cursor: pointer;
+                            width: 12px;
+                            height: 12px;
+                            // background-color: red;
+                            display: none;
+                            .i-icon {
+                                position: absolute;
+                            }
+                        };
+                        &:hover {
+                            .copy-option {
+                                display: block;
+                            }
+                        }
+                    };
+                    .icon-option-more {
+                        position: absolute;
+                        top: 8px;
+                        right: 8px;
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 16px;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: #e8ebf3;
+                            .icon-more-wrapper {
+                                opacity: 1;
+                            }
+                        };
+                        .icon-more-wrapper {
+                            width: 16px;
+                            height: 16px;
+                            margin: 8px auto;
+                            line-height: 16px;
+                            opacity: .5;
+                        }
+                    }
+                }
+            };
+        }
+    }
+}
+.icon-tools-aside {
+    flex: none;
+    width: 272px;
+    height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    right: 0;
+    background-color: #f7f8fb;
+    border-left: 1px solid #eee;
+    .icon-download {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 88px;
+        border-bottom: 1px solid #dddddd;
+        .download-btn {
+            height: 40px;
+            width: 223px;
+            margin-top: 24px;
+        }
+    };
+    .icon-tools-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #333333;
+        .icon-setup {
+            .tool-title {
+                font-size: 14px;
+                font-weight: 400;
+                margin-top: 16px;
+                line-height: 22px;
+            }
+            .tool-content {
+                margin: 12px 0 16px;
+            }
+        };
+        .icon-tool-size, .icon-tool-color, .icon-tool-reset {
+            width: 223px;
+            overflow: hidden;
+            border-bottom: #eeeeee 1px solid;
+        };
+        .icon-tool-color {
+            .tool-content {
+                display: flex;
+            }
+        };
+        .icon-tool-reset {
+            margin: 16px 0;
+            border-bottom: none;
+            .icon-reset-btn {
+                width: 223px;
+            }
+        }
+    }
+}
+.icon-resize-wrapper {
+    display: flex;
+    .icon-size-slider {
+        flex: 1 1;
+    };
+    .icon-size-number-input {
+        flex: 0 0 60px;
+        margin-left: 16px;
+    }
+}
+.icon-color-preview {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    margin-right: 8px;
+    // margin-top: 6px;
+    display: inline-block;
+    flex: none;
+}
+.icon-color-input {
+    flex: 0 0 80px;
+}
+.iocn-color-span {
+    flex: 0 0 88px;
+    display: inline-block;
+    font-size: 14px;
+    color: #333333;
+    line-height: 20px;
+    height: 20px;
+}
