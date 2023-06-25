@@ -1,13 +1,15 @@
 import React, { createRef, useEffect, useRef, useState } from 'react';
-import { Col, InputNumber, Popover, Row, Slider, Input, Button, Dropdown, message, Tooltip } from 'antd';
+import { Col, InputNumber, Popover, Row, Slider, Input, Button, Dropdown, message, Tooltip, Modal } from 'antd';
 import logoCategoryMap from './logoCategoryMap';
 import logosMap from './logosMap';
 import {More} from '../../component/iconlib/react';
 import { Canvg } from 'canvg';
 import JSZip from 'jszip';
 import saveAs from 'file-saver';
+import PicViewer from '../../component/PicViewer';
 import './index.less';
 import { Form } from 'react-router-dom';
+import { formatCountdown } from 'antd/es/statistic/utils';
 
 // console.log('PUBLIC_URL:', process.env.PUBLIC_URL);
 
@@ -40,6 +42,9 @@ const items = [
 const LogolibList = () => {
     const [iconSize, setIconSize] = useState(32);
     const [iconColor, setIconColor] = useState('#1F64FF');
+    const [openDetails, setOpenDetails] = useState(false);
+    const [sourceName, setSourceName] = useState('');
+    const [sourcePath, setSourcePath] = useState('');
 
     const downLoadIconlib = () => {
         window.location.href='/downloads/iconlib.zip'
@@ -110,7 +115,6 @@ const LogolibList = () => {
 
     // 图标菜单点击
     const onClick = (key, element) => {
-        console.log(element);
         if(key === 'copyReactCode') {
             const reactCode = `<${element.CompnentElement} theme="filled" size={${iconSize}} fill="${iconColor}"/>`;
             copyTextToClipboard(reactCode, 'reactCode');
@@ -129,6 +133,63 @@ const LogolibList = () => {
             downloadPng(element.name)
         }
     };
+
+    const dynamicMenu = (sources) => {
+        const items = [];
+        Object.keys(sources).forEach( (key) => {
+            if(key === 'svg') {
+                const menuItem = {
+                    label: '复制SVG',
+                    key: 'copySVG'
+                }
+                items.push(menuItem);
+            }
+            if(key === 'png') {
+                const menuItem = {
+                    label: '复制Png',
+                    key: 'copyPng'
+                }
+                items.push(menuItem);
+            }
+        });
+        Object.keys(sources).forEach( (key) => {
+            if(key === 'svg') {
+                const menuItem = {
+                    label: '下载SVG文件',
+                    key: 'downloadSvg'
+                }
+                items.push(menuItem);
+            }
+            if(key === 'png') {
+                const menuItem = {
+                    label: '下载Png文件',
+                    key: 'downloadPng'
+                }
+                items.push(menuItem);
+            }
+            if(key === 'psd') {
+                const menuItem = {
+                    label: '下载Psd文件',
+                    key: 'downloadPsd'
+                }
+                items.push(menuItem);
+            }
+        });
+        return items;
+    }
+
+    const showDetails = (path, name) => {
+        console.log(path);
+        setSourcePath(path);
+        setSourceName(name);
+        setOpenDetails(true);
+    }
+
+    const handleModelCancel = () => {
+        setSourcePath('');
+        setSourceName('')
+        setOpenDetails(false);
+    }
     
 
     return (
@@ -142,16 +203,17 @@ const LogolibList = () => {
                                     <li key={element.id} className='logo-list-item'>
                                         <div className='logo-item-wrapper'>
                                             <div className='icon-img'>
-                                                <img src={'/public/logos'+ element.dir} alt={element.title} />
+                                                <img src={'/public/logos'+ element.dir} alt={element.title} onClick={()=>showDetails(`/public/logos${element.dir}`, element.title)}/>
                                             </div>
                                             <div className='logo-details-wrapper'>
-                                                <span className='logo-pic-format'>svg</span>
-                                                <span className='logo-pic-format'>png</span>
+                                                {
+                                                    Object.keys(element.sources).map( (key) => <span key={`${element.id}_${key}`} className={`logo-pic-format ${key}`}>{key}</span> )
+                                                }
                                             </div>
                                         </div>
                                         <div className='icon-info-wrapper'>
                                             <div className='icon-info-title'><span>{element.title}</span></div>
-                                            <Dropdown menu={{items, onClick: ({key}) => {onClick(key, element)} }}>
+                                            <Dropdown menu={{items:dynamicMenu(element.sources), onClick: ({key}) => {onClick(key, element)} }}>
                                                 <div className='icon-option-more'>
                                                     <div className='icon-more-wrapper'>
                                                         <More theme="filled" size={16} fill="#333333"/>
@@ -175,6 +237,15 @@ const LogolibList = () => {
                     </ul>
                 </div>
             </div>
+            {/* <Modal centered 
+                open={openDetails} 
+                width="100%" 
+                height="100%" 
+                className='details-viewer' 
+                footer={null}
+                onCancel={handleModelCancel}>
+            </Modal> */}
+            <PicViewer open={openDetails} source={sourcePath} name={sourceName} className="" onCancel={handleModelCancel}/>
             <canvas style={{display: "none"}} />
         </>
     )
