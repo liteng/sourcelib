@@ -45,6 +45,7 @@ const LogolibList = () => {
     const [openDetails, setOpenDetails] = useState(false);
     const [sourceName, setSourceName] = useState('');
     const [sourcePath, setSourcePath] = useState('');
+    const [sources, setSources] = useState({});
 
     const downLoadIconlib = () => {
         window.location.href='/downloads/iconlib.zip'
@@ -178,10 +179,11 @@ const LogolibList = () => {
         return items;
     }
 
-    const showDetails = (path, name) => {
-        console.log(path);
-        setSourcePath(path);
-        setSourceName(name);
+    const showDetails = (logo) => {
+        console.log(logo.path, logo.name);
+        setSourcePath(`/public/logos${logo.dir}`);
+        setSourceName(logo.title);
+        setSources(logo.sources);
         setOpenDetails(true);
     }
 
@@ -203,7 +205,7 @@ const LogolibList = () => {
                                     <li key={element.id} className='logo-list-item'>
                                         <div className='logo-item-wrapper'>
                                             <div className='icon-img'>
-                                                <img src={'/public/logos'+ element.dir} alt={element.title} onClick={()=>showDetails(`/public/logos${element.dir}`, element.title)}/>
+                                                <img src={'/public/logos'+ element.dir} alt={element.title} onClick={()=>showDetails(element)}/>
                                             </div>
                                             <div className='logo-details-wrapper'>
                                                 {
@@ -245,7 +247,7 @@ const LogolibList = () => {
                 footer={null}
                 onCancel={handleModelCancel}>
             </Modal> */}
-            <PicViewer open={openDetails} source={sourcePath} name={sourceName} className="" onCancel={handleModelCancel}/>
+            <PicViewer id="picviewer" open={openDetails} path={sourcePath} name={sourceName}  sources={sources} className="" onCancel={handleModelCancel}/>
             <canvas style={{display: "none"}} />
         </>
     )
