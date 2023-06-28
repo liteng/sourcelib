@@ -25,5 +25,18 @@ export default [
         "tag": [
             "中核集团"
         ]
+    },
+    {
+        "id": "zhongguohangtiankejijituan",
+        "title": "中国航天科技集团有限公司",
+        "category": "industrialCustomers",
+        "sourceType": ["jpeg"],
+        "sources": {
+            jpeg: "/中国航天科技集团有限公司.jpeg"
+        },
+        "dir": "/中国航天科技集团有限公司.jpeg",
+        "tag": [
+            "中国航天科技集团有限公司"
+        ]
     }
 ]

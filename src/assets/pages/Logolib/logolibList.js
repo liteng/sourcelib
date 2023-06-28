@@ -11,31 +11,7 @@ import './index.less';
 import { Form } from 'react-router-dom';
 import { formatCountdown } from 'antd/es/statistic/utils';
 
-// console.log('PUBLIC_URL:', process.env.PUBLIC_URL);
-
-// Logo菜单
-const items = [
-    {
-        label: '复制React代码',
-        key: 'copyReactCode'
-    },
-    {
-        label: '复制SVG',
-        key: 'copySVG'
-    },
-    {
-        label: '复制Png',
-        key: 'copyPng'
-    },
-    {
-        label: '下载SVG文件',
-        key: 'downloadSvg'
-    },
-    {
-        label: '下载Png文件',
-        key: 'downloadPng'
-    }
-];
+const copyEnabled = ['SVG', 'PNG', 'JPG', 'JPEG', 'BMP', 'GIF', 'TIFF', 'WEBP'];
 
 
 // Logo展示组件
@@ -70,18 +46,6 @@ const LogolibList = () => {
         a.href = url;
         a.download = id + '.svg';
         a.click();
-    }
-
-    const downloadAllSvg = () => {
-        const zip = new JSZip();
-        iconsMap.forEach( item => {
-            const blob = getSvgBlob(item.name);
-            zip.file(item.name + '.svg', blob);
-        })
-        zip.generateAsync({type:'blob'}).then(blob => {
-            saveAs(blob, 'svgIconlib.zip');
-            message.info(`已下载全部Svg图标`);
-        });
     }
 
     const getPng = (id, type) => {
@@ -138,43 +102,57 @@ const LogolibList = () => {
     const dynamicMenu = (sources) => {
         const items = [];
         Object.keys(sources).forEach( (key) => {
-            if(key === 'svg') {
+            if(copyEnabled.includes(key.toUpperCase())) {
                 const menuItem = {
-                    label: '复制SVG',
-                    key: 'copySVG'
+                    label: `复制${key.toUpperCase()}`,
+                    key: `copy${key.toUpperCase()}`
                 }
                 items.push(menuItem);
             }
-            if(key === 'png') {
-                const menuItem = {
-                    label: '复制Png',
-                    key: 'copyPng'
-                }
-                items.push(menuItem);
-            }
+            
+            // if(key === 'svg') {
+            //     const menuItem = {
+            //         label: '复制SVG',
+            //         key: 'copySVG'
+            //     }
+            //     items.push(menuItem);
+            // }
+            // if(key === 'png') {
+            //     const menuItem = {
+            //         label: '复制Png',
+            //         key: 'copyPng'
+            //     }
+            //     items.push(menuItem);
+            // }
         });
         Object.keys(sources).forEach( (key) => {
-            if(key === 'svg') {
-                const menuItem = {
-                    label: '下载SVG文件',
-                    key: 'downloadSvg'
-                }
-                items.push(menuItem);
+            const menuItem = {
+                label: `下载${key.toUpperCase()}文件`,
+                key: `download${key}`
             }
-            if(key === 'png') {
-                const menuItem = {
-                    label: '下载Png文件',
-                    key: 'downloadPng'
-                }
-                items.push(menuItem);
-            }
-            if(key === 'psd') {
-                const menuItem = {
-                    label: '下载Psd文件',
-                    key: 'downloadPsd'
-                }
-                items.push(menuItem);
-            }
+            items.push(menuItem);
+
+            // if(key === 'svg') {
+            //     const menuItem = {
+            //         label: '下载SVG文件',
+            //         key: 'downloadSvg'
+            //     }
+            //     items.push(menuItem);
+            // }
+            // if(key === 'png') {
+            //     const menuItem = {
+            //         label: '下载Png文件',
+            //         key: 'downloadPng'
+            //     }
+            //     items.push(menuItem);
+            // }
+            // if(key === 'psd') {
+            //     const menuItem = {
+            //         label: '下载Psd文件',
+            //         key: 'downloadPsd'
+            //     }
+            //     items.push(menuItem);
+            // }
         });
         return items;
     }
