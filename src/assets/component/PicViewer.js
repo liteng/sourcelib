@@ -17,10 +17,10 @@ const PicViewer = (props) => {
         onCancel
     } = props;
 
-    const [showModal, setShowModal] = useState(open);
-    const [sourceName, setSourceName] = useState(name);
-    const [sourcePath, setSourcePath] = useState(path);
-    const [allSources, setallSources] = useState(sources);
+    // const [showModal, setShowModal] = useState(open);
+    // const [sourceName, setSourceName] = useState(name);
+    // const [sourcePath, setSourcePath] = useState(path);
+    // const [allSources, setallSources] = useState(sources);
 
     const dynamicDownloadItems = (allSources) => {
         const downloadItems = [];
@@ -36,9 +36,9 @@ const PicViewer = (props) => {
 
     const dynamicCopyItems = (allSources) => {
         const copyItems = [];
-        const copyEnabled = ['SVG', 'PNG', 'JPG', 'JPEG', 'BMP', 'GIF', 'TIFF', 'WEBP'];
-        let existPng = false;
-        let existSvg = false;
+        // const copyEnabled = ['SVG', 'PNG', 'JPG', 'JPEG', 'BMP', 'GIF', 'TIFF', 'WEBP'];
+        // let existPng = false;
+        // let existSvg = false;
         let svgKey = null;
         let pngKey = null;
 
@@ -126,10 +126,10 @@ const PicViewer = (props) => {
                 const result = await response.text();
                 navigator.clipboard.writeText(result)
                 .then(() => {
-                    message.info(`已复制${logoKey}至剪贴板`);
+                    message.info(`已复制${logoKey.toUpperCase()}至剪贴板`);
                 })
                 .catch( error => {
-                    message.error(`复制${logoKey}失败`);
+                    message.error(`复制${logoKey.toUpperCase()}失败`);
                     console.error(error);
                 })
             } else if(logoKey.toUpperCase() === 'PNG') {
@@ -143,10 +143,10 @@ const PicViewer = (props) => {
                 const img = new ClipboardItem(clipboardItemData);
                 navigator.clipboard.write([img])
                 .then(() => {
-                    message.info(`已复制${logoKey}至剪贴板`);
+                    message.info(`已复制${logoKey.toUpperCase()}至剪贴板`);
                 })
                 .catch(error => {
-                    message.error(`复制${logoKey}失败`);
+                    message.error(`复制${logoKey.toUpperCase()}失败`);
                     console.error(error);
                 });
             } else {
@@ -173,7 +173,7 @@ const PicViewer = (props) => {
                 })
             }
         } catch(err) {
-            message.error(`复制${logoKey}失败`);
+            message.error(`复制${logoKey.toUpperCase()}失败`);
             console.error(err);
         }
     }

@@ -80,7 +80,8 @@ const LogolibList = () => {
 
     // 图标菜单点击
     const onClick = (key, element) => {
-        if(key === 'copyReactCode') {
+        console.log(key, element);
+        if(key === 'copyPng') {
             const reactCode = `<${element.CompnentElement} theme="filled" size={${iconSize}} fill="${iconColor}"/>`;
             copyTextToClipboard(reactCode, 'reactCode');
         }
@@ -88,73 +89,242 @@ const LogolibList = () => {
             const svgStr = getSvg(element.name);
             copyTextToClipboard(svgStr, 'svgCode');
         }
-        if(key === 'copyPng') {
+        if(key === 'copySvgToPng') {
             copyPicToClipboard(element.name, 'png');
         }
-        if(key === 'downloadSvg') {
+        if(key === 'download') {
             downloadSvg(element.name)
         }
-        if(key === 'downloadPng') {
-            downloadPng(element.name)
-        }
+        // if(key === 'downloadPng') {
+        //     downloadPng(element.name)
+        // }
     };
 
-    const dynamicMenu = (sources) => {
+
+
+    // const dynamicCopyItems = (allSources) => {
+    //     const copyItems = [];
+    //     let svgKey = null;
+    //     let pngKey = null;
+
+    //     if(Object.keys(allSources).length < 1) return copyItems;
+    //     Object.keys(allSources).forEach( (key) => {
+    //         svgKey = key.toUpperCase() === 'SVG' ? key : svgKey;
+    //         pngKey = key.toUpperCase() === 'PNG' ? key : pngKey;
+    //     });
+        
+    //     if(svgKey !== null && pngKey === null) {
+    //         // 如果有svg资源，但没有png资源，svg:复制原图，png:复制由svg转换后的png
+    //         copyItems.push(
+    //             <li key={'pv_copy_svg'} className='picviewer-tool-item'>
+    //                 <a onClick={()=>copyPic(svgKey)}>复制SVG</a>
+    //             </li>
+    //         );
+    //         copyItems.push(
+    //             <li key={`pv_copy_png`} className='picviewer-tool-item'>
+    //                 <a onClick={()=>copySvgToPng(svgKey)}>复制PNG</a>
+    //             </li>
+    //         );
+    //     } else if(svgKey !== null && pngKey !== null) {
+    //         // 如果有svg资源，也有png资源，svg:复制原图，png:复制原图
+    //         copyItems.push(
+    //             <li key={'pv_copy_svg'} className='picviewer-tool-item'>
+    //                 <a onClick={()=>copyPic(svgKey)}>复制SVG</a>
+    //             </li>
+    //         );
+    //         copyItems.push(
+    //             <li key={'pv_copy_png'} className='picviewer-tool-item'>
+    //                 <a onClick={()=>copyPic(pngKey)}>复制PNG</a>
+    //             </li>
+    //         );
+    //     } else if(svgKey === null && pngKey !== null) {
+    //         // 如果没有svg资源，有png资源，svg:不提供复制，png:复制原图
+    //         copyItems.push(
+    //             <li key={'pv_copy_png'} className='picviewer-tool-item'>
+    //                 <a onClick={()=>copyPic(pngKey)}>复制PNG</a>
+    //             </li>
+    //         );
+
+    //     } else {
+    //         // 既没有svg资源，也没有png资源，png:复制原格式转换后的png
+    //         copyItems.push(
+    //             <li key={'pv_copy_other'} className='picviewer-tool-item'>
+    //                 <a onClick={()=>copyPic("other")}>复制PNG</a>
+    //             </li>
+    //         );
+    //     }
+    //     return copyItems;
+    // }
+
+
+
+    const dynamicMenu = (element) => {
         const items = [];
-        Object.keys(sources).forEach( (key) => {
-            if(copyEnabled.includes(key.toUpperCase())) {
-                const menuItem = {
-                    label: `复制${key.toUpperCase()}`,
-                    key: `copy${key.toUpperCase()}`
-                }
-                items.push(menuItem);
-            }
-            
-            // if(key === 'svg') {
-            //     const menuItem = {
-            //         label: '复制SVG',
-            //         key: 'copySVG'
-            //     }
-            //     items.push(menuItem);
-            // }
-            // if(key === 'png') {
-            //     const menuItem = {
-            //         label: '复制Png',
-            //         key: 'copyPng'
-            //     }
-            //     items.push(menuItem);
-            // }
+        let svgKey = null;
+        let pngKey = null;
+
+        if(Object.keys(element.sources).length < 1) return items;
+
+        Object.keys(element.sources).forEach( (key) => {
+            svgKey = key.toUpperCase() === 'SVG' ? key : svgKey;
+            pngKey = key.toUpperCase() === 'PNG' ? key : pngKey;
         });
-        Object.keys(sources).forEach( (key) => {
+        console.log(svgKey, pngKey);
+
+        if(svgKey !== null && pngKey === null) {
+            // 如果有svg资源，但没有png资源，svg:复制原图，png:复制由svg转换后的png
+            items.push(
+                {
+                    label: (<a onClick={ () => {copyPic(svgKey, `/public/logos${element.sources[svgKey]}`)} }>复制SVG</a>),
+                    key: 'copySvg'
+                }
+            );
+            items.push(
+                {
+                    label: (<a onClick={ () => {copySvgToPng(`#pic_${element.id}`, `/public/logos${element.sources[svgKey]}`)} }>复制PNG</a>),
+                    key: 'copySvgToPng'
+                }
+            );
+        } else if(svgKey !== null && pngKey !== null) {
+            // 如果有svg资源，也有png资源，svg:复制原图，png:复制原图
+            items.push(
+                {
+                    label: (<a onClick={ () => {copyPic(svgKey, `/public/logos${element.sources[svgKey]}`)} }>复制SVG</a>),
+                    key: 'copySvg'
+                }
+            );
+            items.push(
+                {
+                    label: (<a onClick={ () => {copyPic(pngKey, `/public/logos${element.sources[pngKey]}`)} }>复制PNG</a>),
+                    key: 'copyPng'
+                }
+            );
+        } else if(svgKey === null && pngKey !== null) {
+            // 如果没有svg资源，有png资源，svg:不提供复制，png:复制原图
+            items.push(
+                {
+                    label: (<a onClick={ () => {copyPic(pngKey, `/public/logos${element.sources[pngKey]}`)} }>复制PNG</a>),
+                    key: 'copyPng'
+                }
+            );
+
+        } else {
+            // 既没有svg资源，也没有png资源，png:复制原格式转换后的png
+            items.push(
+                {
+                    label: (<a onClick={ () => {copyPic("other", `#pic_${element.id}`)} }>复制PNG</a>),
+                    key: 'copyPng'
+                }
+            );
+        }
+        
+        Object.keys(element.sources).forEach( (key) => {
             const menuItem = {
-                label: `下载${key.toUpperCase()}文件`,
+                label: <a href={`/public/logos${element.sources[key]}`} download={element.sources[key].substring(element.sources[key].lastIndexOf('/') + 1)}>下载{key.toUpperCase()}文件</a>,
                 key: `download${key}`
             }
             items.push(menuItem);
-
-            // if(key === 'svg') {
-            //     const menuItem = {
-            //         label: '下载SVG文件',
-            //         key: 'downloadSvg'
-            //     }
-            //     items.push(menuItem);
-            // }
-            // if(key === 'png') {
-            //     const menuItem = {
-            //         label: '下载Png文件',
-            //         key: 'downloadPng'
-            //     }
-            //     items.push(menuItem);
-            // }
-            // if(key === 'psd') {
-            //     const menuItem = {
-            //         label: '下载Psd文件',
-            //         key: 'downloadPsd'
-            //     }
-            //     items.push(menuItem);
-            // }
         });
         return items;
+    }
+
+    const copyPic = async (logoKey, path) => {
+        console.log(logoKey, path);
+        // const logoSource = `/public/logos${sources[logoKey]}`;
+        try {
+            // let result = null;
+            // const response = await fetch(logoSource);
+            if(logoKey.toUpperCase() === 'SVG') {
+                const response = await fetch(path);
+                const result = await response.text();
+                navigator.clipboard.writeText(result)
+                .then(() => {
+                    message.info(`已复制${logoKey.toUpperCase()}至剪贴板`);
+                })
+                .catch( error => {
+                    message.error(`复制${logoKey.toUpperCase()}失败`);
+                    console.error(error);
+                })
+            } else if(logoKey.toUpperCase() === 'PNG') {
+                const response = await fetch(path);
+                const result = await response.blob();
+                const mimeType = result.type;
+                console.log('mime type:', mimeType);
+                const clipboardItemData = {};
+                clipboardItemData[mimeType] = result;
+                const img = new ClipboardItem(clipboardItemData);
+                navigator.clipboard.write([img])
+                .then(() => {
+                    message.info(`已复制${logoKey.toUpperCase()}至剪贴板`);
+                })
+                .catch(error => {
+                    message.error(`复制${logoKey.toUpperCase()}失败`);
+                    console.error(error);
+                });
+            } else {
+                // 其他格式需要转成png后再复制
+                const img = document.querySelector(path);
+                const canvas = document.querySelector('#logolib_convert_canvas');
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                canvas.toBlob(blob => {
+                    console.log(blob);
+                    const png = new ClipboardItem({ 'image/png': blob });
+                    // 将剪贴板项写入剪贴板
+                    navigator.clipboard.write([png])
+                        .then(() => {
+                            // 复制成功
+                            message.info(`已复制PNG至剪贴板`);
+                        })
+                        .catch(error => {
+                            // 复制失败
+                            message.error(`复制PNG失败`);
+                        });
+                })
+            }
+        } catch(err) {
+            message.error(`复制${logoKey.toUpperCase()}失败`);
+            console.error(err);
+        }
+    }
+
+    const copySvgToPng = async (domid, path) => {
+        console.log(path);
+        try{
+            let result = null;
+            const response = await fetch(path);
+            result = await response.text();
+            const img = document.querySelector(domid);
+            const canvas = document.querySelector('#logolib_convert_canvas');
+            // console.log('naturalWidth:', img.naturalWidth);
+            // console.log('naturalHeight:', img.naturalHeight);
+            // console.log('width:', img.width);
+            // console.log('height:', img.height);
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            const ctx = canvas.getContext('2d');
+            let v = null;
+            // 读取svg
+            v = Canvg.fromString(ctx, result);
+            // 在canvas上绘制svg
+            v.start();
+            canvas.toBlob(blob => {
+                const png = new ClipboardItem({"image/png": blob});
+                navigator.clipboard.write([png])
+                .then(() => {
+                    message.info(`已复制PNG至剪贴板`);
+                })
+                .catch(error => {
+                    message.error(`复制PNG失败`);
+                    console.error(error);
+                });
+            })
+        } catch(err) {
+            message.error(`复制PNG失败`);
+            console.error(err);
+        }
     }
 
     const showDetails = (logo) => {
@@ -183,7 +353,7 @@ const LogolibList = () => {
                                     <li key={element.id} className='logo-list-item'>
                                         <div className='logo-item-wrapper'>
                                             <div className='icon-img'>
-                                                <img src={'/public/logos'+ element.dir} alt={element.title} onClick={()=>showDetails(element)}/>
+                                                <img id={`pic_${element.id}`} src={'/public/logos'+ element.dir} alt={element.title} onClick={()=>showDetails(element)}/>
                                             </div>
                                             <div className='logo-details-wrapper'>
                                                 {
@@ -193,7 +363,7 @@ const LogolibList = () => {
                                         </div>
                                         <div className='icon-info-wrapper'>
                                             <div className='icon-info-title'><span>{element.title}</span></div>
-                                            <Dropdown menu={{items:dynamicMenu(element.sources), onClick: ({key}) => {onClick(key, element)} }}>
+                                            <Dropdown menu={{items:dynamicMenu(element) }}>
                                                 <div className='icon-option-more'>
                                                     <div className='icon-more-wrapper'>
                                                         <More theme="filled" size={16} fill="#333333"/>
@@ -226,7 +396,7 @@ const LogolibList = () => {
                 onCancel={handleModelCancel}>
             </Modal> */}
             <PicViewer id="picviewer" open={openDetails} path={sourcePath} name={sourceName}  sources={sources} className="" onCancel={handleModelCancel}/>
-            <canvas style={{display: "none"}} />
+            <canvas id="logolib_convert_canvas" style={{display: "none"}} />
         </>
     )
 }
