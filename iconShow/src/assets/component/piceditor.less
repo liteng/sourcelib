@@ -1,0 +1,111 @@
+
+.piceditor-content {
+    width: 100%;
+    max-width: 1024px;
+    .piceditor-wrapper {
+        background-color: #ffffff;
+        padding: 32px;
+        .piceditor-logo-info-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            .left-column {
+                min-width: 256px;
+            }
+            .right-column {
+                width: 100%;
+                // padding: 24px 0 24px 24px;
+                padding-left: 24px;
+            }
+            .preview-wrapper {
+                width: 256px;
+                height: 256px;
+                border-radius: 8px;
+                max-height: 256px;
+                max-width: 256px;
+                padding: 8px;
+                background-color: #f8f8f8;
+                .piceditor-logo-img {
+                    width: 240px;
+                    height: 240px;
+                    max-height: 240px;
+                    max-width: 240px;
+                    object-fit: contain;
+                }
+            }
+            .upload-thumbnail-option {
+                color: #1F64FF;
+                padding: 8px;
+                cursor: pointer;
+            }
+            .piceditor-logo-title {
+                display: block;
+                // width: 100%;
+                line-height: 1.5;
+                font-size: 24px;
+                color: #333333;
+                font-weight: 600;
+                padding: 8px 0px;
+                resize: none;
+                border: none;
+                &:hover {
+                    border: none;
+                    box-shadow: none;
+                }
+                &:active, &:focus {
+                    border: none;
+                    box-shadow: none;
+                    color: #000000;
+                    background-color: #f8f8f8;
+                    padding: 8px 16px;
+                }
+            }
+            .eidt-title-btn {
+                color: rgba(51, 51, 51, 0.5);
+                cursor: pointer;
+                &:hover {
+                    color: #1F64FF;
+                }
+            }
+            .picviewer-logo-sources-list-wrapper {
+                margin-top: 24px;
+                .picviewer-logo-sources-list {
+                    list-style-type:none;
+                    padding: 0;
+                    margin: 0;
+                    .logo-source-item {
+                        // color: #1F64FF;
+                        padding-left: 20px;
+                        .format-pre {
+                            padding-left: 20px;
+                            height: 22px;
+                            line-height: 22px;
+                        };
+                        .remove-source {
+                            height: 22px;
+                            line-height: 22px;
+                            display: inline-block;
+                            margin-left: 8px;;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .piceditor-close {
+        position: absolute;
+        right: 50px;
+        top: 50px;
+        cursor: pointer;
+    }
+}
+.piceditor-overlay {
+    background-color: rgba(0,0,0,0.75);
+    position: fixed;
+    inset: 0px;
+    z-index: 1009;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

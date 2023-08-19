@@ -1,0 +1,2100 @@
+[
+    {
+        "id": "zhongliangjituanyouxiangongsi",
+        "title": "中粮集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "ddb3a5b5-c39b-4b32-8679-e46553c65826": {
+                "format": "svg",
+                "path": "/中粮集团有限公司.svg"
+            },
+            "dd3f5604-9ecc-4fef-bf34-4ccec823cde3": {
+                "format": "png",
+                "path": "/中粮集团有限公司.png"
+            },
+            "116a1d1a-6b69-4a58-a812-6a0c45e7e3b2": {
+                "format": "ai",
+                "path": "/中粮集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中粮集团有限公司.png",
+        "tag": [
+            "中粮集团有限公司"
+        ]
+    },
+    {
+        "id": "zhonghejituan",
+        "title": "中核集团",
+        "category": "industrialCustomers",
+        "sources": {
+            "b6586e38-4259-4ff5-ae6c-9b122cafbf39": {
+                "format": "svg",
+                "path": "/中核集团.svg"
+            },
+            "d216935c-35a4-477a-aec1-06b26aaadee1": {
+                "format": "png",
+                "path": "/中核集团.png"
+            },
+            "b26e466e-6f58-463f-8176-1bd686c546c6": {
+                "format": "ai",
+                "path": "/中核集团.ai"
+            }
+        },
+        "thumbnail": "/中核集团.png",
+        "tag": [
+            "中核集团"
+        ]
+    },
+    {
+        "id": "zhongguozhongmeinengyuanjituanyouxiangongsi",
+        "title": "中国中煤能源集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "10c4be02-9ff9-4511-8676-c8c86f71bcee": {
+                "format": "svg",
+                "path": "/中国中煤能源集团有限公司.svg"
+            },
+            "1f0a8995-89f6-4d26-ae38-8e0b7a68f978": {
+                "format": "png",
+                "path": "/中国中煤能源集团有限公司.png"
+            },
+            "ab085454-c83d-442c-8d06-0805ab7716c8": {
+                "format": "ai",
+                "path": "/中国中煤能源集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国中煤能源集团有限公司.png",
+        "tag": [
+            "中国中煤能源集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguozhonghuakongguyouxianzerengongsi",
+        "title": "中国中化控股有限责任公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "ff84fae8-98f7-4524-aa09-d5a75b4db84f": {
+                "format": "svg",
+                "path": "/中国中化控股有限责任公司.svg"
+            },
+            "3024b83b-646a-4d07-b595-74c3b6d17d64": {
+                "format": "png",
+                "path": "/中国中化控股有限责任公司.png"
+            },
+            "7ff78062-e691-48e6-9d15-b540bfa683ac": {
+                "format": "ai",
+                "path": "/中国中化控股有限责任公司.ai"
+            }
+        },
+        "thumbnail": "/中国中化控股有限责任公司.png",
+        "tag": [
+            "中国中化控股有限责任公司"
+        ]
+    },
+    {
+        "id": "zhongguozhonggangjituanyouxiangongsi",
+        "title": "中国中钢集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "28149756-07c0-4d3a-819e-388a985d4850": {
+                "format": "svg",
+                "path": "/中国中钢集团有限公司.svg"
+            },
+            "7831f20a-b302-49ce-9d87-666ef3720439": {
+                "format": "png",
+                "path": "/中国中钢集团有限公司.png"
+            },
+            "8e7a2f40-b6d0-44eb-b5a5-98af0e6b6d92": {
+                "format": "ai",
+                "path": "/中国中钢集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国中钢集团有限公司.png",
+        "tag": [
+            "中国中钢集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguozhongchejituanyouxiangongsi",
+        "title": "中国中车集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "796e9c7c-0d4b-4bf5-aeb9-759748544c16": {
+                "format": "svg",
+                "path": "/中国中车集团有限公司.svg"
+            },
+            "ac6ab825-393d-4730-a0b4-3b07a15e4ebe": {
+                "format": "png",
+                "path": "/中国中车集团有限公司.png"
+            },
+            "c805dda6-dd6f-4185-8812-07e36767324c": {
+                "format": "ai",
+                "path": "/中国中车集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国中车集团有限公司.png",
+        "tag": [
+            "中国中车集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguochangjiangsanxiajituanyouxiangongsi",
+        "title": "中国长江三峡集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "1e24809d-8f3e-47da-9f74-a19e2f39f969": {
+                "format": "svg",
+                "path": "/中国长江三峡集团有限公司.svg"
+            },
+            "828e2cb1-6f62-4b52-8f44-0a26a0e115aa": {
+                "format": "png",
+                "path": "/中国长江三峡集团有限公司.png"
+            },
+            "45de3955-c65c-442c-a9fe-56e5e2999384": {
+                "format": "ai",
+                "path": "/中国长江三峡集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国长江三峡集团有限公司.png",
+        "tag": [
+            "中国长江三峡集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoyuanyanghaiyunjituanyouxiangongsi",
+        "title": "中国远洋海运集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "08dddf4a-9b89-4caf-ba4e-3ec5362eaae1": {
+                "format": "svg",
+                "path": "/中国远洋海运集团有限公司.svg"
+            },
+            "dca75538-d7ec-45f9-a02a-56cff649eed5": {
+                "format": "png",
+                "path": "/中国远洋海运集团有限公司.png"
+            },
+            "187e339d-dd84-408f-abea-0f523fff9b5a": {
+                "format": "ai",
+                "path": "/中国远洋海运集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国远洋海运集团有限公司.png",
+        "tag": [
+            "中国远洋海运集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoyousekuangyejituanyouxiangongsi",
+        "title": "中国有色矿业集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "71a90409-3aeb-4f69-941a-22662d2a410a": {
+                "format": "svg",
+                "path": "/中国有色矿业集团有限公司.svg"
+            },
+            "1621b5c9-f000-4615-8e01-f91385fa33f1": {
+                "format": "png",
+                "path": "/中国有色矿业集团有限公司.png"
+            },
+            "2dd122e7-fe5d-4e2f-982f-88eaafd4e09c": {
+                "format": "ai",
+                "path": "/中国有色矿业集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国有色矿业集团有限公司.png",
+        "tag": [
+            "中国有色矿业集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoyidongtongxinjituanyouxiangongsi",
+        "title": "中国移动通信集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "94301278-2915-4b16-84ca-3cfacbe705a3": {
+                "format": "svg",
+                "path": "/中国移动通信集团有限公司.svg"
+            },
+            "ddb42425-59fe-4ad9-8f7a-8beb8c1815ec": {
+                "format": "png",
+                "path": "/中国移动通信集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国移动通信集团有限公司.png",
+        "tag": [
+            "中国移动通信集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoyiyaojituanyouxiangongsi",
+        "title": "中国医药集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "30959084-5384-416b-b6c6-ba3f8a711201": {
+                "format": "svg",
+                "path": "/中国医药集团有限公司.svg"
+            },
+            "48350f69-681e-4878-be81-3c279e547b5d": {
+                "format": "png",
+                "path": "/中国医药集团有限公司.png"
+            },
+            "86dc42da-cd56-4e58-a516-9e42bd42b5a2": {
+                "format": "ai",
+                "path": "/中国医药集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国医药集团有限公司.png",
+        "tag": [
+            "中国医药集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoyizhongjituanyouxiangongsi",
+        "title": "中国一重集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "721733df-1c95-42e8-8ad3-70e4007cb16d": {
+                "format": "svg",
+                "path": "/中国一重集团有限公司.svg"
+            },
+            "36e2bcd0-b959-4c82-9173-90f9837d2fc7": {
+                "format": "png",
+                "path": "/中国一重集团有限公司.png"
+            },
+            "8d550691-2edf-4534-91ab-91ffe5a11689": {
+                "format": "ai",
+                "path": "/中国一重集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国一重集团有限公司.png",
+        "tag": [
+            "中国一重集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoyejindizhizongju",
+        "title": "中国冶金地质总局",
+        "category": "industrialCustomers",
+        "sources": {
+            "e0623197-bc75-4bfe-9f62-eee1ded78c51": {
+                "format": "svg",
+                "path": "/中国冶金地质总局.svg"
+            },
+            "14b57278-e525-4489-ba40-30e19d1bedac": {
+                "format": "png",
+                "path": "/中国冶金地质总局.png"
+            },
+            "d0d6bb3d-ce1c-49e9-afc5-027e21713c71": {
+                "format": "ai",
+                "path": "/中国冶金地质总局.ai"
+            }
+        },
+        "thumbnail": "/中国冶金地质总局.png",
+        "tag": [
+            "中国冶金地质总局"
+        ]
+    },
+    {
+        "id": "zhongguoyanyejituanyouxiangongsi",
+        "title": "中国盐业集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "86cea2c1-aeec-4800-b1c0-f8161afb8772": {
+                "format": "svg",
+                "path": "/中国盐业集团有限公司.svg"
+            },
+            "71b61382-be06-44e7-845d-1f0bf5b66dbd": {
+                "format": "png",
+                "path": "/中国盐业集团有限公司.png"
+            },
+            "73776530-6bac-4939-a343-b8d625855e75": {
+                "format": "ai",
+                "path": "/中国盐业集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国盐业集团有限公司.png",
+        "tag": [
+            "中国盐业集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoxinxitongxinkejijituanyouxiangongsi",
+        "title": "中国信息通信科技集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "f4e39829-f369-4bf2-a189-07c0a66feb3e": {
+                "format": "svg",
+                "path": "/中国信息通信科技集团有限公司.svg"
+            },
+            "dc87ce80-e752-4fc8-9455-f6ae7e79ea19": {
+                "format": "png",
+                "path": "/中国信息通信科技集团有限公司.png"
+            },
+            "35011754-6e86-4b7f-9b6f-4d1a4bade7b8": {
+                "format": "ai",
+                "path": "/中国信息通信科技集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国信息通信科技集团有限公司.png",
+        "tag": [
+            "中国信息通信科技集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoxitujituanyouxiangongsi",
+        "title": "中国稀土集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "22049c5d-3f69-481f-98ba-e28b8445f08f": {
+                "format": "png",
+                "path": "/中国稀土集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国稀土集团有限公司.png",
+        "tag": [
+            "中国稀土集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguowuliujituanyouxiangongsi",
+        "title": "中国物流集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "8b27dfa3-ede0-4719-a7d2-65a96193bba8": {
+                "format": "svg",
+                "path": "/中国物流集团有限公司.svg"
+            },
+            "4d02fffc-27a3-410a-8729-b5efc05403ea": {
+                "format": "png",
+                "path": "/中国物流集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国物流集团有限公司.png",
+        "tag": [
+            "中国物流集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguowukuangjituanyouxiangongsi",
+        "title": "中国五矿集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "1706eec5-a683-4e86-8203-b37e46b06e5b": {
+                "format": "svg",
+                "path": "/中国五矿集团有限公司.svg"
+            },
+            "d124a61a-f2a4-46a4-82fa-da0db2353b9f": {
+                "format": "png",
+                "path": "/中国五矿集团有限公司.png"
+            },
+            "2a8f6779-aac1-40ea-a419-dcd4e90466dc": {
+                "format": "ai",
+                "path": "/中国五矿集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国五矿集团有限公司.png",
+        "tag": [
+            "中国五矿集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoweixingwangluojituanyouxiangongsi",
+        "title": "中国卫星网络集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "b91bb8fb-06a2-40d9-a9ce-51f264b2a5cb": {
+                "format": "png",
+                "path": "/中国卫星网络集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国卫星网络集团有限公司.png",
+        "tag": [
+            "中国卫星网络集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguotongyongjishujituankongguyouxianzerengongsi",
+        "title": "中国通用技术（集团）控股有限责任公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "68e24376-b2f0-44c5-bf55-3bd9632cc6fb": {
+                "format": "svg",
+                "path": "/中国通用技术（集团）控股有限责任公司.svg"
+            },
+            "70ca1740-4f9a-48ba-8233-2bf2b7744b23": {
+                "format": "png",
+                "path": "/中国通用技术（集团）控股有限责任公司.png"
+            },
+            "7b215b91-7351-4b18-b937-bdbb1a03082c": {
+                "format": "ai",
+                "path": "/中国通用技术（集团）控股有限责任公司.ai"
+            }
+        },
+        "thumbnail": "/中国通用技术（集团）控股有限责任公司.png",
+        "tag": [
+            "中国通用技术（集团）控股有限责任公司"
+        ]
+    },
+    {
+        "id": "zhongguotielutongxinxinhaojituanyouxiangongsi",
+        "title": "中国铁路通信信号集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "ecf451cf-9ebe-475d-928b-275041c4169e": {
+                "format": "svg",
+                "path": "/中国铁路通信信号集团有限公司.svg"
+            },
+            "a1a12b64-1cff-44df-9015-91437b2fe52a": {
+                "format": "png",
+                "path": "/中国铁路通信信号集团有限公司.png"
+            },
+            "5b065126-dfe0-402d-85ff-753ee6364421": {
+                "format": "ai",
+                "path": "/中国铁路通信信号集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国铁路通信信号集团有限公司.png",
+        "tag": [
+            "中国铁路通信信号集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguotielugongchengjituanyouxiangongsi",
+        "title": "中国铁路工程集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "c5fc8b0a-dad4-40d1-96a6-16dbf3fc7662": {
+                "format": "svg",
+                "path": "/中国铁路工程集团有限公司.svg"
+            },
+            "5d93031d-ca3c-46a3-b8fb-edbb94e38a7c": {
+                "format": "png",
+                "path": "/中国铁路工程集团有限公司.png"
+            },
+            "6afd114f-55c6-436f-b430-757c651f7c58": {
+                "format": "ai",
+                "path": "/中国铁路工程集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国铁路工程集团有限公司.png",
+        "tag": [
+            "中国铁路工程集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguotiedaojianzhujituanyouxiangongsi",
+        "title": "中国铁道建筑集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "c0d177c1-6a6a-4884-bc5d-8c16167d8229": {
+                "format": "svg",
+                "path": "/中国铁道建筑集团有限公司.svg"
+            },
+            "7cc6ca0e-d688-4f38-9fbf-ab8b835d21ce": {
+                "format": "png",
+                "path": "/中国铁道建筑集团有限公司.png"
+            },
+            "f171c22f-4ba1-449d-81a2-cc93ca2fe28c": {
+                "format": "ai",
+                "path": "/中国铁道建筑集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国铁道建筑集团有限公司.png",
+        "tag": [
+            "中国铁道建筑集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoshiyoutianranqijituanyouxiangongsi",
+        "title": "中国石油天然气集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "0b8f2087-f537-435a-9feb-5076a4214006": {
+                "format": "svg",
+                "path": "/中国石油天然气集团有限公司.svg"
+            },
+            "9e949e9d-5d74-44a9-ad34-f94246fbdafd": {
+                "format": "png",
+                "path": "/中国石油天然气集团有限公司.png"
+            },
+            "3392c9b1-f676-4bf6-ab2d-813b847d0dae": {
+                "format": "ai",
+                "path": "/中国石油天然气集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国石油天然气集团有限公司.png",
+        "tag": [
+            "中国石油天然气集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoshiyouhuagongjituanyouxiangongsi",
+        "title": "中国石油化工集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "cd290219-14ef-4995-bd9a-9f6963081fe3": {
+                "format": "svg",
+                "path": "/中国石油化工集团有限公司.svg"
+            },
+            "a612fecb-5ef7-43ea-aa68-162a0822e95c": {
+                "format": "png",
+                "path": "/中国石油化工集团有限公司.png"
+            },
+            "16e41f81-ac46-418a-a20a-7353f683517b": {
+                "format": "ai",
+                "path": "/中国石油化工集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国石油化工集团有限公司.png",
+        "tag": [
+            "中国石油化工集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoshangyongfeijiyouxianzerengongsi",
+        "title": "中国商用飞机有限责任公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "57576219-eb77-4203-a9c3-0c4dbb8cbfc0": {
+                "format": "svg",
+                "path": "/中国商用飞机有限责任公司.svg"
+            },
+            "83da3d35-e506-4d29-b786-aa213cc9ec43": {
+                "format": "png",
+                "path": "/中国商用飞机有限责任公司.png"
+            },
+            "8e00cc83-1fb5-46c5-b244-078e4a17ba2c": {
+                "format": "ai",
+                "path": "/中国商用飞机有限责任公司.ai"
+            }
+        },
+        "thumbnail": "/中国商用飞机有限责任公司.png",
+        "tag": [
+            "中国商用飞机有限责任公司"
+        ]
+    },
+    {
+        "id": "zhongguorongtongzichanguanlijituanyouxiangongsi",
+        "title": "中国融通资产管理集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "4ed79ab5-117d-4356-bd01-6544ba30ae06": {
+                "format": "png",
+                "path": "/中国融通资产管理集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国融通资产管理集团有限公司.png",
+        "tag": [
+            "中国融通资产管理集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguonongyefazhanjituanyouxiangongsi",
+        "title": "中国农业发展集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "2d05244b-972d-428b-bcb9-ba24c2dad325": {
+                "format": "png",
+                "path": "/中国农业发展集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国农业发展集团有限公司.png",
+        "tag": [
+            "中国农业发展集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguonengyuanjianshejituanyouxiangongsi",
+        "title": "中国能源建设集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "c30690a8-26d7-495c-8f39-fbd0f9d65ff2": {
+                "format": "svg",
+                "path": "/中国能源建设集团有限公司.svg"
+            },
+            "6e985f31-0e72-431c-bb07-089af7c8c592": {
+                "format": "png",
+                "path": "/中国能源建设集团有限公司.png"
+            },
+            "899213dc-5e14-4282-8400-eb4dba0ec7e3": {
+                "format": "ai",
+                "path": "/中国能源建设集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国能源建设集团有限公司.png",
+        "tag": [
+            "中国能源建设集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguonanguangjituanyouxiangongsi",
+        "title": "中国南光集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "3691682e-e2ac-407d-95b4-1952e350b725": {
+                "format": "png",
+                "path": "/中国南光集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国南光集团有限公司.png",
+        "tag": [
+            "中国南光集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguonanfanghangkongjituanyouxiangongsi",
+        "title": "中国南方航空集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "f459afeb-c3be-42c6-a3c6-da40de8d4915": {
+                "format": "svg",
+                "path": "/中国南方航空集团有限公司.svg"
+            },
+            "a1bace10-f076-4f7e-9111-3c01cdfd38d1": {
+                "format": "png",
+                "path": "/中国南方航空集团有限公司.png"
+            },
+            "fce65297-ed72-426a-80a6-be94b174d307": {
+                "format": "ai",
+                "path": "/中国南方航空集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国南方航空集团有限公司.png",
+        "tag": [
+            "中国南方航空集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguonanfangdianwangyouxianzerengongsi",
+        "title": "中国南方电网有限责任公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "3b5334af-e59c-4974-9079-7fd1ae7cf17a": {
+                "format": "svg",
+                "path": "/中国南方电网有限责任公司.svg"
+            },
+            "f6c283af-8a57-4445-8aca-a5423b217f0f": {
+                "format": "png",
+                "path": "/中国南方电网有限责任公司.png"
+            },
+            "72376208-8e98-4591-ab60-eec8614816e2": {
+                "format": "ai",
+                "path": "/中国南方电网有限责任公司.ai"
+            }
+        },
+        "thumbnail": "/中国南方电网有限责任公司.png",
+        "tag": [
+            "中国南方电网有限责任公司"
+        ]
+    },
+    {
+        "id": "zhongguominhangxinxijituanyouxiangongsi",
+        "title": "中国民航信息集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "0ebe9526-a555-41b2-b002-2ac882860cf3": {
+                "format": "svg",
+                "path": "/中国民航信息集团有限公司.svg"
+            },
+            "631e7602-8fbe-49fe-9a06-3c996f056518": {
+                "format": "png",
+                "path": "/中国民航信息集团有限公司.png"
+            },
+            "5fbb7f01-c8c3-49e4-acdd-e654add3b065": {
+                "format": "ai",
+                "path": "/中国民航信息集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国民航信息集团有限公司.png",
+        "tag": [
+            "中国民航信息集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguomeitankegongjituanyouxiangongsi",
+        "title": "中国煤炭科工集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "5f37bf21-0435-4030-8393-9f3a917bf46a": {
+                "format": "svg",
+                "path": "/中国煤炭科工集团有限公司.svg"
+            },
+            "8452d015-280c-4948-919a-21be88da1137": {
+                "format": "png",
+                "path": "/中国煤炭科工集团有限公司.png"
+            },
+            "587fd64c-3939-474e-a0ec-477b85286f42": {
+                "format": "ai",
+                "path": "/中国煤炭科工集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国煤炭科工集团有限公司.png",
+        "tag": [
+            "中国煤炭科工集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguomeitandizhizongju",
+        "title": "中国煤炭地质总局",
+        "category": "industrialCustomers",
+        "sources": {
+            "c492b0f7-b35b-4118-9daa-7ed43ed8d843": {
+                "format": "png",
+                "path": "/中国煤炭地质总局.png"
+            }
+        },
+        "thumbnail": "/中国煤炭地质总局.png",
+        "tag": [
+            "中国煤炭地质总局"
+        ]
+    },
+    {
+        "id": "zhongguolvyejituanyouxiangongsi",
+        "title": "中国铝业集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "61a32d84-d5eb-4c6e-9460-b7783b4b6c7b": {
+                "format": "svg",
+                "path": "/中国铝业集团有限公司.svg"
+            },
+            "be9f65cb-1ca2-4a69-a544-90f76ad23198": {
+                "format": "png",
+                "path": "/中国铝业集团有限公司.png"
+            },
+            "6d65b1f3-e5ee-4f0c-83e6-58f534028a76": {
+                "format": "ai",
+                "path": "/中国铝业集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国铝业集团有限公司.png",
+        "tag": [
+            "中国铝业集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguolvyoujituanyouxiangongsi",
+        "title": "中国旅游集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "7389db4b-735e-42f4-b8d3-6d1465e2ef5a": {
+                "format": "svg",
+                "path": "/中国旅游集团有限公司.svg"
+            },
+            "51ba3228-954e-4c7a-a405-0890be76a7bb": {
+                "format": "png",
+                "path": "/中国旅游集团有限公司.png"
+            },
+            "a0feca5f-5fc9-4ae8-a579-83abab37c866": {
+                "format": "ai",
+                "path": "/中国旅游集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国旅游集团有限公司.png",
+        "tag": [
+            "中国旅游集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguolinyejituanyouxiangongsi",
+        "title": "中国林业集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "2b7fa3f5-5925-4513-9c44-fc6135768f98": {
+                "format": "svg",
+                "path": "/中国林业集团有限公司.svg"
+            },
+            "803d5465-671e-4e45-a683-2f16d426fb3d": {
+                "format": "png",
+                "path": "/中国林业集团有限公司.png"
+            },
+            "18f202b9-2135-488e-92dd-c4403170f850": {
+                "format": "ai",
+                "path": "/中国林业集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国林业集团有限公司.png",
+        "tag": [
+            "中国林业集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguolianhewangluotongxinjituanyouxiangongsi",
+        "title": "中国联合网络通信集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "0143a22b-d3d6-4b42-bc43-fae03297dad0": {
+                "format": "svg",
+                "path": "/中国联合网络通信集团有限公司.svg"
+            },
+            "dc8c295f-adb4-4635-bb5e-8b1f16096344": {
+                "format": "png",
+                "path": "/中国联合网络通信集团有限公司.png"
+            },
+            "84de941b-ab1b-4d2f-94ad-745577a0a120": {
+                "format": "ai",
+                "path": "/中国联合网络通信集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国联合网络通信集团有限公司.png",
+        "tag": [
+            "中国联合网络通信集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguokuangchanziyuanjituanyouxiangongsi",
+        "title": "中国矿产资源集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "8e0a0aa2-8ca1-4231-934e-72175ed78c6b": {
+                "format": "png",
+                "path": "/中国矿产资源集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国矿产资源集团有限公司.png",
+        "tag": [
+            "中国矿产资源集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguojienenghuanbaojituanyouxiangongsi",
+        "title": "中国节能环保集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "512cd3ee-fbe4-49e2-b6d2-11a63ab62674": {
+                "format": "svg",
+                "path": "/中国节能环保集团有限公司.svg"
+            },
+            "b5b6ce33-820a-4ada-b26b-115092f74210": {
+                "format": "png",
+                "path": "/中国节能环保集团有限公司.png"
+            },
+            "34b2a879-a319-409d-8ad7-aa6418f862de": {
+                "format": "ai",
+                "path": "/中国节能环保集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国节能环保集团有限公司.png",
+        "tag": [
+            "中国节能环保集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguojiaotongjianshejituanyouxiangongsi",
+        "title": "中国交通建设集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "15faec37-cbfb-4c8c-9ce9-859bf1b288b9": {
+                "format": "svg",
+                "path": "/中国交通建设集团有限公司.svg"
+            },
+            "0d52ff33-8169-41d7-8455-f88f82a42548": {
+                "format": "png",
+                "path": "/中国交通建设集团有限公司.png"
+            },
+            "bcaacaee-e6ed-4991-9a72-d2d552e1e604": {
+                "format": "ai",
+                "path": "/中国交通建设集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国交通建设集团有限公司.png",
+        "tag": [
+            "中国交通建设集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguojianzhukexueyanjiuyuanyouxiangongsi",
+        "title": "中国建筑科学研究院有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "2aeba689-dea8-4545-b9e8-7af415611c96": {
+                "format": "svg",
+                "path": "/中国建筑科学研究院有限公司.svg"
+            },
+            "ab1536ca-7a68-4339-b438-aa8c03f4297f": {
+                "format": "png",
+                "path": "/中国建筑科学研究院有限公司.png"
+            },
+            "f799fc94-ab86-4aa8-9087-72ae89847e08": {
+                "format": "ai",
+                "path": "/中国建筑科学研究院有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国建筑科学研究院有限公司.png",
+        "tag": [
+            "中国建筑科学研究院有限公司"
+        ]
+    },
+    {
+        "id": "zhongguojianzhujituanyouxiangongsi",
+        "title": "中国建筑集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "ecb83fd4-509b-4549-9c0d-ef63bc9f2a51": {
+                "format": "svg",
+                "path": "/中国建筑集团有限公司.svg"
+            },
+            "d673e408-7272-432a-a1fd-db35f26e33c0": {
+                "format": "png",
+                "path": "/中国建筑集团有限公司.png"
+            },
+            "252e9f17-e892-47b8-bdfe-53677d25a7b8": {
+                "format": "ai",
+                "path": "/中国建筑集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国建筑集团有限公司.png",
+        "tag": [
+            "中国建筑集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguojianshekejiyouxiangongsi",
+        "title": "中国建设科技有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "6449a8b7-48d2-44ae-9f3c-7fb8af729ca4": {
+                "format": "png",
+                "path": "/中国建设科技有限公司.png"
+            }
+        },
+        "thumbnail": "/中国建设科技有限公司.png",
+        "tag": [
+            "中国建设科技有限公司"
+        ]
+    },
+    {
+        "id": "zhongguojiancaijituanyouxiangongsi",
+        "title": "中国建材集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "4e7824dc-a9f8-4b4d-bab5-22de30377ce6": {
+                "format": "svg",
+                "path": "/中国建材集团有限公司.svg"
+            },
+            "de099e0d-3e57-4d6e-bc44-fab4ff74e4dc": {
+                "format": "png",
+                "path": "/中国建材集团有限公司.png"
+            },
+            "0875ebe1-6bb2-4cf8-a63c-44f5c9feb4da": {
+                "format": "ai",
+                "path": "/中国建材集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国建材集团有限公司.png",
+        "tag": [
+            "中国建材集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguojianyanrenzhengjituanyouxiangongsi",
+        "title": "中国检验认证（集团）有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "73c21d03-3854-431c-b7df-4cff38279eff": {
+                "format": "svg",
+                "path": "/中国检验认证（集团）有限公司.svg"
+            },
+            "c71ab19e-f2be-4282-9e87-1fde9f8bee31": {
+                "format": "png",
+                "path": "/中国检验认证（集团）有限公司.png"
+            },
+            "fe3db90f-6e31-4bcc-955c-fa87432b9f6e": {
+                "format": "ai",
+                "path": "/中国检验认证（集团）有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国检验认证（集团）有限公司.png",
+        "tag": [
+            "中国检验认证（集团）有限公司"
+        ]
+    },
+    {
+        "id": "zhongguojixiekexueyanjiuzongyuanjituanyouxiangongsi",
+        "title": "中国机械科学研究总院集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "fff7b4a7-fb87-41be-b0ce-fa55fd8866c9": {
+                "format": "png",
+                "path": "/中国机械科学研究总院集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国机械科学研究总院集团有限公司.png",
+        "tag": [
+            "中国机械科学研究总院集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguojixiegongyejituanyouxiangongsi",
+        "title": "中国机械工业集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "2b7ede5b-3ed9-4c73-9326-e85fb01847a7": {
+                "format": "svg",
+                "path": "/中国机械工业集团有限公司.svg"
+            },
+            "fde6814e-a4e3-490e-8ea6-d81938e3bc08": {
+                "format": "png",
+                "path": "/中国机械工业集团有限公司.png"
+            },
+            "a08ea87a-7359-4b43-852a-5bae0833cc83": {
+                "format": "ai",
+                "path": "/中国机械工业集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国机械工业集团有限公司.png",
+        "tag": [
+            "中国机械工业集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohuangjinjituanyouxiangongsi",
+        "title": "中国黄金集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "b661edf6-9eca-41e1-83fc-1169827f247e": {
+                "format": "svg",
+                "path": "/中国黄金集团有限公司.svg"
+            },
+            "493e6831-5049-4b03-a158-4c39e156a0c6": {
+                "format": "png",
+                "path": "/中国黄金集团有限公司.png"
+            },
+            "52cbfcea-bae8-475e-a96e-543516485814": {
+                "format": "ai",
+                "path": "/中国黄金集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国黄金集团有限公司.png",
+        "tag": [
+            "中国黄金集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohuaxuegongchengjituanyouxiangongsi",
+        "title": "中国化学工程集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "3fac43b1-9973-4bba-b897-87ae14fe39a0": {
+                "format": "svg",
+                "path": "/中国化学工程集团有限公司.svg"
+            },
+            "af7a62e3-4497-477a-ad74-5a3b63631e38": {
+                "format": "png",
+                "path": "/中国化学工程集团有限公司.png"
+            },
+            "bd30f40b-ff1a-47a3-8330-c8f2fb6226d0": {
+                "format": "ai",
+                "path": "/中国化学工程集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国化学工程集团有限公司.png",
+        "tag": [
+            "中国化学工程集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohuanengjituanyouxiangongsi",
+        "title": "中国华能集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "d82c177e-24e7-43d1-927f-1ff804f199ef": {
+                "format": "svg",
+                "path": "/中国华能集团有限公司.svg"
+            },
+            "2316eaac-b349-40ca-aedf-978a18200624": {
+                "format": "png",
+                "path": "/中国华能集团有限公司.png"
+            },
+            "62f5d581-ee3a-4b9f-9a5f-9f7cb5c240a0": {
+                "format": "ai",
+                "path": "/中国华能集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国华能集团有限公司.png",
+        "tag": [
+            "中国华能集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohualujituanyouxiangongsi",
+        "title": "中国华录集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "5db17b6a-6d50-49cc-b33a-b4656d6e4fda": {
+                "format": "png",
+                "path": "/中国华录集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国华录集团有限公司.png",
+        "tag": [
+            "中国华录集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohuadianjituanyouxiangongsi",
+        "title": "中国华电集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "faaf2c62-d38d-471d-9768-62fccb31c3af": {
+                "format": "svg",
+                "path": "/中国华电集团有限公司.svg"
+            },
+            "bcd98982-8a47-42f1-be50-645588b16bce": {
+                "format": "png",
+                "path": "/中国华电集团有限公司.png"
+            },
+            "284e6e54-7700-4de6-afcc-66202e837c9f": {
+                "format": "ai",
+                "path": "/中国华电集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国华电集团有限公司.png",
+        "tag": [
+            "中国华电集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohangtiankejijituanyouxiangongsi",
+        "title": "中国航天科技集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "057e4f77-661e-451e-a311-6dad9690f57b": {
+                "format": "psd",
+                "path": "/中国航天科技集团有限公司.psd"
+            },
+            "117a349b-b18f-41b5-ad2e-ba31deb8a435": {
+                "format": "png",
+                "path": "/中国航天科技集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国航天科技集团有限公司.png",
+        "tag": [
+            "中国航天科技集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohangtiankegongjituanyouxiangongsi",
+        "title": "中国航天科工集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "c11bcbce-28cb-407e-9c29-b0c7dcfc5390": {
+                "format": "svg",
+                "path": "/中国航天科工集团有限公司.svg"
+            },
+            "98911603-214c-4b53-94b8-663a47be5336": {
+                "format": "png",
+                "path": "/中国航天科工集团有限公司.png"
+            },
+            "6febcab4-6b4f-4e8d-b68d-cb6016785a25": {
+                "format": "ai",
+                "path": "/中国航天科工集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国航天科工集团有限公司.png",
+        "tag": [
+            "中国航天科工集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohangkongyouliaojituanyouxiangongsi",
+        "title": "中国航空油料集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "bac0092e-fa3a-406c-96b3-dab1c73f3768": {
+                "format": "svg",
+                "path": "/中国航空油料集团有限公司.svg"
+            },
+            "139d64fc-d805-461e-9d24-bf7474fa4f48": {
+                "format": "png",
+                "path": "/中国航空油料集团有限公司.png"
+            },
+            "162146ee-dc08-45dd-958c-d8216c5f7bb4": {
+                "format": "ai",
+                "path": "/中国航空油料集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国航空油料集团有限公司.png",
+        "tag": [
+            "中国航空油料集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohangkongqicaijituanyouxiangongsi",
+        "title": "中国航空器材集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "f3b8fbed-bbba-491b-ba39-bda32bc33abf": {
+                "format": "png",
+                "path": "/中国航空器材集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国航空器材集团有限公司.png",
+        "tag": [
+            "中国航空器材集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohangkongjituanyouxiangongsi",
+        "title": "中国航空集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "1de7edb5-697a-41bc-8be9-88245cdbd273": {
+                "format": "svg",
+                "path": "/中国航空集团有限公司.svg"
+            },
+            "680f8aee-e557-4b3f-b675-dcff95692ff7": {
+                "format": "png",
+                "path": "/中国航空集团有限公司.png"
+            },
+            "9dd394bc-067c-4999-8e79-2e4bcd672579": {
+                "format": "ai",
+                "path": "/中国航空集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国航空集团有限公司.png",
+        "tag": [
+            "中国航空集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohangkonggongyejituanyouxiangongsi",
+        "title": "中国航空工业集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "f8d7ed62-f895-4d7d-9a45-3c1c7a45c300": {
+                "format": "svg",
+                "path": "/中国航空工业集团有限公司.svg"
+            },
+            "b9da0e40-54fa-4122-a42d-7c1d6ccf4d9f": {
+                "format": "png",
+                "path": "/中国航空工业集团有限公司.png"
+            },
+            "41cfaebf-08fa-498e-b005-8b4ff7c67dcc": {
+                "format": "ai",
+                "path": "/中国航空工业集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国航空工业集团有限公司.png",
+        "tag": [
+            "中国航空工业集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohangkongfadongjijituanyouxiangongsi",
+        "title": "中国航空发动机集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "fb896967-bda6-48e8-bc2e-388ef0bf2bcd": {
+                "format": "ai",
+                "path": "/中国航空发动机集团有限公司.ai"
+            },
+            "f0a9642c-66e7-4566-8f19-94a1e8d37e9f": {
+                "format": "svg",
+                "path": "/中国航空发动机集团有限公司.svg"
+            },
+            "ad05a594-716a-4f1f-942a-7e83e859f97b": {
+                "format": "png",
+                "path": "/中国航空发动机集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国航空发动机集团有限公司.png",
+        "tag": [
+            "中国航空发动机集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguohaiyangshiyoujituanyouxiangongsi",
+        "title": "中国海洋石油集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "dd85fbea-0e38-48f2-966b-ad2d6e9cb481": {
+                "format": "svg",
+                "path": "/中国海洋石油集团有限公司.svg"
+            },
+            "abb652d2-49ca-4499-b924-dc602ac08ffc": {
+                "format": "png",
+                "path": "/中国海洋石油集团有限公司.png"
+            },
+            "7250a817-a240-42ac-bc59-50e6fe160042": {
+                "format": "ai",
+                "path": "/中国海洋石油集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国海洋石油集团有限公司.png",
+        "tag": [
+            "中国海洋石油集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoguoxinkongguyouxianzerengongsi",
+        "title": "中国国新控股有限责任公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "6667df2c-30b9-4071-9371-a5b2bc920ac4": {
+                "format": "png",
+                "path": "/中国国新控股有限责任公司.png"
+            }
+        },
+        "thumbnail": "/中国国新控股有限责任公司.png",
+        "tag": [
+            "中国国新控股有限责任公司"
+        ]
+    },
+    {
+        "id": "zhongguoguojijishuzhilihezuojituanyouxiangongsi",
+        "title": "中国国际技术智力合作集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "97ade4b3-3448-420b-892e-9cb6fa9fc79d": {
+                "format": "png",
+                "path": "/中国国际技术智力合作集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国国际技术智力合作集团有限公司.png",
+        "tag": [
+            "中国国际技术智力合作集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoguojigongchengzixunyouxiangongsi",
+        "title": "中国国际工程咨询有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "837638d4-f28d-46e6-9af3-05d2942914b5": {
+                "format": "png",
+                "path": "/中国国际工程咨询有限公司.png"
+            }
+        },
+        "thumbnail": "/中国国际工程咨询有限公司.png",
+        "tag": [
+            "中国国际工程咨询有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoguanghejituanyouxiangongsi",
+        "title": "中国广核集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "7077ab88-7d3f-470d-9308-5804a492f0c3": {
+                "format": "svg",
+                "path": "/中国广核集团有限公司.svg"
+            },
+            "12756377-ad49-4c0a-afe2-0749667f3b8b": {
+                "format": "png",
+                "path": "/中国广核集团有限公司.png"
+            },
+            "6a3f203c-6780-4de8-b130-787f7093324e": {
+                "format": "ai",
+                "path": "/中国广核集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国广核集团有限公司.png",
+        "tag": [
+            "中国广核集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguogangyankejijituanyouxiangongsi",
+        "title": "中国钢研科技集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "e20db6b6-361f-44b3-abb4-7eee3c0ca918": {
+                "format": "png",
+                "path": "/中国钢研科技集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国钢研科技集团有限公司.png",
+        "tag": [
+            "中国钢研科技集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguodongfanghangkongjituanyouxiangongsi",
+        "title": "中国东方航空集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "d90c1809-14f1-4bf0-bde5-1cd02398e74f": {
+                "format": "svg",
+                "path": "/中国东方航空集团有限公司.svg"
+            },
+            "bcd99bce-b546-4443-a32f-4f5579dab3a6": {
+                "format": "png",
+                "path": "/中国东方航空集团有限公司.png"
+            },
+            "3c5ed1c7-179d-4e86-89ef-e66eadb35639": {
+                "format": "ai",
+                "path": "/中国东方航空集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国东方航空集团有限公司.png",
+        "tag": [
+            "中国东方航空集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguodongfangdianqijituanyouxiangongsi",
+        "title": "中国东方电气集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "fb53ada8-3e57-4236-9213-30dbccc9a515": {
+                "format": "svg",
+                "path": "/中国东方电气集团有限公司.svg"
+            },
+            "826d2cde-b10c-47f4-bdb4-778e53841839": {
+                "format": "png",
+                "path": "/中国东方电气集团有限公司.png"
+            },
+            "98916e5e-09a5-45f5-9869-f95f1bb6ff3e": {
+                "format": "ai",
+                "path": "/中国东方电气集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国东方电气集团有限公司.png",
+        "tag": [
+            "中国东方电气集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguodianzixinxichanyejituanyouxiangongsi",
+        "title": "中国电子信息产业集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "0c2225ea-8f32-4ae9-b255-f45a97929a76": {
+                "format": "svg",
+                "path": "/中国电子信息产业集团有限公司.svg"
+            },
+            "52da0b87-9b9c-4c9e-8b84-6d971a5f2393": {
+                "format": "png",
+                "path": "/中国电子信息产业集团有限公司.png"
+            },
+            "be9151b4-9345-49de-9e6d-22ea0a978829": {
+                "format": "ai",
+                "path": "/中国电子信息产业集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国电子信息产业集团有限公司.png",
+        "tag": [
+            "中国电子信息产业集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguodianzikejijituanyouxiangongsi",
+        "title": "中国电子科技集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "153caf04-c04c-4709-b066-117d299746b4": {
+                "format": "svg",
+                "path": "/中国电子科技集团有限公司.svg"
+            },
+            "a1c9e0b6-dac1-48d0-9781-d800e850be93": {
+                "format": "png",
+                "path": "/中国电子科技集团有限公司.png"
+            },
+            "8088fae8-77fd-4ac5-8920-228c8c755256": {
+                "format": "ai",
+                "path": "/中国电子科技集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国电子科技集团有限公司.png",
+        "tag": [
+            "中国电子科技集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguodianxinjituanyouxiangongsi",
+        "title": "中国电信集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "b8ea0da1-1b56-44f1-adc6-4efe02b29d5f": {
+                "format": "svg",
+                "path": "/中国电信集团有限公司.svg"
+            },
+            "ca0576ae-35d3-41ae-8010-9f0ea438a77a": {
+                "format": "png",
+                "path": "/中国电信集团有限公司.png"
+            },
+            "87b01058-6ded-4335-a143-a869591242ac": {
+                "format": "ai",
+                "path": "/中国电信集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国电信集团有限公司.png",
+        "tag": [
+            "中国电信集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguodianqizhuangbeijituanyouxiangongsi",
+        "title": "中国电气装备集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "90b746f7-1914-4343-bfc4-91ce0e86b64a": {
+                "format": "png",
+                "path": "/中国电气装备集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国电气装备集团有限公司.png",
+        "tag": [
+            "中国电气装备集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguodianlijianshejituanyouxiangongsi",
+        "title": "中国电力建设集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "bdfa0bf2-2be4-4da4-b244-f066ce19c660": {
+                "format": "svg",
+                "path": "/中国电力建设集团有限公司.svg"
+            },
+            "6b9f121f-7595-4ecc-8754-5b5baa024879": {
+                "format": "png",
+                "path": "/中国电力建设集团有限公司.png"
+            },
+            "f2808429-5c37-4a1a-acd9-c73107c8862e": {
+                "format": "ai",
+                "path": "/中国电力建设集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国电力建设集团有限公司.png",
+        "tag": [
+            "中国电力建设集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguodiyiqichejituanyouxiangongsi",
+        "title": "中国第一汽车集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "d3e31152-ddad-44f2-856a-8fd3953c13c1": {
+                "format": "svg",
+                "path": "/中国第一汽车集团有限公司.svg"
+            },
+            "4732e735-5171-447b-a320-782fa5e3f381": {
+                "format": "png",
+                "path": "/中国第一汽车集团有限公司.png"
+            },
+            "a297804f-30ed-494a-86a3-4aa8ba486517": {
+                "format": "ai",
+                "path": "/中国第一汽车集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国第一汽车集团有限公司.png",
+        "tag": [
+            "中国第一汽车集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguodatangjituanyouxiangongsi",
+        "title": "中国大唐集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "23eeee7c-48ea-4c61-8a79-73b617a61bf9": {
+                "format": "svg",
+                "path": "/中国大唐集团有限公司.svg"
+            },
+            "8f14914a-0d10-4b44-8807-ef12bb264cd3": {
+                "format": "png",
+                "path": "/中国大唐集团有限公司.png"
+            },
+            "1e43f997-16d6-49c5-9e15-415efdf31821": {
+                "format": "ai",
+                "path": "/中国大唐集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国大唐集团有限公司.png",
+        "tag": [
+            "中国大唐集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguochuanbojituanyouxiangongsi",
+        "title": "中国船舶集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "9842348c-5c2e-4064-8f98-39cd9f73ac48": {
+                "format": "svg",
+                "path": "/中国船舶集团有限公司.svg"
+            },
+            "95b7f7ee-1c7e-4899-90c4-0466bce58aac": {
+                "format": "png",
+                "path": "/中国船舶集团有限公司.png"
+            },
+            "5a8c5f77-c7fb-463c-9d0c-52f205daa066": {
+                "format": "ai",
+                "path": "/中国船舶集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国船舶集团有限公司.png",
+        "tag": [
+            "中国船舶集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguochubeiliangguanlijituanyouxiangongsi",
+        "title": "中国储备粮管理集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "400d4a23-f6f1-425b-875c-71bdd1e39bec": {
+                "format": "svg",
+                "path": "/中国储备粮管理集团有限公司.svg"
+            },
+            "5d3b4c57-030f-4376-b682-83449d552054": {
+                "format": "png",
+                "path": "/中国储备粮管理集团有限公司.png"
+            },
+            "a7792025-b0cb-4bc6-ac59-1a5c61c30157": {
+                "format": "ai",
+                "path": "/中国储备粮管理集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国储备粮管理集团有限公司.png",
+        "tag": [
+            "中国储备粮管理集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguochengtongkonggujituanyouxiangongsi",
+        "title": "中国诚通控股集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "7174710f-db38-4361-9ab9-1355692dcaac": {
+                "format": "png",
+                "path": "/中国诚通控股集团有限公司.png"
+            }
+        },
+        "thumbnail": "/中国诚通控股集团有限公司.png",
+        "tag": [
+            "中国诚通控股集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguobingqizhuangbeijituanyouxiangongsi",
+        "title": "中国兵器装备集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "f384204c-207e-4117-8814-b1027674af52": {
+                "format": "svg",
+                "path": "/中国兵器装备集团有限公司.svg"
+            },
+            "beae2908-2dac-4e6e-a5ab-45d6d95db6c0": {
+                "format": "png",
+                "path": "/中国兵器装备集团有限公司.png"
+            },
+            "566ca034-a06e-48ec-85bb-24a0a139d9b9": {
+                "format": "ai",
+                "path": "/中国兵器装备集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国兵器装备集团有限公司.png",
+        "tag": [
+            "中国兵器装备集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguobingqigongyejituanyouxiangongsi",
+        "title": "中国兵器工业集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "519bb5af-fe0a-41c8-870a-65c2f3eb53da": {
+                "format": "svg",
+                "path": "/中国兵器工业集团有限公司.svg"
+            },
+            "86e46d03-b31d-4701-a553-5b413987b249": {
+                "format": "png",
+                "path": "/中国兵器工业集团有限公司.png"
+            },
+            "e2696b6c-3788-4bb5-bd9d-1d266e7575e7": {
+                "format": "ai",
+                "path": "/中国兵器工业集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国兵器工业集团有限公司.png",
+        "tag": [
+            "中国兵器工业集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguobaolijituanyouxiangongsi",
+        "title": "中国保利集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "a292318e-de63-4118-903a-28af0319d1ad": {
+                "format": "svg",
+                "path": "/中国保利集团有限公司.svg"
+            },
+            "b70b6e26-73c1-4dd9-b69d-23ac4bd05684": {
+                "format": "png",
+                "path": "/中国保利集团有限公司.png"
+            },
+            "e95fe75f-76e8-4b91-bbfe-acb3beb5071b": {
+                "format": "ai",
+                "path": "/中国保利集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国保利集团有限公司.png",
+        "tag": [
+            "中国保利集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguobaowugangtiejituanyouxiangongsi",
+        "title": "中国宝武钢铁集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "e77df3fb-45b9-4422-824e-b1cb83a829ae": {
+                "format": "svg",
+                "path": "/中国宝武钢铁集团有限公司.svg"
+            },
+            "baabf90d-c73a-4773-8381-13cd74c515f0": {
+                "format": "png",
+                "path": "/中国宝武钢铁集团有限公司.png"
+            },
+            "628c2ce3-24c8-4dca-8097-edf186c268e0": {
+                "format": "ai",
+                "path": "/中国宝武钢铁集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国宝武钢铁集团有限公司.png",
+        "tag": [
+            "中国宝武钢铁集团有限公司"
+        ]
+    },
+    {
+        "id": "zhongguoannengjianshejituanyouxiangongsi",
+        "title": "中国安能建设集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "6c402709-e00b-4926-9de8-947c7ec07dee": {
+                "format": "svg",
+                "path": "/中国安能建设集团有限公司.svg"
+            },
+            "ac25cf56-f274-4bcc-a449-ea0a743075c5": {
+                "format": "png",
+                "path": "/中国安能建设集团有限公司.png"
+            },
+            "6635ab29-6547-43da-ad5d-344de0704f62": {
+                "format": "ai",
+                "path": "/中国安能建设集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/中国安能建设集团有限公司.png",
+        "tag": [
+            "中国安能建设集团有限公司"
+        ]
+    },
+    {
+        "id": "zhaoshangjujituanyouxiangongsi",
+        "title": "招商局集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "3b17cd58-7f05-465f-9885-72171dd5167a": {
+                "format": "svg",
+                "path": "/招商局集团有限公司.svg"
+            },
+            "837576ad-f9e0-42cb-9b95-ea00c90193f3": {
+                "format": "png",
+                "path": "/招商局集团有限公司.png"
+            },
+            "cec07249-b087-4c42-972a-989602d01a3e": {
+                "format": "ai",
+                "path": "/招商局集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/招商局集团有限公司.png",
+        "tag": [
+            "招商局集团有限公司"
+        ]
+    },
+    {
+        "id": "youyankejijituanyouxiangongsi",
+        "title": "有研科技集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "d233ca82-0762-4f28-8183-743c871f8a7d": {
+                "format": "png",
+                "path": "/有研科技集团有限公司.png"
+            }
+        },
+        "thumbnail": "/有研科技集团有限公司.png",
+        "tag": [
+            "有研科技集团有限公司"
+        ]
+    },
+    {
+        "id": "xinxingjihuajituanyouxiangongsi",
+        "title": "新兴际华集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "5c67f85c-6e89-465d-a3e8-f80850eed077": {
+                "format": "svg",
+                "path": "/新兴际华集团有限公司.svg"
+            },
+            "c02fe921-1881-4ac1-8547-c6559b120eda": {
+                "format": "png",
+                "path": "/新兴际华集团有限公司.png"
+            },
+            "d3bb88d6-fce4-49cd-afc3-8a82d93b733e": {
+                "format": "ai",
+                "path": "/新兴际华集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/新兴际华集团有限公司.png",
+        "tag": [
+            "新兴际华集团有限公司"
+        ]
+    },
+    {
+        "id": "kuangyekejijituanyouxiangongsi",
+        "title": "矿冶科技集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "6a49e23e-f6c5-4e5c-86e0-ff911e5a6bd4": {
+                "format": "svg",
+                "path": "/矿冶科技集团有限公司.svg"
+            },
+            "29ea5e26-8517-46fe-b09c-4909ed91381b": {
+                "format": "png",
+                "path": "/矿冶科技集团有限公司.png"
+            },
+            "320e6561-727b-44e1-b077-29ad4ab8a0a3": {
+                "format": "ai",
+                "path": "/矿冶科技集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/矿冶科技集团有限公司.png",
+        "tag": [
+            "矿冶科技集团有限公司"
+        ]
+    },
+    {
+        "id": "huarunjituanyouxiangongsi",
+        "title": "华润集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "219ff434-6f60-4535-964e-2bc3145607d4": {
+                "format": "svg",
+                "path": "/华润集团有限公司.svg"
+            },
+            "1af23a96-5b7f-47ac-a481-b15872e834a4": {
+                "format": "png",
+                "path": "/华润集团有限公司.png"
+            },
+            "4ccf04cc-fad8-4199-b4a9-c4f763824097": {
+                "format": "ai",
+                "path": "/华润集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/华润集团有限公司.png",
+        "tag": [
+            "华润集团有限公司"
+        ]
+    },
+    {
+        "id": "huaqiaochengjituanyouxiangongsi",
+        "title": "华侨城集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "5d1ef90b-0a0d-4c23-9b86-1555ab7bb6a9": {
+                "format": "svg",
+                "path": "/华侨城集团有限公司.svg"
+            },
+            "5f3ae1de-471a-4e7e-bb35-63629b48cce0": {
+                "format": "png",
+                "path": "/华侨城集团有限公司.png"
+            },
+            "30372fe6-eccc-4d69-8902-2ba0973784e7": {
+                "format": "ai",
+                "path": "/华侨城集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/华侨城集团有限公司.png",
+        "tag": [
+            "华侨城集团有限公司"
+        ]
+    },
+    {
+        "id": "haerbindianqijituanyouxiangongsi",
+        "title": "哈尔滨电气集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "d963faf6-74ea-4f8d-afae-9380fc22ab45": {
+                "format": "svg",
+                "path": "/哈尔滨电气集团有限公司.svg"
+            },
+            "8510c3ba-b337-405e-a1dd-dc6b30fac30f": {
+                "format": "png",
+                "path": "/哈尔滨电气集团有限公司.png"
+            },
+            "0c237d50-4c48-4f21-aec1-d3410ab7ca1d": {
+                "format": "ai",
+                "path": "/哈尔滨电气集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/哈尔滨电气集团有限公司.png",
+        "tag": [
+            "哈尔滨电气集团有限公司"
+        ]
+    },
+    {
+        "id": "guojiashiyoutianranqiguanwangjituanyouxiangongsi",
+        "title": "国家石油天然气管网集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "86e01308-f121-4e60-8a23-87694708aea8": {
+                "format": "svg",
+                "path": "/国家石油天然气管网集团有限公司.svg"
+            },
+            "cc64c9ec-4e69-4fcd-88c9-bf8e837f5f53": {
+                "format": "png",
+                "path": "/国家石油天然气管网集团有限公司.png"
+            },
+            "f25b7951-a709-418e-aa6b-8f735666393a": {
+                "format": "ai",
+                "path": "/国家石油天然气管网集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/国家石油天然气管网集团有限公司.png",
+        "tag": [
+            "国家石油天然气管网集团有限公司"
+        ]
+    },
+    {
+        "id": "guojianengyuantouzijituanyouxianzerengongsi",
+        "title": "国家能源投资集团有限责任公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "de06da6a-1aaa-43f9-89ef-3a469ea83ea3": {
+                "format": "svg",
+                "path": "/国家能源投资集团有限责任公司.svg"
+            },
+            "52be8e0c-0060-431e-9b1f-635a232fe896": {
+                "format": "png",
+                "path": "/国家能源投资集团有限责任公司.png"
+            },
+            "5cead796-837f-4431-b4ea-4131239bfdf0": {
+                "format": "ai",
+                "path": "/国家能源投资集团有限责任公司.ai"
+            }
+        },
+        "thumbnail": "/国家能源投资集团有限责任公司.png",
+        "tag": [
+            "国家能源投资集团有限责任公司"
+        ]
+    },
+    {
+        "id": "guojiakaifatouzijituanyouxiangongsi",
+        "title": "国家开发投资集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "2873bad5-18fd-4fd2-9571-a55d6bd50c13": {
+                "format": "svg",
+                "path": "/国家开发投资集团有限公司.svg"
+            },
+            "75547e11-8b68-476b-8986-41ab72457bff": {
+                "format": "png",
+                "path": "/国家开发投资集团有限公司.png"
+            },
+            "906a25d2-9762-475a-b594-751b519823b6": {
+                "format": "ai",
+                "path": "/国家开发投资集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/国家开发投资集团有限公司.png",
+        "tag": [
+            "国家开发投资集团有限公司"
+        ]
+    },
+    {
+        "id": "guojiadianwangyouxiangongsi",
+        "title": "国家电网有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "55cf6289-aca1-4de8-9ee9-f7baa5a90eb0": {
+                "format": "svg",
+                "path": "/国家电网有限公司.svg"
+            },
+            "5603467b-c2c6-4fae-a9c4-3011eb0b4ea5": {
+                "format": "png",
+                "path": "/国家电网有限公司.png"
+            },
+            "6040d508-46ed-4d15-9f71-373119f6e077": {
+                "format": "ai",
+                "path": "/国家电网有限公司.ai"
+            }
+        },
+        "thumbnail": "/国家电网有限公司.png",
+        "tag": [
+            "国家电网有限公司"
+        ]
+    },
+    {
+        "id": "guojiadianlitouzijituanyouxiangongsi",
+        "title": "国家电力投资集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "c42a33a3-a160-450d-849d-a83d744b124f": {
+                "format": "svg",
+                "path": "/国家电力投资集团有限公司.svg"
+            },
+            "f1c90afa-6bdf-4f8d-86f9-95e6ab254e88": {
+                "format": "png",
+                "path": "/国家电力投资集团有限公司.png"
+            },
+            "c3624915-54f7-472b-9454-6ded6035678b": {
+                "format": "ai",
+                "path": "/国家电力投资集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/国家电力投资集团有限公司.png",
+        "tag": [
+            "国家电力投资集团有限公司"
+        ]
+    },
+    {
+        "id": "dongfengqichejituanyouxiangongsi",
+        "title": "东风汽车集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "2a6b427a-8c56-4011-be8c-d60706060410": {
+                "format": "svg",
+                "path": "/东风汽车集团有限公司.svg"
+            },
+            "ec0a4a9c-974a-4c60-84d6-547e973b3192": {
+                "format": "png",
+                "path": "/东风汽车集团有限公司.png"
+            },
+            "bd1d2eb7-0233-423c-ad46-7ebff568889c": {
+                "format": "ai",
+                "path": "/东风汽车集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/东风汽车集团有限公司.png",
+        "tag": [
+            "东风汽车集团有限公司"
+        ]
+    },
+    {
+        "id": "angangjituanyouxiangongsi",
+        "title": "鞍钢集团有限公司",
+        "category": "industrialCustomers",
+        "sources": {
+            "468fb05a-a3ef-4ea6-824f-32cf25f8fad6": {
+                "format": "svg",
+                "path": "/鞍钢集团有限公司.svg"
+            },
+            "298f6353-d564-4cba-90e5-546d12ca955f": {
+                "format": "png",
+                "path": "/鞍钢集团有限公司.png"
+            },
+            "fc740f97-2d4d-494a-b7cc-8da88fc0b78a": {
+                "format": "ai",
+                "path": "/鞍钢集团有限公司.ai"
+            }
+        },
+        "thumbnail": "/鞍钢集团有限公司.png",
+        "tag": [
+            "鞍钢集团有限公司"
+        ]
+    }
+]

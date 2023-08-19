@@ -1,0 +1,21 @@
+[
+    {
+        "en": "all",
+        "zh": "全部"
+    },{
+        "en": "industrialCustomers",
+        "zh": "行业用户"
+    },{
+        "en": "organization",
+        "zh": "机构"
+    },{
+        "en": "company",
+        "zh": "厂商"
+    },{
+        "en": "productService",
+        "zh": "产品/服务"
+    },{
+        "en": "internal",
+        "zh": "内部"
+    }
+]
