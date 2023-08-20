@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="698px" height="759px" viewBox="0 0 698 759" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>中国保利集团有限公司@2x</title>
+    <defs>
+        <polygon id="path-1" points="0 0 697.9748 0 697.9748 758.6926 0 758.6926"></polygon>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="79.中国保利集团有限公司" transform="translate(-163.000000, -5.000000)">
+            <g id="中国保利集团有限公司" transform="translate(163.000000, 5.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-2"></g>
+                <path d="M321.603,432.077 L453.881,432.077 C548.16,432.077 624.597,355.658 624.597,261.36 C624.597,167.097 548.16,90.677 453.881,90.677 C359.6,90.677 283.18,167.097 283.18,261.36 L283.18,758.693 L0,758.693 L0,364.188 C0,163.053 156.255,0 348.979,0 C541.737,0 697.975,163.053 697.975,364.188 C697.975,565.307 541.737,728.342 348.979,728.342 L321.603,728.342 L321.603,432.077 Z" id="Fill-1" fill="#D1A244" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>
