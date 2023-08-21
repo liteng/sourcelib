@@ -307,4 +307,62 @@ export default class WebdataController {
             }
         }
     }
+
+
+    // 获取所有Icon数据
+    public static async getAllIcons(ctx: Context) {
+        console.info("--webdataController.getAllIcons");
+
+        try {
+            const db = await SourceDb.getSourceDb();
+            const allIcons = db.chain.get('icons').value();
+
+            ctx.status = 200;
+            ctx.body = {
+                code: ErrorCode.SUCCESS,
+                success: true,
+                data: allIcons,
+                error: null
+            }
+        } catch (err) {
+            ctx.status = 500;
+            ctx.body = {
+                code: ErrorCode.SYS_ERROR,
+                success: false,
+                data: null,
+                error: err
+            }
+        }
+    }
+
+    // 根据关键字获取Icon数据
+    public static async getIconsByKeyword(ctx: Context) {
+        console.info("--webdataController.getIconsByKeyword");
+
+        try {
+            const { keyword } = ctx.params;
+            const db = await SourceDb.getSourceDb();
+            const icons = db.chain.get("icons").filter({name: keyword}).value();
+            // console.log(icons);
+
+            console.log('cookie: ', ctx.cookies.get('token'));
+            
+            ctx.status = 200;
+            ctx.body = {
+                code: ErrorCode.SUCCESS,
+                success: true,
+                data: icons,
+                error: null
+            }
+        } catch (err) {
+            ctx.status = 500;
+            ctx.body = {
+                code: ErrorCode.SYS_ERROR,
+                success: false,
+                data: null,
+                error: err
+            }
+        }
+    }
+    
 }

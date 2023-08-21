@@ -63,6 +63,20 @@ interface ILogoCategoryProps {
     }
 }
 
+// Icon属性
+interface IIconProps {
+    id: string;
+    title: string;
+    name: string;
+    svg: string;
+    tag: string[];
+    category: string;
+    categoryCN: string;
+    author: string;
+    rtl: boolean;
+    CompnentElement: string;
+}
+
 // 业务资源数据
 export type SourceData = {
     users: IUser[];
@@ -71,7 +85,8 @@ export type SourceData = {
     resources: IResource[];
     permissions: IPermission[];
     logoCategory: ILogoCategoryProps[];
-    logos: ILogoProps[]
+    logos: ILogoProps[];
+    icons: IIconProps[];
 }
 
 export class SourceDb {
@@ -90,7 +105,8 @@ export class SourceDb {
                 resources: [], 
                 permissions: [],
                 logoCategory: [], 
-                logos: []
+                logos: [],
+                icons: []
             };
             const db = new LowWithLodash<SourceData>(adapter, defaultData);
 

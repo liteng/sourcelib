@@ -2,14 +2,14 @@ import util from '../util';
 class Http {
     fetchRequest(url, options) {
         const token = util.getToken();
-        const header = {
+        const headers = {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         };
 
         const newOptions = {
             ...options,
-            Headers: {
+            "Headers": {
                 ...headers,
                 ...options.headers
             }

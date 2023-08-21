@@ -2144,6 +2144,33 @@
   ],
 
   "icons": [
-
+    {
+      "id": "92e23265-f98e-42be-be32-3c77fe4e9586",
+      "title": "能力",
+      "name": "ability",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"14\" version=\"1.1\" viewBox=\"0 0 12 14\">\n  <g fill=\"none\" fill-rule=\"evenodd\" stroke=\"none\" stroke-width=\"1\">\n    <path d=\"M-2-1h16v16H-2z\"/>\n    <g fill=\"black\">\n      <path d=\"m6 0 6 3.5v7L6 14l-6-3.5v-7L6 0Zm0 1.25L1.071 4.125v5.75L6 12.75l4.929-2.875v-5.75L6 1.25Z\"/>\n      <path d=\"m6 2.6 3.948 2.242L9.124 9 6 12 2.201 8.967l1.287-3.342L6 2.6Zm0 .577L3.93 5.745 2.715 8.8 6 11.408 8.74 8.8l.744-3.767L6 3.177Z\"/>\n      <path fill-opacity=\".602\" d=\"M2.714 8.8 6 11.408 8.74 8.8l.744-3.767L6 3.177 3.93 5.745z\"/>\n      <g transform=\"scale(-1 1) rotate(60 -3.526 .777)\">\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"0\" rx=\".5\"/>\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"2.75\" rx=\".5\"/>\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"5.5\" rx=\".5\"/>\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"8.25\" rx=\".5\"/>\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"11\" rx=\".5\"/>\n      </g>\n      <g transform=\"rotate(60 2.727 11.607)\">\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"0\" rx=\".5\"/>\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"2.75\" rx=\".5\"/>\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"5.5\" rx=\".5\"/>\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"8.25\" rx=\".5\"/>\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"11\" rx=\".5\"/>\n      </g>\n      <g transform=\"translate(5.753 .75)\">\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"0\" rx=\".5\"/>\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"2.75\" rx=\".5\"/>\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"5.5\" rx=\".5\"/>\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"8.25\" rx=\".5\"/>\n        <rect width=\"1\" height=\"1.5\" x=\"0\" y=\"11\" rx=\".5\"/>\n      </g>\n    </g>\n  </g>\n</svg>",
+      "tag": [
+          "能力"
+      ],
+      "category": "Base",
+      "categoryCN": "基础",
+      "author": "USUE",
+      "rtl": false,
+      "CompnentElement": "Ability"
+    },
+    {
+      "id": "1cc4872c-e8c8-4c44-aec3-8e994a06eed3",
+      "title": "关于",
+      "name": "about",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" version=\"1.1\" viewBox=\"0 0 14 14\">\n  <g fill=\"none\" fill-rule=\"evenodd\" stroke=\"none\" stroke-width=\"1\">\n    <path d=\"M-1-1h16v16H-1z\"/>\n    <g fill=\"black\" fill-rule=\"nonzero\">\n      <path d=\"m6.147 6.257 2.097-.673a.233.233 0 0 1 .299.274l-.739 3.198a.389.389 0 0 0 .264.46l.677.209a.156.156 0 0 1 .012.293l-2.444.98A.233.233 0 0 1 6 10.73l.762-3.3a.389.389 0 0 0-.11-.368l-.565-.544a.156.156 0 0 1 .06-.26Zm1.758-1.15C8.51 5.107 9 4.635 9 4.053 9 3.472 8.51 3 7.905 3c-.604 0-1.094.472-1.094 1.053 0 .582.49 1.054 1.094 1.054Z\"/>\n      <path d=\"M7 0a7 7 0 1 1 0 14A7 7 0 0 1 7 0Zm0 1.167a5.833 5.833 0 1 0 0 11.666A5.833 5.833 0 0 0 7 1.167Z\"/>\n    </g>\n  </g>\n</svg>",
+      "tag": [
+          "关于"
+      ],
+      "category": "Base",
+      "categoryCN": "基础",
+      "author": "USUE",
+      "rtl": false,
+      "CompnentElement": "About"
+    }
   ]
 }

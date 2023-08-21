@@ -392,7 +392,7 @@ const LogolibList = () => {
         //     },
         //     withCredentials: true,
         // })
-        http.fetchRequest(`${serviceBasePath}/webdata/getlogosbycategory/${category}`, {
+        http.fetchRequest(`${serviceBasePath}/publicwebdata/getlogosbycategory/${category}`, {
             method: 'GET',
         })
             .then(response => response.json())

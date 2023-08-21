@@ -6,7 +6,7 @@
 /ssl/*
 /source/asset/iconlib/*
 /source/asset/iconTemp/*
-/source/asset/logo/*
+/source/asset/logos/*
 /source/asset/temp/*
 /.pnp
 .pnp.js

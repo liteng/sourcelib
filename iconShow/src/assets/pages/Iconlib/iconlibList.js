@@ -1,8 +1,8 @@
-import React, { createRef, useEffect, useRef, useState } from 'react';
+import React, { createRef, useEffect, useRef, useState, useContext } from 'react';
 import { Col, InputNumber, Popover, Row, Slider, Input, Button, Dropdown, message, Tooltip } from 'antd';
 import { SketchPicker } from 'react-color';
 // import iconsMap from './iconsMap';
-import createIconsMap from './createIconsMap';
+import {createIconsMap, createIconsSet } from './createIconsMap';
 import {More, Copy} from '../../component/iconlib/react';
 import { Canvg } from 'canvg';
 import JSZip from 'jszip';
@@ -11,7 +11,12 @@ import '../../component/iconlib/react/styles/index.less'
 import './index.less';
 import { Form } from 'react-router-dom';
 
+import Config from '../../../config';
+import {UserContext} from '../../../UserContext';
+import http from '../../../common/http';
 
+const serviceBasePath = Config.serviceBasePath;
+const sourceBasePath = Config.sourceBasePath;
 
 // 图标菜单
 const items = [
@@ -77,7 +82,11 @@ const IconlibList = () => {
     const [iconSize, setIconSize] = useState(32);
     const [iconColor, setIconColor] = useState('#1F64FF');
     const [iconsMap, setIconsMap] = useState(null);
+    const [iconsSet, setIconsSet] = useState(null);   // Test
     // const iconColorInput = useRef(null);
+
+    const context = useContext(UserContext);
+    const {user} = context;
 
     const onSizeRegulatorChange = (newValue) => {console.log('onSizeRegulatorChange: ', newValue)
         setIconSize(newValue);
@@ -267,18 +276,66 @@ const IconlibList = () => {
         onClick: downloadMenuClick
     }
 
+    const getIconsByKeyword = keyword => {
+        console.debug("debug: get icons for ", keyword);
+        // setCurrCatecory(category);
+        http.fetchRequest(`${serviceBasePath}/publicwebdata/geticonsbykeyword/${keyword}`, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.debug("--icons of ", keyword);
+                console.debug(result);
+                if(result.success === true) {
+                    const data = result.data;
+                    const iconsset = createIconsSet(data);
+                    setIconsSet(iconsset);
+                } else {
+                    console.error(result.code, result.error);
+                }
+            }).catch(err => {
+                console.log(err);
+            })
+    }
+
     useEffect(()=>{
         const icons = createIconsMap();
         setIconsMap(icons);
+
+        // Test
+        console.log("get icons data...");
+        fetch(`${serviceBasePath}/publicwebdata/getallicons`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${user?.token}`
+            },
+            withCredentials: true,
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.debug("--icons: ");
+                console.debug(result);
+                if(result.success === true) {
+                    const data = result.data;
+                    const iconsset = createIconsSet(data);
+                    setIconsSet(iconsset);
+                } else {
+                    console.error(result.code, result.error);
+                }
+            }).catch(err=>{
+                console.error(err);
+            });
     },[])
 
     return (
         <>
             <div className='icon-wrapper'>
                 <div className='icon-list-wrapper'>
+                    <Button onClick={()=>{getIconsByKeyword('about')}} >TEST keyword</Button>
                     <ul className='icon-list'>
                         {
-                            iconsMap && iconsMap.map(element => {
+                            // iconsMap && iconsMap.map(element => {
+                            iconsSet && iconsSet.map(element => {
                                 return (
                                     <li key={element.id} className='icon-list-item'>
                                         <div className='icon-item-wrapper'>
