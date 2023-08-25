@@ -3,6 +3,7 @@
 .icon-wrapper {
     padding-top: 50px;
     padding-right: 272px;
+    padding-left: 140px;
     display: flex;
 }
 .icon-list-wrapper {
@@ -107,6 +108,32 @@
                     }
                 }
             };
+        }
+    }
+}
+.icon-category-aside {
+    flex: none;
+    width: 140px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    overflow-y: auto;
+    border-right: 1px solid #eee;
+    .icon-category-wrapper {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        list-style-type: none;
+        padding: 16px 0;
+        .icon-category {
+            height: 32px;
+            width: 100%;
+            padding: 0 12px 0 24px;
+            a {
+                line-height: 32px;
+                color: #666;
+            }
         }
     }
 }

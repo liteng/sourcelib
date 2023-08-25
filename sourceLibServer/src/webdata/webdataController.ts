@@ -5,7 +5,7 @@ import fs from "fs";
 import LowWithLodash from "../common/LowWithLodash.js";
 import {JSONFile} from 'lowdb/node';
 import { fileURLToPath } from "node:url";
-import { SourceDb } from "../db/sourceDb.js"
+import { SourceDb, IIconProps } from "../db/sourceDb.js"
 import ErrorCode from "../common/ErrorCode.js";
 import { config } from "../config.js";
 import _ from "lodash";
@@ -308,6 +308,40 @@ export default class WebdataController {
         }
     }
 
+    // 获取所有Icon分类数据
+    public static async getAllIconCategory(ctx: Context) {
+        console.info("--webdataController.getAllIconCategory");
+        
+        try{
+            const db = await SourceDb.getSourceDb();
+            const categories = db.chain.get('iconCategory').value();
+            console.debug("categories: ", categories);
+            const allIconCategories: {[key:string]: {[key:string]: string}} = {};
+            categories.forEach( category => {
+                allIconCategories[category.id] = {
+                    "en": category.name.en,
+                    "zh": category.name.zh
+                }
+            })
+            console.debug("allIconCategories: ", allIconCategories);
+
+            ctx.status = 200;
+            ctx.body = {
+                code: ErrorCode.SUCCESS,
+                success: true,
+                data: allIconCategories,
+                error: null
+            }
+        } catch (err) {
+            ctx.status = 500;
+            ctx.body = {
+                code: ErrorCode.SYS_ERROR,
+                success: false,
+                data: null,
+                error: err
+            }
+        }
+    }
 
     // 获取所有Icon数据
     public static async getAllIcons(ctx: Context) {
@@ -315,7 +349,38 @@ export default class WebdataController {
 
         try {
             const db = await SourceDb.getSourceDb();
-            const allIcons = db.chain.get('icons').value();
+
+            const categories = db.chain.get('iconCategory').value();
+            console.debug("categories: ", categories);
+            // const allIconCategories: {[key:string]: {[key:string]: string}} = {};
+            const allIcons: {[key:string]: IIconProps[]} = {};
+            // categories.forEach( category => {
+            //     allIconCategories[category.id] = {
+            //         "en": category.name.en,
+            //         "zh": category.name.zh
+            //     }
+            // });
+
+            categories.forEach(category => {
+                const categoryId = category.id;
+                const subIcons = db.chain.get('icons').filter( {category: category.name.en} ).value();
+                if(subIcons.length > 0) {
+                    // 如果无数据则无需汇总
+                    allIcons[categoryId] = subIcons;
+                }
+            })
+
+
+
+            // const iconCategory = db.chain.get('iconCategory').value();
+            // console.debug(iconCategory);
+            // const allIcons: {[key:string]: IIconProps[]} = {};
+            // iconCategory.map( category => {
+            //     const subIcons = db.chain.get('icons').filter( {category: category.name.en} ).value();
+            //     allIcons[category.name.en] = subIcons;
+            // })
+            console.debug(allIcons);
+            // const allIcons = db.chain.get('icons').value();
 
             ctx.status = 200;
             ctx.body = {
@@ -335,14 +400,23 @@ export default class WebdataController {
         }
     }
 
-    // 根据关键字获取Icon数据
+    // 根据关键字获取Icon数据(模糊匹配，需匹配name, title, tag三个属性)
     public static async getIconsByKeyword(ctx: Context) {
         console.info("--webdataController.getIconsByKeyword");
 
         try {
             const { keyword } = ctx.params;
             const db = await SourceDb.getSourceDb();
-            const icons = db.chain.get("icons").filter({name: keyword}).value();
+            const icons = db.chain.get("icons").filter( post => {
+                // 尝试匹配name,title,tag,命中其中之一即算作匹配
+                const nmaeResult = post.name.includes(keyword);
+                const titleResult = post.title.includes(keyword);
+                const tagResult = post.tag.filter(item => {item.includes(keyword)}).length > 0 ? true : false;
+                // console.debug('nmaeResult: ', nmaeResult);
+                // console.debug('titleResult: ', titleResult);
+                // console.debug('tagResult: ', tagResult);
+                return nmaeResult || titleResult || tagResult;
+            }).value();
             // console.log(icons);
 
             console.log('cookie: ', ctx.cookies.get('token'));

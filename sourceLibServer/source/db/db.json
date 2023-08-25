@@ -2143,6 +2143,22 @@
     }
   ],
 
+  "iconCategory": [
+    {
+      "id": "base",
+      "name": {
+        "en": "Base",
+        "zh": "基础"
+      }
+    },
+    {
+      "id": "Security",
+      "name": {
+        "en": "Security",
+        "zh": "安全"
+      }
+    }
+  ],
   "icons": [
     {
       "id": "92e23265-f98e-42be-be32-3c77fe4e9586",

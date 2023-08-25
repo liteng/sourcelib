@@ -63,8 +63,17 @@ interface ILogoCategoryProps {
     }
 }
 
+// Icon分类属性
+interface IIconCategoryProps {
+    id: string;
+    name: {
+        en: string;
+        zh: string;
+    }
+}
+
 // Icon属性
-interface IIconProps {
+export interface IIconProps {
     id: string;
     title: string;
     name: string;
@@ -86,6 +95,7 @@ export type SourceData = {
     permissions: IPermission[];
     logoCategory: ILogoCategoryProps[];
     logos: ILogoProps[];
+    iconCategory: IIconCategoryProps[];
     icons: IIconProps[];
 }
 
@@ -106,6 +116,7 @@ export class SourceDb {
                 permissions: [],
                 logoCategory: [], 
                 logos: [],
+                iconCategory: [], 
                 icons: []
             };
             const db = new LowWithLodash<SourceData>(adapter, defaultData);

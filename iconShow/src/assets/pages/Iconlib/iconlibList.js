@@ -1,7 +1,7 @@
 import React, { createRef, useEffect, useRef, useState, useContext } from 'react';
 import { Col, InputNumber, Popover, Row, Slider, Input, Button, Dropdown, message, Tooltip } from 'antd';
 import { SketchPicker } from 'react-color';
-// import iconsMap from './iconsMap';
+import { Link, Element} from 'react-scroll';
 import {createIconsMap, createIconsSet } from './createIconsMap';
 import {More, Copy} from '../../component/iconlib/react';
 import { Canvg } from 'canvg';
@@ -83,6 +83,7 @@ const IconlibList = () => {
     const [iconColor, setIconColor] = useState('#1F64FF');
     const [iconsMap, setIconsMap] = useState(null);
     const [iconsSet, setIconsSet] = useState(null);   // Test
+    const [iconCategoryMap, setIconCategoryMap] = useState(null);
     // const iconColorInput = useRef(null);
 
     const context = useContext(UserContext);
@@ -298,11 +299,69 @@ const IconlibList = () => {
             })
     }
 
-    useEffect(()=>{
-        const icons = createIconsMap();
-        setIconsMap(icons);
+    const renderIconSet = (categoryId, icons) => {console.debug(icons);
+        return(
+            <>
+                <Element key={iconCategoryMap[categoryId].en} name={iconCategoryMap[categoryId].en}>{iconCategoryMap[categoryId].zh}</Element>
+                <ul className='icon-list'>
+                {
+                    // iconsMap && iconsMap.map(element => {
+                    icons.map(element => {
+                        return (
+                            <li key={element.id} className='icon-list-item'>
+                                <div className='icon-item-wrapper'>
+                                    <div className='icon-img'>
+                                        <element.Compnent id={element.name} theme='filled' size={iconSize} fill={iconColor}/>
+                                    </div>
+                                    <div className='icon-info-wrapper'>
+                                        <div className='icon-info-title'><span>{element.title}</span></div>
+                                        <div className='icon-info-name'>
+                                            <Tooltip title={element.name}><span>{element.name}</span></Tooltip>
+                                            <span className='copy-option' onClick={() => {copyTextToClipboard(element.name, 'iconName')}}><Copy theme="filled" size={12} fill="#1F64FF"/></span>
+                                        </div>
+                                        <Dropdown menu={{items, onClick: ({key}) => {onClick(key, element)} }}>
+                                            <div className='icon-option-more'>
+                                                <div className='icon-more-wrapper'>
+                                                    <More theme="filled" size={16} fill="#333333"/>
+                                                </div>
+                                            </div>
+                                        </Dropdown>
+                                    </div>
+                                </div>
+                            </li>
+                        );
+                    })
+                }
+                </ul>
+            </>
+        )
+        
+    }
 
-        // Test
+    useEffect(()=>{
+        // const icons = createIconsMap();
+        // setIconsMap(icons);
+
+        // 获取icon类型字典
+        console.log("get icons category...");
+        http.fetchRequest(`${serviceBasePath}/publicwebdata/getallliconcategories`, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.debug("--iconCategory: ");
+                console.debug(result);
+                if(result.success === true) {
+                    const data = result.data;
+                    setIconCategoryMap(data);
+                } else {
+                    console.error(result.code, result.error);
+                }
+            }).catch(err => {
+                console.log(err);
+            })
+
+        // 获取图标
         console.log("get icons data...");
         fetch(`${serviceBasePath}/publicwebdata/getallicons`, {
             method: 'GET',
@@ -317,8 +376,13 @@ const IconlibList = () => {
                 console.debug(result);
                 if(result.success === true) {
                     const data = result.data;
-                    const iconsset = createIconsSet(data);
-                    setIconsSet(iconsset);
+                    const iconsMap = {};
+                    Object.keys(data).forEach( (key) => {
+                        const icons = createIconsSet(data[key]);
+                        iconsMap[key] = icons;
+                    });
+                    // const iconsMap = createIconsSet(icons);
+                    setIconsMap(iconsMap);
                 } else {
                     console.error(result.code, result.error);
                 }
@@ -330,12 +394,34 @@ const IconlibList = () => {
     return (
         <>
             <div className='icon-wrapper'>
+                <div className='icon-category-aside'>
+                    <ul className='icon-category-wrapper'>
+                        {
+                            iconsMap && Object.keys(iconsMap).map( categoryId => {
+                                return <li key={categoryId} className='icon-category'><Link to={iconCategoryMap[categoryId].en} smooth={true} duration={500} >{iconCategoryMap[categoryId].zh}</Link></li>
+                            })
+                            // iconCategoryMap && iconCategoryMap.map( category => {
+                            //     return (
+                            //         <li key={category.id} className='icon-category'><Link to={'#' + category.name.en} smooth={true} duration={500} >{category.name.zh}</Link></li>
+                            //     )
+                            // })
+                        }
+                        {/* <li className='icon-category'><a>基础</a></li>
+                        <li className='icon-category'><a>安全</a></li> */}
+                    </ul>
+                </div>
                 <div className='icon-list-wrapper'>
-                    <Button onClick={()=>{getIconsByKeyword('about')}} >TEST keyword</Button>
-                    <ul className='icon-list'>
+                    <Button onClick={()=>{getIconsByKeyword('关于a')}} >TEST keyword</Button>
+                    {
+                        iconsMap && Object.keys(iconsMap).map( categoryId => {
+                            // return <span>sdfsdfsdfsd</span>
+                            return renderIconSet(categoryId, iconsMap[categoryId])
+                        })
+                    }
+                    {/* <ul className='icon-list'>
                         {
                             // iconsMap && iconsMap.map(element => {
-                            iconsSet && iconsSet.map(element => {
+                            iconsMap && Object.keys(iconsMap).forEach.map(element => {
                                 return (
                                     <li key={element.id} className='icon-list-item'>
                                         <div className='icon-item-wrapper'>
@@ -361,7 +447,7 @@ const IconlibList = () => {
                                 );
                             })
                         }
-                    </ul>
+                    </ul> */}
                 </div>
                 <div className='icon-tools-aside'>
                     {/* <Form name="icon-setup" > */}
