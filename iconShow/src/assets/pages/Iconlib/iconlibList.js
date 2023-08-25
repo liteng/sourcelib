@@ -418,36 +418,6 @@ const IconlibList = () => {
                             return renderIconSet(categoryId, iconsMap[categoryId])
                         })
                     }
-                    {/* <ul className='icon-list'>
-                        {
-                            // iconsMap && iconsMap.map(element => {
-                            iconsMap && Object.keys(iconsMap).forEach.map(element => {
-                                return (
-                                    <li key={element.id} className='icon-list-item'>
-                                        <div className='icon-item-wrapper'>
-                                            <div className='icon-img'>
-                                                <element.Compnent id={element.name} theme='filled' size={iconSize} fill={iconColor}/>
-                                            </div>
-                                            <div className='icon-info-wrapper'>
-                                                <div className='icon-info-title'><span>{element.title}</span></div>
-                                                <div className='icon-info-name'>
-                                                    <Tooltip title={element.name}><span>{element.name}</span></Tooltip>
-                                                    <span className='copy-option' onClick={() => {copyTextToClipboard(element.name, 'iconName')}}><Copy theme="filled" size={12} fill="#1F64FF"/></span>
-                                                </div>
-                                                <Dropdown menu={{items, onClick: ({key}) => {onClick(key, element)} }}>
-                                                    <div className='icon-option-more'>
-                                                        <div className='icon-more-wrapper'>
-                                                            <More theme="filled" size={16} fill="#333333"/>
-                                                        </div>
-                                                    </div>
-                                                </Dropdown>
-                                            </div>
-                                        </div>
-                                    </li>
-                                );
-                            })
-                        }
-                    </ul> */}
                 </div>
                 <div className='icon-tools-aside'>
                     {/* <Form name="icon-setup" > */}
