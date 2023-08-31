@@ -302,7 +302,7 @@ const IconlibList = () => {
     const renderIconSet = (categoryId, icons) => {console.debug(icons);
         return(
             <>
-                <Element key={iconCategoryMap[categoryId].en} name={iconCategoryMap[categoryId].en}>{iconCategoryMap[categoryId].zh}</Element>
+                <Element key={iconCategoryMap[categoryId].en} className='icon-category-title' name={iconCategoryMap[categoryId].en}>{iconCategoryMap[categoryId].zh}</Element>
                 <ul className='icon-list'>
                 {
                     // iconsMap && iconsMap.map(element => {
@@ -335,8 +335,11 @@ const IconlibList = () => {
                 </ul>
             </>
         )
-        
     }
+
+    // const onSearch = (keyword) => {
+    //     console.log(keyword);
+    // }
 
     useEffect(()=>{
         // const icons = createIconsMap();
@@ -381,7 +384,6 @@ const IconlibList = () => {
                         const icons = createIconsSet(data[key]);
                         iconsMap[key] = icons;
                     });
-                    // const iconsMap = createIconsSet(icons);
                     setIconsMap(iconsMap);
                 } else {
                     console.error(result.code, result.error);
@@ -394,73 +396,72 @@ const IconlibList = () => {
     return (
         <>
             <div className='icon-wrapper'>
-                <div className='icon-category-aside'>
-                    <ul className='icon-category-wrapper'>
-                        {
-                            iconsMap && Object.keys(iconsMap).map( categoryId => {
-                                return <li key={categoryId} className='icon-category'><Link to={iconCategoryMap[categoryId].en} smooth={true} duration={500} >{iconCategoryMap[categoryId].zh}</Link></li>
-                            })
-                            // iconCategoryMap && iconCategoryMap.map( category => {
-                            //     return (
-                            //         <li key={category.id} className='icon-category'><Link to={'#' + category.name.en} smooth={true} duration={500} >{category.name.zh}</Link></li>
-                            //     )
-                            // })
-                        }
-                        {/* <li className='icon-category'><a>基础</a></li>
-                        <li className='icon-category'><a>安全</a></li> */}
-                    </ul>
-                </div>
-                <div className='icon-list-wrapper'>
-                    <Button onClick={()=>{getIconsByKeyword('关于a')}} >TEST keyword</Button>
-                    {
-                        iconsMap && Object.keys(iconsMap).map( categoryId => {
-                            // return <span>sdfsdfsdfsd</span>
-                            return renderIconSet(categoryId, iconsMap[categoryId])
-                        })
-                    }
+                <div className='icon-main'>
+                    <div className='icon-tools-top-wraper'>
+                        <div className='icon-tools-top-placeholder-front'></div>
+                        <div className='icon-tool-top-search-bar'>
+                            <Input.Search
+                                className='icon-tool-search-input'
+                                placeholder="输入关键词"
+                                allowClear
+                                enterButton="搜索"
+                                onSearch={getIconsByKeyword}
+                            />
+                        </div>
+                        <div className='icon-tools-top-placeholder-end'></div>
+                    </div>
+                    <div className='icon-content-wraper'>
+                        <div className='icon-category-aside'>
+                            <ul className='icon-category-wrapper'>
+                                {
+                                    iconsMap && Object.keys(iconsMap).map( categoryId => {
+                                        return <li key={categoryId} className='icon-category'><Link to={iconCategoryMap[categoryId].en} smooth={true} duration={500} >{iconCategoryMap[categoryId].zh}</Link></li>
+                                    })
+                                }
+                            </ul>
+                        </div>
+                        <div className='icon-list-wrapper'>
+                            {
+                                iconsMap && Object.keys(iconsMap).map( categoryId => {
+                                    return renderIconSet(categoryId, iconsMap[categoryId])
+                                })
+                            }
+                        </div>
+                    </div>
                 </div>
                 <div className='icon-tools-aside'>
-                    {/* <Form name="icon-setup" > */}
-                        {/* <div className='icon-download'>
-                            <Button type='primary' className='download-btn' onClick={downLoadIconlib}>下载图标库包(React)</Button>
-                        </div> */}
-                        <div className='icon-download'>
-                            <Dropdown.Button type='primary' className='download-btn' menu={menuProps} onClick={downLoadIconlib}>
-                                下载图标库包(React)
-                            </Dropdown.Button>
-                        </div>
-                        {/* <div className='icon-download'>
-                            <Button type='primary' className='download-btn' onClick={downloadAllSvg}>下载图标库包(SVG)</Button>
-                        </div> */}
-                        <div className='icon-tools-wrapper'>
-                            <div className='icon-setup'>
-                                <div className='icon-tool-size'>
-                                    <h2 className='tool-title'>图标大小</h2>
-                                    <div className='tool-content'>
-                                        <SizeRegulator value={iconSize} onChange={onSizeRegulatorChange}/>
-                                    </div>
-                                </div>
-                                <div className='icon-tool-color'>
-                                    <h2 className='tool-title'>图标颜色</h2>
-                                    <div className='tool-content'>
-                                        <Popover
-                                            placement='top'
-                                            content={<SketchPicker color={iconColor} disableAlpha={true} onChangeComplete={onColorChanged} />}
-                                            title="选择颜色"
-                                            trigger="click"
-                                        >
-                                            <div className='icon-color-preview' style={{backgroundColor: iconColor}}></div>
-                                        </Popover>
-                                        <span className='icon-color-span'>{iconColor}</span>
-                                        {/* <Input className='icon-color-input' disabled={true} onBlur={handleColorInputChange} maxLength={7} value={iconColor} /> */}
-                                    </div>
-                                </div>
-                                <div className='icon-tool-reset'>
-                                    <Button className='icon-reset-btn' onClick={setDefaultSetup}>恢复默认配置</Button>
+                    <div className='icon-download'>
+                        <Dropdown.Button type='primary' className='download-btn' menu={menuProps} onClick={downLoadIconlib}>
+                            下载图标库包(React)
+                        </Dropdown.Button>
+                    </div>
+                    <div className='icon-tools-wrapper'>
+                        <div className='icon-setup'>
+                            <div className='icon-tool-size'>
+                                <h2 className='tool-title'>图标大小</h2>
+                                <div className='tool-content'>
+                                    <SizeRegulator value={iconSize} onChange={onSizeRegulatorChange}/>
                                 </div>
                             </div>
+                            <div className='icon-tool-color'>
+                                <h2 className='tool-title'>图标颜色</h2>
+                                <div className='tool-content'>
+                                    <Popover
+                                        placement='top'
+                                        content={<SketchPicker color={iconColor} disableAlpha={true} onChangeComplete={onColorChanged} />}
+                                        title="选择颜色"
+                                        trigger="click"
+                                    >
+                                        <div className='icon-color-preview' style={{backgroundColor: iconColor}}></div>
+                                    </Popover>
+                                    <span className='icon-color-span'>{iconColor}</span>
+                                </div>
+                            </div>
+                            <div className='icon-tool-reset'>
+                                <Button className='icon-reset-btn' onClick={setDefaultSetup}>恢复默认配置</Button>
+                            </div>
                         </div>
-                    {/* </Form> */}
+                    </div>
                 </div>
             </div>
             <canvas style={{display: "none"}} />
