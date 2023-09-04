@@ -34,23 +34,24 @@ const IconsManagement = (props) => {
         {
             title: '',
             width: 32,
-            dataIndex: 'Compnent',
-            ellipsis: true,
-            render: (element, record, _, action) => {
-                console.log(element, record, _, action);
+            dataIndex: 'id',
+            editable: false,
+            render: (text, record, _, action) => {
                 return [
-                    <record.Compnent key={record.name} theme='filled' size={16} fill={'#1F64FF'}/>
+                    <record.Compnent key={`cmp-${text}`} theme='filled' size={16} fill={'#1F64FF'}/>
                 ]
             }
         },
         {
             title: '名称',
             dataIndex: 'title',
+            editable: false,
             ellipsis: true,
         },
         {
             title: '标识',
             dataIndex: 'name',
+            editable: false,
             ellipsis: true,
         },
         {
