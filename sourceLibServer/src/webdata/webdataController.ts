@@ -343,7 +343,34 @@ export default class WebdataController {
         }
     }
 
-    // 获取所有Icon数据
+    // 获取所有Icon数据(无归并)
+    public static async getAllIconsList(ctx: Context) {
+        console.info("--webdataController.getAllIconsList");
+
+        try {
+            const db = await SourceDb.getSourceDb();
+            const allIcons = db.chain.get('icons').value();
+            console.debug('all icons: ', allIcons.length);
+
+            ctx.status = 200;
+            ctx.body = {
+                code: ErrorCode.SUCCESS,
+                success: true,
+                data: allIcons,
+                error: null
+            }
+        } catch (err) {
+            ctx.status = 500;
+            ctx.body = {
+                code: ErrorCode.SYS_ERROR,
+                success: false,
+                data: null,
+                error: err
+            }
+        }
+    }
+
+    // 获取所有Icon数据(基于分类归并后的结果)
     public static async getAllIcons(ctx: Context) {
         console.info("--webdataController.getAllIcons");
 
@@ -364,6 +391,7 @@ export default class WebdataController {
             categories.forEach(category => {
                 const categoryId = category.id;
                 const subIcons = db.chain.get('icons').filter( {category: category.name.en} ).value();
+                console.debug('subIcons: ', subIcons.length);
                 if(subIcons.length > 0) {
                     // 如果无数据则无需汇总
                     allIcons[categoryId] = subIcons;
@@ -379,7 +407,7 @@ export default class WebdataController {
             //     const subIcons = db.chain.get('icons').filter( {category: category.name.en} ).value();
             //     allIcons[category.name.en] = subIcons;
             // })
-            console.debug(allIcons);
+            // console.debug(allIcons);
             // const allIcons = db.chain.get('icons').value();
 
             ctx.status = 200;
@@ -406,29 +434,56 @@ export default class WebdataController {
 
         try {
             const { keyword } = ctx.params;
+            console.debug('keyword: ', keyword);
             const db = await SourceDb.getSourceDb();
-            const icons = db.chain.get("icons").filter( post => {
-                // 尝试匹配name,title,tag,命中其中之一即算作匹配
-                const nmaeResult = post.name.includes(keyword);
-                const titleResult = post.title.includes(keyword);
-                const tagResult = post.tag.filter(item => {item.includes(keyword)}).length > 0 ? true : false;
-                // console.debug('nmaeResult: ', nmaeResult);
-                // console.debug('titleResult: ', titleResult);
-                // console.debug('tagResult: ', tagResult);
-                return nmaeResult || titleResult || tagResult;
-            }).value();
+
+            const categories = db.chain.get('iconCategory').value();
+            const searchIcons: {[key: string]: IIconProps[]} = {};
+
+            categories.forEach(category => {
+                const categoryId = category.id;
+                const subIcons = db.chain.get("icons").filter( {category: category.name.en} ).filter( post => {
+                    console.debug('post: ', post);
+                    // 尝试匹配name,title,tag,命中其中之一即算作匹配
+                    const nmaeResult = post.name.includes(keyword);
+                    const titleResult = post.title.includes(keyword);
+                    const tagResult = post.tag.filter(item => {item.includes(keyword)}).length > 0 ? true : false;
+                    // console.debug('nmaeResult: ', nmaeResult);
+                    // console.debug('titleResult: ', titleResult);
+                    // console.debug('tagResult: ', tagResult);
+                    return nmaeResult || titleResult || tagResult;
+                }).value();
+                console.debug('subIcons: ', subIcons.length);
+                if(subIcons.length > 0) {
+                    // 如果无数据则无需汇总
+                    searchIcons[categoryId] = subIcons;
+                }
+            })
+
+            // const icons = db.chain.get("icons").filter( post => {
+            //     console.debug('post: ', post);
+            //     // 尝试匹配name,title,tag,命中其中之一即算作匹配
+            //     const nmaeResult = post.name.includes(keyword);
+            //     const titleResult = post.title.includes(keyword);
+            //     const tagResult = post.tag.filter(item => {item.includes(keyword)}).length > 0 ? true : false;
+            //     // console.debug('nmaeResult: ', nmaeResult);
+            //     // console.debug('titleResult: ', titleResult);
+            //     // console.debug('tagResult: ', tagResult);
+            //     return nmaeResult || titleResult || tagResult;
+            // }).value();
             // console.log(icons);
 
-            console.log('cookie: ', ctx.cookies.get('token'));
+            // console.log('cookie: ', ctx.cookies.get('token'));
             
             ctx.status = 200;
             ctx.body = {
                 code: ErrorCode.SUCCESS,
                 success: true,
-                data: icons,
+                data: searchIcons,
                 error: null
             }
         } catch (err) {
+            console.error(err);
             ctx.status = 500;
             ctx.body = {
                 code: ErrorCode.SYS_ERROR,

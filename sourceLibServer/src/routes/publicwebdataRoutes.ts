@@ -4,6 +4,7 @@ import  WebdataController  from '../webdata/webdataController.js'
 const publicWebdataRouter = new Router();
 
 publicWebdataRouter.get("/getallliconcategories", WebdataController.getAllIconCategory);
+publicWebdataRouter.get("/getalliconslist", WebdataController.getAllIconsList);
 publicWebdataRouter.get("/getallicons", WebdataController.getAllIcons);
 publicWebdataRouter.get("/geticonsbykeyword/:keyword", WebdataController.getIconsByKeyword);
 

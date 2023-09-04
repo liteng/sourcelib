@@ -12,6 +12,7 @@
             position: sticky;
             top: 50px;
             height: 64px;
+            background-color: #ffffff;
             border-bottom: 1px solid #eee;
             .icon-tools-top-placeholder-front {
                 width: 140px;
@@ -23,7 +24,13 @@
                 }
             }
             .icon-tools-top-placeholder-end {
-                width: 140px;
+                display: flex;
+                width: 240px;
+                justify-content: flex-end;
+                padding: 0 16px;
+                .icon-tool-top-manage {
+                    margin-top: 16px;
+                }
             }
         }
         .icon-content-wraper {
@@ -66,6 +73,7 @@
                 height: calc(100vh - 114px);
                 width: 100%;
                 flex-direction: column;
+                overflow: auto;
                 .icon-category-title {
                     font-size: 16px;
                     height: 32px;

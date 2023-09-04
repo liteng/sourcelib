@@ -2,8 +2,9 @@ import React, { createRef, useEffect, useRef, useState, useContext } from 'react
 import { Col, InputNumber, Popover, Row, Slider, Input, Button, Dropdown, message, Tooltip } from 'antd';
 import { SketchPicker } from 'react-color';
 import { Link, Element} from 'react-scroll';
-import {createIconsMap, createIconsSet } from './createIconsMap';
-import {More, Copy} from '../../component/iconlib/react';
+import {createIconsMap } from './createIconsMap';
+import {More, Copy, SetUp} from '../../component/iconlib/react';
+import IconsManagement from '../../component/IconsManagement';
 import { Canvg } from 'canvg';
 import JSZip from 'jszip';
 import saveAs from 'file-saver';
@@ -82,7 +83,7 @@ const IconlibList = () => {
     const [iconSize, setIconSize] = useState(32);
     const [iconColor, setIconColor] = useState('#1F64FF');
     const [iconsMap, setIconsMap] = useState(null);
-    const [iconsSet, setIconsSet] = useState(null);   // Test
+    const [openIconsManagement, setOpenIconsManagement] = useState(false);
     const [iconCategoryMap, setIconCategoryMap] = useState(null);
     // const iconColorInput = useRef(null);
 
@@ -277,26 +278,67 @@ const IconlibList = () => {
         onClick: downloadMenuClick
     }
 
-    const getIconsByKeyword = keyword => {
+    const getIconsByKeyword = (keyword, event) => {
         console.debug("debug: get icons for ", keyword);
         // setCurrCatecory(category);
-        http.fetchRequest(`${serviceBasePath}/publicwebdata/geticonsbykeyword/${keyword}`, {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(result => {
-                console.debug("--icons of ", keyword);
-                console.debug(result);
-                if(result.success === true) {
-                    const data = result.data;
-                    const iconsset = createIconsSet(data);
-                    setIconsSet(iconsset);
-                } else {
-                    console.error(result.code, result.error);
-                }
-            }).catch(err => {
-                console.log(err);
+        // 判断是否点击"清除"引起的调佣
+        if ( keyword === '') {
+            // 获取全部图标
+            fetch(`${serviceBasePath}/publicwebdata/getallicons`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${user?.token}`
+                },
+                withCredentials: true,
             })
+                .then(response => response.json())
+                .then(result => {
+                    console.debug("--icons: ");
+                    console.debug(result);
+                    if(result.success === true) {
+                        const data = result.data;
+                        const iconsMap = {};
+                        Object.keys(data).forEach( (key) => {
+                            const icons = createIconsMap(data[key]);
+                            iconsMap[key] = icons;
+                        });
+                        console.debug('--iconsMap: ');
+                        console.debug(iconsMap);
+                        setIconsMap(iconsMap);
+                    } else {
+                        console.error(result.code, result.error);
+                    }
+                }).catch(err=>{
+                    console.error(err);
+                });
+        } else {
+            // 根据keyword搜索
+            http.fetchRequest(`${serviceBasePath}/publicwebdata/geticonsbykeyword/${keyword}`, {
+                method: 'GET',
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.debug("--icons of ", keyword);
+                    console.debug(result);
+    
+                    if(result.success === true) {
+                        const data = result.data;
+                        const iconsMap = {};
+                        Object.keys(data).forEach( (key) => {
+                            const icons = createIconsMap(data[key]);
+                            iconsMap[key] = icons;
+                        });
+                        console.debug('--iconsMap: ');
+                        console.debug(iconsMap);
+                        setIconsMap(iconsMap);
+                    } else {
+                        console.error(result.code, result.error);
+                    }
+                }).catch(err => {
+                    console.log(err);
+                })
+        }
+        
     }
 
     const renderIconSet = (categoryId, icons) => {console.debug(icons);
@@ -337,9 +379,12 @@ const IconlibList = () => {
         )
     }
 
-    // const onSearch = (keyword) => {
-    //     console.log(keyword);
-    // }
+    const iconsManagementOpen = () => {
+        setOpenIconsManagement(true);
+    }
+    const iconsManagementClose = () => {
+        setOpenIconsManagement(false);
+    }
 
     useEffect(()=>{
         // const icons = createIconsMap();
@@ -381,9 +426,11 @@ const IconlibList = () => {
                     const data = result.data;
                     const iconsMap = {};
                     Object.keys(data).forEach( (key) => {
-                        const icons = createIconsSet(data[key]);
+                        const icons = createIconsMap(data[key]);
                         iconsMap[key] = icons;
                     });
+                    console.debug('--iconsMap: ');
+                    console.debug(iconsMap);
                     setIconsMap(iconsMap);
                 } else {
                     console.error(result.code, result.error);
@@ -408,7 +455,11 @@ const IconlibList = () => {
                                 onSearch={getIconsByKeyword}
                             />
                         </div>
-                        <div className='icon-tools-top-placeholder-end'></div>
+                        <div className='icon-tools-top-placeholder-end'>
+                            <Tooltip title="管理">
+                                <Button className='icon-tool-top-manage' onClick={iconsManagementOpen} icon={<SetUp theme="filled" size={16} fill="#1F64FF"/>}></Button>
+                            </Tooltip>
+                        </div>
                     </div>
                     <div className='icon-content-wraper'>
                         <div className='icon-category-aside'>
@@ -423,6 +474,7 @@ const IconlibList = () => {
                         <div className='icon-list-wrapper'>
                             {
                                 iconsMap && Object.keys(iconsMap).map( categoryId => {
+                                    // return renderIconSet(categoryId, iconsMap[categoryId])
                                     return renderIconSet(categoryId, iconsMap[categoryId])
                                 })
                             }
@@ -464,6 +516,7 @@ const IconlibList = () => {
                     </div>
                 </div>
             </div>
+            {openIconsManagement ? <IconsManagement id="iconManagement" open={openIconsManagement} className="" onCancel={iconsManagementClose}/> : null}
             <canvas style={{display: "none"}} />
         </>
     )

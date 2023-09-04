@@ -6,8 +6,6 @@
 /release/*
 /icons/*
 /SvgToBuild/*
-/.pnp
-.pnp.js
 
 # testing
 /coverage

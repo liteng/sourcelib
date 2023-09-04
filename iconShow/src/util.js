@@ -30,7 +30,7 @@ class Util {
     // 从sessionStorage获取本地存储的Token
     getToken() {
         const userInfo = this.getLocalUserInfo();
-        const token = userInfo.token;
+        const token =  userInfo === null ? null : userInfo.token;
         console.log('getToken:', token);
         return token;
     }

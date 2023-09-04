@@ -147,6 +147,7 @@ export const preprocess = async () => {
                     params: {
                         overrides: {
                             removeViewBox: false,
+                            removeXMLProcInst:  false,
                             removeUnknownsAndDefaults: false,
                         }
                     }
