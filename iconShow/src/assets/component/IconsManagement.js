@@ -1,7 +1,8 @@
 import React, { createRef, useEffect, useRef, useState } from 'react';
 import { Button, Upload, Select, Input, message, Form } from 'antd';
 import {createIconsMap } from '../pages/Iconlib/createIconsMap';
-import { ProTable } from '@ant-design/pro-components';
+import { ProTable, EditableProTable } from '@ant-design/pro-components';
+import _ from 'lodash';
 import { Canvg } from 'canvg';
 import { Delete } from '../component/iconlib/react';
 import {Close2} from './iconlib/react';
@@ -16,6 +17,7 @@ ReactModal.setAppElement('#xxx');
 const serviceBasePath = Config.serviceBasePath;
 
 const IconsManagement = (props) => {
+    const [iconCategoryEnum, setIconCategoryEnum] = useState(null);
     const [iconsMap, setIconsMap] = useState(null);
 
     const {
@@ -56,25 +58,34 @@ const IconsManagement = (props) => {
         },
         {
             title: '分类',
+            key: 'category',
             dataIndex: 'category',
             ellipsis: true,
             valueType: 'select',
-            valueEnum: {
-                open: {
-                text: '未解决',
-                },
-                closed: {
-                text: '已解决',
-                },
-                processing: {
-                text: '解决中',
-                },
-            },
+            valueEnum: iconCategoryEnum,
+            // render: (text, record) => [
+            //     record.categoryCN
+            // ]
         },
         {
             title: '标签',
-            dataIndex: 'tags',
+            dataIndex: 'tag',
             ellipsis: true,
+            valueType: 'text',
+            render: (text, record) => {
+                let tags = []
+                record.tag.forEach(item => {
+                    tags.push(
+                        <span className={"inner-icon-tag"}>{item}</span>
+                    )
+                })
+                return tags;
+            },
+            renderFormItem: (props) => {
+                const {entity, dataIndex} = props;
+                const inputValue = entity[dataIndex].join(',');
+                return <Input initialvalues={inputValue}></Input>;
+            }
         },
         {
             title: '操作',
@@ -82,12 +93,13 @@ const IconsManagement = (props) => {
             key: 'option',
             render: (text, record, _, action) => [
                 <a
-                key="editable"
-                onClick={() => {
-                    action?.startEditable?.(record.id);
-                }}
+                    key="editable"
+                    onClick={() => {
+                        console.log('record.id: ', record.id);
+                        action?.startEditable?.(record.id);
+                    }}
                 >
-                编辑
+                    编辑
                 </a>
             ]
         },
@@ -95,6 +107,32 @@ const IconsManagement = (props) => {
 
     
     useEffect( () => {
+        // 获取分类信息
+        http.fetchRequest(`${serviceBasePath}/publicwebdata/getallliconcategories`, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.debug("--iconCategory: ");
+                console.debug(result);
+                if(result.success === true) {
+                    // const data = result.data;
+                    const data = {}
+                    Object.keys(result.data).forEach(key => {
+                        data[key] = {
+                            text: result.data[key].zh
+                        }
+                    })
+                    console.log('IconCategoryEnum', data);
+                    setIconCategoryEnum(data);
+                } else {
+                    console.error(result.code, result.error);
+                }
+            }).catch(err => {
+                console.log(err);
+            })
+
+        // 获取图标信息
         http.fetchRequest(`${serviceBasePath}/publicwebdata/getalliconsList`, {
             method: 'GET',
             headers: {
@@ -134,15 +172,30 @@ const IconsManagement = (props) => {
             />
             </div>
             <div className="icon-list-wrap">
-                <ProTable 
+                <EditableProTable 
+                    className='icon-management-table'
+                    rowKey="id"
+                    recordCreatorProps={false}
+                    pagination={
+                        {pageSize: 10}
+                    }
                     columns={columns}
-                    dataSource={iconsMap}
+                    value={iconsMap}
                     editable={{
                         type: 'multiple',
+                        onSave: async (rowKey, data, row) => {
+                            console.log(rowKey, data, row);
+                            let icons = [...iconsMap];
+                            let icon = _.find(icons, {id: rowKey});
+                            icon.category = data.category;
+                            icon.categoryCn = data.categoryCn
+                            icon.tag = data.tag.split(',').map(item => item.trim());
+                            // TODO: 保存至数据库
+                            setIconsMap(icons);
+                        }
                     }}
                     search={false}
-                    rowKey="id"
-                ></ProTable>
+                ></EditableProTable>
             </div>
         </div>
         
