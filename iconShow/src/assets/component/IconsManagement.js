@@ -74,9 +74,9 @@ const IconsManagement = (props) => {
             valueType: 'text',
             render: (text, record) => {
                 let tags = []
-                record.tag.forEach(item => {
+                record.tag.forEach((item, index) => {
                     tags.push(
-                        <span className={"inner-icon-tag"}>{item}</span>
+                        <span key={'tag-' + index} className={"inner-icon-tag"}>{item}</span>
                     )
                 })
                 return tags;
@@ -188,8 +188,8 @@ const IconsManagement = (props) => {
                             let icons = [...iconsMap];
                             let icon = _.find(icons, {id: rowKey});
                             icon.category = data.category;
-                            icon.categoryCn = data.categoryCn
-                            icon.tag = data.tag.split(',').map(item => item.trim());
+                            icon.categoryCn = data.categoryCn;
+                            Array.isArray(data.tag) ? icon.tag = data.tag : icon.tag = data.tag.split(',').map(item => item.trim());
                             // TODO: 保存至数据库
                             setIconsMap(icons);
                         }
