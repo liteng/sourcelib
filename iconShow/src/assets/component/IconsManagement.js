@@ -1,5 +1,5 @@
 import React, { createRef, useEffect, useRef, useState } from 'react';
-import { Button, Upload, Select, Input, message, Form } from 'antd';
+import { Button, Upload, Select, Input, message, Form, Modal } from 'antd';
 import {createIconsMap } from '../pages/Iconlib/createIconsMap';
 import { ProTable, EditableProTable } from '@ant-design/pro-components';
 import _ from 'lodash';
@@ -46,29 +46,26 @@ const IconsManagement = (props) => {
         },
         {
             title: '名称',
+            width: 140,
             dataIndex: 'title',
             editable: false,
             ellipsis: true,
         },
         {
             title: '标识',
+            width: 160,
             dataIndex: 'name',
             editable: false,
             ellipsis: true,
         },
         {
             title: '分类',
+            width: 140,
             key: 'categoryId',
             dataIndex: 'categoryId',
             ellipsis: true,
             valueType: 'select',
-            valueEnum: iconCategoryEnum,
-            // render: (text, record) => {
-            //     console.log('record: ', record);
-            //     return [
-            //         iconCategoryEnum[record.categoryId].text
-            //     ]
-            // }
+            valueEnum: iconCategoryEnum
         },
         {
             title: '标签',
@@ -92,6 +89,7 @@ const IconsManagement = (props) => {
         },
         {
             title: '操作',
+            width: 150,
             valueType: 'option',
             key: 'option',
             render: (text, record, _, action) => [
@@ -159,72 +157,140 @@ const IconsManagement = (props) => {
             });
     }, [])
 
-    return <ReactModal
-        isOpen={open}
-        onRequestClose={onCancel}
-        overlayClassName={"icon-management-overlay"}
-        className="icon-management-content"
-    >
-        <span className="icon-management-close" onClick={onCancel}><Close2 theme="filled" size={32} fill="#ffffff"/></span>
-        <div className="icon-management-wrapper">
-            <div className="search-bar-wrap">
-            <Input.Search
-                className='icon-tool-search-input'
-                placeholder="输入关键词"
-                allowClear
-                enterButton="搜索"
-            />
-            </div>
-            <div className="icon-list-wrap">
-                <EditableProTable 
-                    className='icon-management-table'
-                    rowKey="id"
-                    recordCreatorProps={false}
-                    pagination={
-                        {pageSize: 10}
-                    }
-                    columns={columns}
-                    value={iconsMap}
-                    editable={{
-                        type: 'multiple',
-                        onSave: async (rowKey, data, row) => {
-                            console.log(rowKey, data, row);
-                            let icons = [...iconsMap];
-                            let icon = _.find(icons, {id: rowKey});
-                            icon.categoryId = data.categoryId;
-                            // icon.categoryCN = data.categoryCN;
-                            // icon.categoryEN = data.categoryEN;
-                            icon.categoryCN = iconCategoryEnum[data.categoryId].text;
-                            icon.categoryEN = iconCategoryEnum[data.categoryId].en;
-                            Array.isArray(data.tag) ? icon.tag = data.tag : icon.tag = data.tag.split(',').map(item => item.trim());
-                            // TODO: 保存至数据库
-                            console.debug('icon: ', icon);
-                            http.fetchRequest(`${serviceBasePath}/publicwebdata/updateiconcategoryandtag`, {
-                                method: "POST",
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify(icon)
-                            })
-                                .then(response => response.json())
-                                .then(result => {
-                                    console.debug(result);
-                                    if(result.success === true) {
-                                        setIconsMap(icons);
-                                    } else {
-                                        console.error(result.code, result.error);
-                                    }
-                                }).catch(err=>{
-                                    console.error(err);
-                                });
-                        }
-                    }}
-                    search={false}
-                ></EditableProTable>
-            </div>
-        </div>
+    return <Modal
+                footer={null}
+                title="图标管理"
+                open={open}
+                onCancel={onCancel}
+                width={1024}
+                mask={{backgroundColor: "rgba(0,0,0,0.25)"}}
+                className="icon-management-content"
+            >
+                <div className="icon-management-wrapper">
+                    <div className="search-bar-wrap">
+                        <Input.Search
+                            className='icon-tool-search-input'
+                            placeholder="输入关键词"
+                            allowClear
+                            enterButton="搜索"
+                        />
+                    </div>
+                    <div className="icon-list-wrap">
+                        <EditableProTable 
+                            className='icon-management-table'
+                            rowKey="id"
+                            recordCreatorProps={false}
+                            pagination={
+                                {pageSize: 10}
+                            }
+                            columns={columns}
+                            value={iconsMap}
+                            editable={{
+                                type: 'multiple',
+                                onSave: async (rowKey, data, row) => {
+                                    console.log(rowKey, data, row);
+                                    let icons = [...iconsMap];
+                                    let icon = _.find(icons, {id: rowKey});
+                                    icon.categoryId = data.categoryId;
+                                    // icon.categoryCN = data.categoryCN;
+                                    // icon.categoryEN = data.categoryEN;
+                                    icon.categoryCN = iconCategoryEnum[data.categoryId].text;
+                                    icon.categoryEN = iconCategoryEnum[data.categoryId].en;
+                                    Array.isArray(data.tag) ? icon.tag = data.tag : icon.tag = data.tag.split(',').map(item => item.trim());
+                                    // TODO: 保存至数据库
+                                    console.debug('icon: ', icon);
+                                    http.fetchRequest(`${serviceBasePath}/publicwebdata/updateiconcategoryandtag`, {
+                                        method: "POST",
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(icon)
+                                    })
+                                        .then(response => response.json())
+                                        .then(result => {
+                                            console.debug(result);
+                                            if(result.success === true) {
+                                                setIconsMap(icons);
+                                            } else {
+                                                console.error(result.code, result.error);
+                                            }
+                                        }).catch(err=>{
+                                            console.error(err);
+                                        });
+                                }
+                            }}
+                            search={false}
+                        ></EditableProTable>
+                    </div>
+                </div>
+            </Modal>
+
+    // return <ReactModal
+    //     isOpen={open}
+    //     onRequestClose={onCancel}
+    //     overlayClassName={"icon-management-overlay"}
+    //     className="icon-management-content"
+    // >
+    //     <span className="icon-management-close" onClick={onCancel}><Close2 theme="filled" size={32} fill="#ffffff"/></span>
+    //     <div className="icon-management-wrapper">
+    //         <div className="search-bar-wrap">
+    //         <Input.Search
+    //             className='icon-tool-search-input'
+    //             placeholder="输入关键词"
+    //             allowClear
+    //             enterButton="搜索"
+    //         />
+    //         </div>
+    //         <div className="icon-list-wrap">
+    //             <EditableProTable 
+    //                 className='icon-management-table'
+    //                 rowKey="id"
+    //                 recordCreatorProps={false}
+    //                 pagination={
+    //                     {pageSize: 5}
+    //                 }
+    //                 columns={columns}
+    //                 value={iconsMap}
+    //                 editable={{
+    //                     type: 'multiple',
+    //                     onSave: async (rowKey, data, row) => {
+    //                         console.log(rowKey, data, row);
+    //                         let icons = [...iconsMap];
+    //                         let icon = _.find(icons, {id: rowKey});
+    //                         icon.categoryId = data.categoryId;
+    //                         // icon.categoryCN = data.categoryCN;
+    //                         // icon.categoryEN = data.categoryEN;
+    //                         icon.categoryCN = iconCategoryEnum[data.categoryId].text;
+    //                         icon.categoryEN = iconCategoryEnum[data.categoryId].en;
+    //                         Array.isArray(data.tag) ? icon.tag = data.tag : icon.tag = data.tag.split(',').map(item => item.trim());
+    //                         // TODO: 保存至数据库
+    //                         console.debug('icon: ', icon);
+    //                         http.fetchRequest(`${serviceBasePath}/publicwebdata/updateiconcategoryandtag`, {
+    //                             method: "POST",
+    //                             headers: {
+    //                                 'Content-Type': 'application/json'
+    //                             },
+    //                             body: JSON.stringify(icon)
+    //                         })
+    //                             .then(response => response.json())
+    //                             .then(result => {
+    //                                 console.debug(result);
+    //                                 if(result.success === true) {
+    //                                     setIconsMap(icons);
+    //                                 } else {
+    //                                     console.error(result.code, result.error);
+    //                                 }
+    //                             }).catch(err=>{
+    //                                 console.error(err);
+    //                             });
+    //                     }
+    //                 }}
+    //                 search={false}
+    //             ></EditableProTable>
+    //         </div>
+    //     </div>
         
-    </ReactModal>
+    // </ReactModal>
 }
 
 export default IconsManagement;

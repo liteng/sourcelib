@@ -2,16 +2,16 @@
     width: 100%;
     max-width: 1024px;
     .icon-management-wrapper {
-        background-color: #ffffff;
-        padding: 32px;
         .search-bar-wrap {
             display: flex;
             height: 64px;
-            margin-top: 16px 0;
+            align-items: center;
         }
         .icon-list-wrap {
-            margin-top: 16px;
             .icon-management-table {
+                .ant-pro-card-body {
+                    padding-inline: 0;
+                };
                 .inner-icon-tag {
                     padding: 2px 8px;
                     border: 1px solid #dddddd;
@@ -25,7 +25,7 @@
     }
 }
 .icon-management-overlay {
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0,0,0,0.25);
     position: fixed;
     inset: 0px;
     z-index: 1009;
