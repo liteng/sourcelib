@@ -79,7 +79,8 @@ export interface IIconProps {
     name: string;
     svg: string;
     tag: string[];
-    category: string;
+    categoryId: string;
+    categoryEN: string;
     categoryCN: string;
     author: string;
     rtl: boolean;

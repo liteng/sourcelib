@@ -58,14 +58,17 @@ const IconsManagement = (props) => {
         },
         {
             title: '分类',
-            key: 'category',
-            dataIndex: 'category',
+            key: 'categoryId',
+            dataIndex: 'categoryId',
             ellipsis: true,
             valueType: 'select',
             valueEnum: iconCategoryEnum,
-            // render: (text, record) => [
-            //     record.categoryCN
-            // ]
+            // render: (text, record) => {
+            //     console.log('record: ', record);
+            //     return [
+            //         iconCategoryEnum[record.categoryId].text
+            //     ]
+            // }
         },
         {
             title: '标签',
@@ -120,10 +123,11 @@ const IconsManagement = (props) => {
                     const data = {}
                     Object.keys(result.data).forEach(key => {
                         data[key] = {
-                            text: result.data[key].zh
+                            text: result.data[key].zh,
+                            en: result.data[key].en,
                         }
                     })
-                    console.log('IconCategoryEnum', data);
+                    console.log('iconCategoryEnum', data);
                     setIconCategoryEnum(data);
                 } else {
                     console.error(result.code, result.error);
@@ -187,11 +191,32 @@ const IconsManagement = (props) => {
                             console.log(rowKey, data, row);
                             let icons = [...iconsMap];
                             let icon = _.find(icons, {id: rowKey});
-                            icon.category = data.category;
-                            icon.categoryCn = data.categoryCn;
+                            icon.categoryId = data.categoryId;
+                            // icon.categoryCN = data.categoryCN;
+                            // icon.categoryEN = data.categoryEN;
+                            icon.categoryCN = iconCategoryEnum[data.categoryId].text;
+                            icon.categoryEN = iconCategoryEnum[data.categoryId].en;
                             Array.isArray(data.tag) ? icon.tag = data.tag : icon.tag = data.tag.split(',').map(item => item.trim());
                             // TODO: 保存至数据库
-                            setIconsMap(icons);
+                            console.debug('icon: ', icon);
+                            http.fetchRequest(`${serviceBasePath}/publicwebdata/updateiconcategoryandtag`, {
+                                method: "POST",
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(icon)
+                            })
+                                .then(response => response.json())
+                                .then(result => {
+                                    console.debug(result);
+                                    if(result.success === true) {
+                                        setIconsMap(icons);
+                                    } else {
+                                        console.error(result.code, result.error);
+                                    }
+                                }).catch(err=>{
+                                    console.error(err);
+                                });
                         }
                     }}
                     search={false}

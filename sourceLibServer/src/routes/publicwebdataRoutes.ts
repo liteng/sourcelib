@@ -12,4 +12,7 @@ publicWebdataRouter.get("/getalllogocategories", WebdataController.getAllLogoCat
 publicWebdataRouter.get("/getalllogos", WebdataController.getAllLogos);
 publicWebdataRouter.get("/getlogosbycategory/:category", WebdataController.getLogosByCategory);
 
+// test
+publicWebdataRouter.post("/updateiconcategoryandtag", WebdataController.updateIconCategoryAndTag);
+
 export default publicWebdataRouter.routes();

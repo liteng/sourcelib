@@ -12,7 +12,8 @@ export interface IIconProps {
     name: string;
     svg: string;
     tag: string[];
-    category: string;
+    categoryId: string;
+    categoryEN: string;
     categoryCN: string;
     author: string;
     rtl: boolean;
@@ -173,7 +174,8 @@ export const preprocess = async () => {
             tag: [
                 names[1]
             ],
-            category: "Base",
+            categoryId: "12733f05-df85-bf3f-5d76-7d7972d73e32",
+            categoryEN: "Base",
             categoryCN: "基础",
             author: "USUE",
             rtl: false,

@@ -390,7 +390,7 @@ export default class WebdataController {
 
             categories.forEach(category => {
                 const categoryId = category.id;
-                const subIcons = db.chain.get('icons').filter( {category: category.name.en} ).value();
+                const subIcons = db.chain.get('icons').filter( {categoryId: categoryId} ).value();
                 console.debug('subIcons: ', subIcons.length);
                 if(subIcons.length > 0) {
                     // 如果无数据则无需汇总
@@ -442,7 +442,7 @@ export default class WebdataController {
 
             categories.forEach(category => {
                 const categoryId = category.id;
-                const subIcons = db.chain.get("icons").filter( {category: category.name.en} ).filter( post => {
+                const subIcons = db.chain.get("icons").filter( {categoryId: categoryId} ).filter( post => {
                     console.debug('post: ', post);
                     // 尝试匹配name,title,tag,命中其中之一即算作匹配
                     const nmaeResult = post.name.includes(keyword);
@@ -480,6 +480,46 @@ export default class WebdataController {
                 code: ErrorCode.SUCCESS,
                 success: true,
                 data: searchIcons,
+                error: null
+            }
+        } catch (err) {
+            console.error(err);
+            ctx.status = 500;
+            ctx.body = {
+                code: ErrorCode.SYS_ERROR,
+                success: false,
+                data: null,
+                error: err
+            }
+        }
+    }
+
+    // 修改icon的分类、tag
+    public static async updateIconCategoryAndTag(ctx: Context) {
+        console.info("--webdataController.updateIconCategoryAndTag");
+
+        const postData: IIconProps = ctx.request.body;
+        console.log(postData);
+
+        try {
+            const db = await SourceDb.getSourceDb();
+            db.chain.get('icons')
+                .find({id: postData.id})
+                .assign({
+                    categoryId: postData.categoryId,
+                    categoryEN: postData.categoryEN,
+                    categoryCN: postData.categoryCN,
+                    tag: postData.tag
+                })
+                .value();
+
+            db.write();
+            
+            ctx.status = 200;
+            ctx.body = {
+                code: ErrorCode.SUCCESS,
+                success: true,
+                data: null,
                 error: null
             }
         } catch (err) {
