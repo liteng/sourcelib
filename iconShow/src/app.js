@@ -103,12 +103,16 @@ const App = () => {
                     }
                 </Routes>
             </Router>
-            <Modal 
+            {/* <Modal 
                 open={showLoginModal}
                 footer={[]}
-            >
-                <Login onCancel={onLoginCanceled} onSuccess={onLoginSuccessed}/>
-            </Modal>
+            > */}
+                <Login open={showLoginModal}
+                    footer={null} 
+                    onCancel={onLoginCanceled} 
+                    onSuccess={onLoginSuccessed}
+                />
+            {/* </Modal> */}
         </>
     )
 }
