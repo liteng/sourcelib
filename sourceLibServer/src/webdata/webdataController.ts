@@ -9,6 +9,7 @@ import { SourceDb, IIconProps } from "../db/sourceDb.js"
 import ErrorCode from "../common/ErrorCode.js";
 import { config } from "../config.js";
 import _ from "lodash";
+import { v4 as uuidv4 } from 'uuid';
 
 interface ISource {
     [key:string]: {
@@ -520,6 +521,51 @@ export default class WebdataController {
                 code: ErrorCode.SUCCESS,
                 success: true,
                 data: null,
+                error: null
+            }
+        } catch (err) {
+            console.error(err);
+            ctx.status = 500;
+            ctx.body = {
+                code: ErrorCode.SYS_ERROR,
+                success: false,
+                data: null,
+                error: err
+            }
+        }
+    }
+
+    // 新增图表类别
+    public static async addNewCategory(ctx: Context) {
+        console.info("--webdataController.addNewCategory");
+
+        type NewCategory = {
+            categoryCN: string;
+            categoryEN: string;
+        }
+        const postData:NewCategory  = ctx.request.body;
+        console.log(postData);
+
+        try {
+            const db = await SourceDb.getSourceDb();
+            const newCategory = {
+                id: uuidv4(),
+                name: {
+                    en: postData.categoryEN,
+                    zh: postData.categoryCN
+                }
+            };
+            db.chain.get('iconCategory')
+                .push(newCategory)
+                .value();
+
+            db.write();
+            
+            ctx.status = 200;
+            ctx.body = {
+                code: ErrorCode.SUCCESS,
+                success: true,
+                data: newCategory,
                 error: null
             }
         } catch (err) {

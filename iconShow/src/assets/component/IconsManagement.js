@@ -1,11 +1,10 @@
 import React, { createRef, useEffect, useRef, useState } from 'react';
-import { Button, Upload, Select, Input, message, Form, Modal } from 'antd';
+import { Button, Tooltip, Select, Input, message, Popconfirm, Modal } from 'antd';
 import {createIconsMap } from '../pages/Iconlib/createIconsMap';
 import { ProTable, EditableProTable } from '@ant-design/pro-components';
 import _ from 'lodash';
 import { Canvg } from 'canvg';
-import { Delete } from '../component/iconlib/react';
-import {Close2} from './iconlib/react';
+import { Add, Add2 } from '../component/iconlib/react';
 import ReactModal from 'react-modal';
 import Config from '../../config';
 import http from '../../common/http';
@@ -19,6 +18,8 @@ const serviceBasePath = Config.serviceBasePath;
 const IconsManagement = (props) => {
     const [iconCategoryEnum, setIconCategoryEnum] = useState(null);
     const [iconsMap, setIconsMap] = useState(null);
+    const newCategoryCNRef = useRef(null);
+    const newCategoryENRef = useRef(null);
 
     const {
         open,
@@ -97,6 +98,7 @@ const IconsManagement = (props) => {
                     key="editable"
                     onClick={() => {
                         console.log('record.id: ', record.id);
+                        console.log("iconCategoryEnum: ", JSON.stringify(iconCategoryEnum));
                         action?.startEditable?.(record.id);
                     }}
                 >
@@ -106,6 +108,43 @@ const IconsManagement = (props) => {
         },
     ];
 
+    const saveCategory = (e) => {
+        if(newCategoryCNRef.current && 
+            newCategoryENRef.current && 
+            newCategoryCNRef.current.input.value.trim() !== '' && 
+            newCategoryENRef.current.input.value.trim() !== '') {
+            console.log(newCategoryCNRef.current.input.value, newCategoryENRef.current.input.value)
+            // 提交数据
+            http.fetchRequest(`${serviceBasePath}/publicwebdata/addnewcategory`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    categoryCN: newCategoryCNRef.current.input.value,
+                    categoryEN: newCategoryENRef.current.input.value
+                })
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.debug(result.data);
+                    const data = result.data;
+                    if(result.success === true) {
+                        // 更新类别字典
+                        const {...iconCategory} = iconCategoryEnum;
+                        iconCategory[data.id] = {
+                            text: data.name.en,
+                            en: data.name.cn
+                        };
+                        setIconCategoryEnum(iconCategory);
+                    } else {
+                        console.error(result.code, result.error);
+                    }
+                }).catch(err=>{
+                    console.error(err);
+                });
+        }
+    }
     
     useEffect( () => {
         // 获取分类信息
@@ -174,6 +213,30 @@ const IconsManagement = (props) => {
                             allowClear
                             enterButton="搜索"
                         />
+                        <ul className="icon-management-toolbar">
+                            <li>
+                                <Tooltip title="新增图标类别">
+                                    <Popconfirm
+                                        title="新增图标类别"
+                                        placement="bottomRight"
+                                        okText="添加"
+                                        cancelText="取消"
+                                        icon={<Add2 theme="filled" size={16} fill="#99b7fc"/>}
+                                        description={
+                                            <div className="add-category-wrapper">
+                                                <span className="category-name-label">图标类别中文</span>
+                                                <Input ref={newCategoryCNRef} className="category-name-value" placeholder="输入中文类别名称" />
+                                                <span className="category-name-label">图标类别英文</span>
+                                                <Input ref={newCategoryENRef} className="category-name-value" placeholder="输入英文类别名称" />
+                                            </div>
+                                        }
+                                        onConfirm={saveCategory}
+                                    >
+                                        <Button className='icon-tool-top-manage' icon={<Add theme="filled" size={16} fill="#1F64FF"/>}></Button>
+                                    </Popconfirm>
+                                </Tooltip>
+                            </li>
+                        </ul>
                     </div>
                     <div className="icon-list-wrap">
                         <EditableProTable 
@@ -225,72 +288,7 @@ const IconsManagement = (props) => {
                 </div>
             </Modal>
 
-    // return <ReactModal
-    //     isOpen={open}
-    //     onRequestClose={onCancel}
-    //     overlayClassName={"icon-management-overlay"}
-    //     className="icon-management-content"
-    // >
-    //     <span className="icon-management-close" onClick={onCancel}><Close2 theme="filled" size={32} fill="#ffffff"/></span>
-    //     <div className="icon-management-wrapper">
-    //         <div className="search-bar-wrap">
-    //         <Input.Search
-    //             className='icon-tool-search-input'
-    //             placeholder="输入关键词"
-    //             allowClear
-    //             enterButton="搜索"
-    //         />
-    //         </div>
-    //         <div className="icon-list-wrap">
-    //             <EditableProTable 
-    //                 className='icon-management-table'
-    //                 rowKey="id"
-    //                 recordCreatorProps={false}
-    //                 pagination={
-    //                     {pageSize: 5}
-    //                 }
-    //                 columns={columns}
-    //                 value={iconsMap}
-    //                 editable={{
-    //                     type: 'multiple',
-    //                     onSave: async (rowKey, data, row) => {
-    //                         console.log(rowKey, data, row);
-    //                         let icons = [...iconsMap];
-    //                         let icon = _.find(icons, {id: rowKey});
-    //                         icon.categoryId = data.categoryId;
-    //                         // icon.categoryCN = data.categoryCN;
-    //                         // icon.categoryEN = data.categoryEN;
-    //                         icon.categoryCN = iconCategoryEnum[data.categoryId].text;
-    //                         icon.categoryEN = iconCategoryEnum[data.categoryId].en;
-    //                         Array.isArray(data.tag) ? icon.tag = data.tag : icon.tag = data.tag.split(',').map(item => item.trim());
-    //                         // TODO: 保存至数据库
-    //                         console.debug('icon: ', icon);
-    //                         http.fetchRequest(`${serviceBasePath}/publicwebdata/updateiconcategoryandtag`, {
-    //                             method: "POST",
-    //                             headers: {
-    //                                 'Content-Type': 'application/json'
-    //                             },
-    //                             body: JSON.stringify(icon)
-    //                         })
-    //                             .then(response => response.json())
-    //                             .then(result => {
-    //                                 console.debug(result);
-    //                                 if(result.success === true) {
-    //                                     setIconsMap(icons);
-    //                                 } else {
-    //                                     console.error(result.code, result.error);
-    //                                 }
-    //                             }).catch(err=>{
-    //                                 console.error(err);
-    //                             });
-    //                     }
-    //                 }}
-    //                 search={false}
-    //             ></EditableProTable>
-    //         </div>
-    //     </div>
-        
-    // </ReactModal>
+    
 }
 
 export default IconsManagement;

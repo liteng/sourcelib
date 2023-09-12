@@ -14,5 +14,6 @@ publicWebdataRouter.get("/getlogosbycategory/:category", WebdataController.getLo
 
 // test
 publicWebdataRouter.post("/updateiconcategoryandtag", WebdataController.updateIconCategoryAndTag);
+publicWebdataRouter.post("/addnewcategory", WebdataController.addNewCategory);
 
 export default publicWebdataRouter.routes();

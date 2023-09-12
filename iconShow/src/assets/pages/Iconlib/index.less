@@ -60,9 +60,16 @@
                         text-overflow: ellipsis;
                         white-space: nowrap;
                         padding: 0 12px 0 24px;
+                        cursor: pointer;
                         a {
                             line-height: 32px;
                             color: #666;
+                        };
+                        &.active {
+                            background-color: #f8f8f8;
+                            a {
+                                color: #1F64FF;
+                            }
                         }
                     }
                 }

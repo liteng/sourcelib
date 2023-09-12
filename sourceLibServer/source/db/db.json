@@ -2187,9 +2187,9 @@
       "tag": [
         "能力"
       ],
-      "categoryId": "12733f05-df85-bf3f-5d76-7d7972d73e32",
-      "categoryEN": "Base",
-      "categoryCN": "基础",
+      "categoryId": "1f1a9606-d425-2d26-7a54-96de25eceb97",
+      "categoryEN": "Security",
+      "categoryCN": "安全",
       "author": "USUE",
       "rtl": false,
       "CompnentElement": "Ability"
@@ -2203,9 +2203,9 @@
         "关于",
         "about"
       ],
-      "categoryId": "12733f05-df85-bf3f-5d76-7d7972d73e32",
-      "categoryEN": "Base",
-      "categoryCN": "基础",
+      "categoryId": "1f1a9606-d425-2d26-7a54-96de25eceb97",
+      "categoryEN": "Security",
+      "categoryCN": "安全",
       "author": "USUE",
       "rtl": false,
       "CompnentElement": "About"

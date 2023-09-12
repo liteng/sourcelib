@@ -85,6 +85,7 @@ const IconlibList = () => {
     const [iconsMap, setIconsMap] = useState(null);
     const [openIconsManagement, setOpenIconsManagement] = useState(false);
     const [iconCategoryMap, setIconCategoryMap] = useState(null);
+    const [currCategory, setCurrCategory] = useState('');
     // const iconColorInput = useRef(null);
 
     const context = useContext(UserContext);
@@ -379,18 +380,21 @@ const IconlibList = () => {
         )
     }
 
+    const onCategoryClick = (categoryId) => {
+        setCurrCategory(categoryId);
+    }
+
     const iconsManagementOpen = () => {
         setOpenIconsManagement(true);
     }
     const iconsManagementClose = () => {
         setOpenIconsManagement(false);
+        getAllCategories();
+        getAllIcons();
     }
 
-    useEffect(()=>{
-        // const icons = createIconsMap();
-        // setIconsMap(icons);
-
-        // 获取icon类型字典
+    // 获取所有图标类别
+    const getAllCategories = () => {
         console.log("get icons category...");
         http.fetchRequest(`${serviceBasePath}/publicwebdata/getallliconcategories`, {
             method: 'GET',
@@ -407,9 +411,11 @@ const IconlibList = () => {
                 }
             }).catch(err => {
                 console.log(err);
-            })
+            });
+    }
 
-        // 获取图标
+    // 获取所有图标
+    const getAllIcons = () => {
         console.log("get icons data...");
         fetch(`${serviceBasePath}/publicwebdata/getallicons`, {
             method: 'GET',
@@ -438,6 +444,11 @@ const IconlibList = () => {
             }).catch(err=>{
                 console.error(err);
             });
+    }
+
+    useEffect(()=>{
+        getAllCategories();
+        getAllIcons();
     },[])
 
     return (
@@ -466,12 +477,12 @@ const IconlibList = () => {
                             <ul className='icon-category-wrapper'>
                                 {
                                     iconsMap && Object.keys(iconsMap).map( categoryId => {
-                                        return <li key={categoryId} className='icon-category'><Link to={iconCategoryMap[categoryId].en} smooth={true} duration={500} >{iconCategoryMap[categoryId].zh}</Link></li>
+                                        return <li key={categoryId} className={categoryId === currCategory ? 'icon-category active' : 'icon-category'}><Link to={iconCategoryMap[categoryId].en} onClick={() => onCategoryClick(categoryId)} containerId="icon-list-container" smooth={true} duration={500} >{iconCategoryMap[categoryId].zh}</Link></li>
                                     })
                                 }
                             </ul>
                         </div>
-                        <div className='icon-list-wrapper'>
+                        <div className='icon-list-wrapper' id="icon-list-container">
                             {
                                 iconsMap && Object.keys(iconsMap).map( categoryId => {
                                     // return renderIconSet(categoryId, iconsMap[categoryId])
