@@ -467,9 +467,13 @@ const IconlibList = () => {
                             />
                         </div>
                         <div className='icon-tools-top-placeholder-end'>
-                            <Tooltip title="管理">
-                                <Button className='icon-tool-top-manage' onClick={iconsManagementOpen} icon={<SetUp theme="filled" size={16} fill="#1F64FF"/>}></Button>
-                            </Tooltip>
+                            {
+                                user && (
+                                    <Tooltip title="管理">
+                                        <Button className='icon-tool-top-manage' onClick={iconsManagementOpen} icon={<SetUp theme="filled" size={16} fill="#1F64FF"/>}></Button>
+                                    </Tooltip>
+                                )
+                            }
                         </div>
                     </div>
                     <div className='icon-content-wraper'>

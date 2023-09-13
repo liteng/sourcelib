@@ -108,6 +108,49 @@ const IconsManagement = (props) => {
         },
     ];
 
+    const getIconsByKeyword = (keyword, event) => {
+        console.debug("debug: get icons for ", keyword);
+        // 判断是否点击"清除"引起的调佣
+        if ( keyword === '') {
+            // 获取全部图标
+            http.fetchRequest(`${serviceBasePath}/publicwebdata/getalliconslist`, {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.debug("--icons: ");
+                    console.debug(result);
+                    if(result.success === true) {
+                        const icons = createIconsMap(result.data);
+                        setIconsMap(icons);
+                    } else {
+                        console.error(result.code, result.error);
+                    }
+                }).catch(err=>{
+                    console.error(err);
+                });
+        } else {
+            // 根据keyword搜索
+            http.fetchRequest(`${serviceBasePath}/publicwebdata/geticonslistbykeyword/${keyword}`, {
+                method: 'GET',
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.debug("--icons of ", keyword);
+                    console.debug(result);
+                    if(result.success === true) {
+                        const icons = createIconsMap(result.data);
+                        setIconsMap(icons);
+                    } else {
+                        console.error(result.code, result.error);
+                    }
+                }).catch(err => {
+                    console.log(err);
+                })
+        }
+        
+    }
+
     const saveCategory = (e) => {
         if(newCategoryCNRef.current && 
             newCategoryENRef.current && 
@@ -115,7 +158,7 @@ const IconsManagement = (props) => {
             newCategoryENRef.current.input.value.trim() !== '') {
             console.log(newCategoryCNRef.current.input.value, newCategoryENRef.current.input.value)
             // 提交数据
-            http.fetchRequest(`${serviceBasePath}/publicwebdata/addnewcategory`, {
+            http.fetchRequest(`${serviceBasePath}/privatewebdata/addnewcategory`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -133,8 +176,8 @@ const IconsManagement = (props) => {
                         // 更新类别字典
                         const {...iconCategory} = iconCategoryEnum;
                         iconCategory[data.id] = {
-                            text: data.name.en,
-                            en: data.name.cn
+                            text: data.name.cn,
+                            en: data.name.en
                         };
                         setIconCategoryEnum(iconCategory);
                     } else {
@@ -174,7 +217,7 @@ const IconsManagement = (props) => {
             })
 
         // 获取图标信息
-        http.fetchRequest(`${serviceBasePath}/publicwebdata/getalliconsList`, {
+        http.fetchRequest(`${serviceBasePath}/publicwebdata/getalliconslist`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${user?.token}`
@@ -212,6 +255,7 @@ const IconsManagement = (props) => {
                             placeholder="输入关键词"
                             allowClear
                             enterButton="搜索"
+                            onSearch={getIconsByKeyword}
                         />
                         <ul className="icon-management-toolbar">
                             <li>
@@ -262,7 +306,7 @@ const IconsManagement = (props) => {
                                     Array.isArray(data.tag) ? icon.tag = data.tag : icon.tag = data.tag.split(',').map(item => item.trim());
                                     // TODO: 保存至数据库
                                     console.debug('icon: ', icon);
-                                    http.fetchRequest(`${serviceBasePath}/publicwebdata/updateiconcategoryandtag`, {
+                                    http.fetchRequest(`${serviceBasePath}/privatewebdata/updateiconcategoryandtag`, {
                                         method: "POST",
                                         headers: {
                                             'Content-Type': 'application/json'

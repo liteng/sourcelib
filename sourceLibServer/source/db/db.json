@@ -2176,6 +2176,13 @@
         "en": "Security",
         "zh": "安全"
       }
+    },
+    {
+      "id": "7a80c909-f1e2-48c7-9675-edb25ead5a8e",
+      "name": {
+        "en": "Hiha",
+        "zh": "嘿哈"
+      }
     }
   ],
   "icons": [
@@ -2187,9 +2194,8 @@
       "tag": [
         "能力"
       ],
-      "categoryId": "1f1a9606-d425-2d26-7a54-96de25eceb97",
-      "categoryEN": "Security",
-      "categoryCN": "安全",
+      "categoryId": "7a80c909-f1e2-48c7-9675-edb25ead5a8e",
+      "categoryCN": "Hiha",
       "author": "USUE",
       "rtl": false,
       "CompnentElement": "Ability"

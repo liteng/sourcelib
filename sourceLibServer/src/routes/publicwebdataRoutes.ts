@@ -5,6 +5,7 @@ const publicWebdataRouter = new Router();
 
 publicWebdataRouter.get("/getallliconcategories", WebdataController.getAllIconCategory);
 publicWebdataRouter.get("/getalliconslist", WebdataController.getAllIconsList);
+publicWebdataRouter.get("/geticonslistbykeyword/:keyword", WebdataController.getIconsListByKeyword);
 publicWebdataRouter.get("/getallicons", WebdataController.getAllIcons);
 publicWebdataRouter.get("/geticonsbykeyword/:keyword", WebdataController.getIconsByKeyword);
 
@@ -12,8 +13,9 @@ publicWebdataRouter.get("/getalllogocategories", WebdataController.getAllLogoCat
 publicWebdataRouter.get("/getalllogos", WebdataController.getAllLogos);
 publicWebdataRouter.get("/getlogosbycategory/:category", WebdataController.getLogosByCategory);
 
+
 // test
-publicWebdataRouter.post("/updateiconcategoryandtag", WebdataController.updateIconCategoryAndTag);
-publicWebdataRouter.post("/addnewcategory", WebdataController.addNewCategory);
+// publicWebdataRouter.post("/updateiconcategoryandtag", WebdataController.updateIconCategoryAndTag);
+// publicWebdataRouter.post("/addnewcategory", WebdataController.addNewCategory);
 
 export default publicWebdataRouter.routes();

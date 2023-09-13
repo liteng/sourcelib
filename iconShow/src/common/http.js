@@ -9,12 +9,12 @@ class Http {
 
         const newOptions = {
             ...options,
-            "Headers": {
+            "headers": {
                 ...headers,
                 ...options.headers
             }
         };
-
+        
         return fetch(url, newOptions);
     }
 }

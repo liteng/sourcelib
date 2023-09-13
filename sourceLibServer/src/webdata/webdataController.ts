@@ -371,6 +371,46 @@ export default class WebdataController {
         }
     }
 
+    // 根据关键字获取Icon数据(模糊匹配，需匹配name, title, tag三个属性,无归并)
+    public static async getIconsListByKeyword(ctx: Context) {
+        console.info("--webdataController.getIconsListByKeyword");
+
+        try {
+            const { keyword } = ctx.params;
+            console.debug('keyword: ', keyword);
+            const db = await SourceDb.getSourceDb();
+
+            const categories = db.chain.get('iconCategory').value();
+            const searchIcons: {[key: string]: IIconProps[]} = {};
+
+            const allIcons = db.chain.get('icons').filter( post => {
+                console.debug('post: ', post);
+                // 尝试匹配name,title,tag,命中其中之一即算作匹配
+                const nmaeResult = post.name.includes(keyword);
+                const titleResult = post.title.includes(keyword);
+                const tagResult = post.tag.filter(item => {item.includes(keyword)}).length > 0 ? true : false;
+                return nmaeResult || titleResult || tagResult;
+            }).value();
+            
+            ctx.status = 200;
+            ctx.body = {
+                code: ErrorCode.SUCCESS,
+                success: true,
+                data: allIcons,
+                error: null
+            }
+        } catch (err) {
+            console.error(err);
+            ctx.status = 500;
+            ctx.body = {
+                code: ErrorCode.SYS_ERROR,
+                success: false,
+                data: null,
+                error: err
+            }
+        }
+    }
+
     // 获取所有Icon数据(基于分类归并后的结果)
     public static async getAllIcons(ctx: Context) {
         console.info("--webdataController.getAllIcons");
