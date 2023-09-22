@@ -45,9 +45,8 @@ export default class WebdataController {
     public static async test(ctx: Context) {
         console.info("--webdataController.getAllLogoCategory");
 
-        console.debug(import.meta.url);
-        const __dirname = path.dirname( fileURLToPath(import.meta.url) )
-        // const dbFile = path.resolve(__dirname, '../../source/db/db.json');
+        // console.debug(import.meta.url);
+        const __dirname = path.dirname( fileURLToPath(import.meta.url) );
         const dbFile = path.resolve(__dirname, config.lowDbPath)
         
         const adapter = new JSONFile<Data>(dbFile);
@@ -56,43 +55,15 @@ export default class WebdataController {
         
         
         await db.read();
-        console.debug(db.data);
-        /* db.data.logos.push(
-            {
-                "id": "zhongliangjituanyouxiangongsi",
-                "title": "中粮集团有限公司",
-                "category": "industrialCustomers",
-                "sources": {
-                    "dd07ae15-3b4b-476d-9fdd-4320a8e72155": {
-                        "format": "svg",
-                        "path": "/中粮集团有限公司.svg"
-                    },
-                    "afe690f5-5de9-441b-8700-fea3591fd797": {
-                        "format": "png",
-                        "path": "/中粮集团有限公司.png"
-                    },
-                    "d7a9a302-d0cc-4897-b2bf-36c38575ca36": {
-                        "format": "ai",
-                        "path": "/中粮集团有限公司.ai"
-                    }
-                },
-                "thumbnail": "/中粮集团有限公司.png",
-                "tag": [
-                    "中粮集团有限公司"
-                ]
-            }
-        ); */
-        // const firstPost = db.data.logos[0];
-        // console.debug(firstPost);
-        
+        // console.debug(db.data);
 
         // 查
         const logo = db.chain.get('logos').find({id: 'zhongliangjituanyouxiangongsi'}).value();
-        console.log("Find",logo);
+        // console.log("Find",logo);
         
         // 改
         const result = db.chain.get('logos').find({id: 'zhongliangjituanyouxiangongsi3'}).assign({title: "Test"}).value();
-        console.log("Modify:", result);
+        // console.log("Modify:", result);
 
         await db.write();
 
@@ -109,7 +80,7 @@ export default class WebdataController {
             const allLogos = db.chain.get('logos').value();
             // console.debug("logos: ", allLogos);
 
-            console.log('cookie: ', ctx.cookies.get('token'));
+            // console.log('cookie: ', ctx.cookies.get('token'));
 
             ctx.status = 200;
             ctx.body = {
@@ -141,7 +112,7 @@ export default class WebdataController {
                 db.chain.get("logos").filter({category: category}).value();
             // console.log(logos);
 
-            console.log('cookie: ', ctx.cookies.get('token'));
+            // console.log('cookie: ', ctx.cookies.get('token'));
             
             ctx.status = 200;
             ctx.body = {
@@ -168,7 +139,7 @@ export default class WebdataController {
         try{
             const db = await SourceDb.getSourceDb();
             const allLogoCategories = db.chain.get('logoCategory').value();
-            console.debug("logoCategories: ", allLogoCategories);
+            // console.debug("logoCategories: ", allLogoCategories);
 
             ctx.status = 200;
             ctx.body = {
@@ -202,7 +173,7 @@ export default class WebdataController {
             newThumbnailFile: string | null;
         }
         const postData: UpdateLogoData = ctx.request.body;
-        console.log(postData);
+        // console.log(postData);
 
         try{
             const db = await SourceDb.getSourceDb();
@@ -213,10 +184,10 @@ export default class WebdataController {
                 if(orgSources.hasOwnProperty(item)) {
                     // delete orgSources[item];
                     const removeFilePath = config.logoStorePath + orgLogo.sources[item].path;
-                    console.log("删除文件: ", removeFilePath);
+                    // console.log("删除文件: ", removeFilePath);
                     fs.unlink(removeFilePath, (err) => {
                         if (err) throw err;
-                        console.log(`${removeFilePath} was deleted`);
+                        // console.log(`${removeFilePath} was deleted`);
                     });
                 }
             });
@@ -224,10 +195,10 @@ export default class WebdataController {
             let newSources: ISource = {};
             postData.newSources.forEach(item => {
                 // 将增添的logo资源文件从临时目录移至资源目录
-                console.log('移动文件: ', `${config.updateTempPath}/${item.fileName}`);
+                // console.log('移动文件: ', `${config.updateTempPath}/${item.fileName}`);
                 fs.rename(`${config.updateTempPath}/${item.fileName}`, `${config.logoStorePath}/${item.fileName}`, (err) => {
                     if (err) throw err;
-                    console.log(`${config.updateTempPath}/${item.fileName} was moved and renamed to ${config.logoStorePath}/${item.fileName}`);
+                    // console.log(`${config.updateTempPath}/${item.fileName} was moved and renamed to ${config.logoStorePath}/${item.fileName}`);
                 });
                 // 构建新的logo资源数据-加入新增资源
                 newSources[item.fileId] = {
@@ -242,34 +213,14 @@ export default class WebdataController {
                     newSources[key] = orgSources[key];
                 }
             });
-            // postData.newSources.forEach(item => {
-            //     newSources[item.fileId] = {
-            //         format: item.fileName.substring(item.fileName.lastIndexOf('.') + 1),
-            //         path: item.fileName
-            //     };
-            // })
-            // console.log(newSources);
-
-            // db.chain.get('logos').find({id: postData.id}).set('sources', newSources).value();
-
-            // db.write();
-
-            
-            // postData.newSources.forEach(item => {
-            //     const source = {
-            //         format: ,
-            //         path: 
-            //     }
-            //     newSources.push();
-            // })
 
             // 更新thumbnail
             if(postData.newThumbnailFile !== null) {
-                console.log("更新缩略图: ", (`${config.updateTempPath}/${postData.newThumbnailFile}`));
+                // console.log("更新缩略图: ", (`${config.updateTempPath}/${postData.newThumbnailFile}`));
                 // 等tumbnail都移植到thumbnail目录后，实现删除原thumbnail文件
                 fs.rename(`${config.updateTempPath}/${postData.newThumbnailFile}`, `${config.logoStorePath}/thumbnail/${postData.newThumbnailFile}`, (err) => {
                     if (err) throw err;
-                    console.log(`${config.updateTempPath}/${postData.newThumbnailFile} was moved and renamed to ${config.logoStorePath}/thumbnail/${postData.newThumbnailFile}`);
+                    // console.log(`${config.updateTempPath}/${postData.newThumbnailFile} was moved and renamed to ${config.logoStorePath}/thumbnail/${postData.newThumbnailFile}`);
                 });
             }
 
@@ -285,11 +236,9 @@ export default class WebdataController {
                 .value();
 
             const testdb = db.chain.get('logos').find({id: postData.id}).value();
-            console.log(testdb);
+            // console.log(testdb);
 
             db.write();
-            // // const logo = db.chain.get("logos").filter({category: category}).value();
-            // console.debug("logoCategories: ", allLogoCategories);
 
             ctx.status = 200;
             ctx.body = {
@@ -316,7 +265,7 @@ export default class WebdataController {
         try{
             const db = await SourceDb.getSourceDb();
             const categories = db.chain.get('iconCategory').value();
-            console.debug("categories: ", categories);
+            // console.debug("categories: ", categories);
             const allIconCategories: {[key:string]: {[key:string]: string}} = {};
             categories.forEach( category => {
                 allIconCategories[category.id] = {
@@ -324,7 +273,7 @@ export default class WebdataController {
                     "zh": category.name.zh
                 }
             })
-            console.debug("allIconCategories: ", allIconCategories);
+            // console.debug("allIconCategories: ", allIconCategories);
 
             ctx.status = 200;
             ctx.body = {
@@ -351,7 +300,7 @@ export default class WebdataController {
         try {
             const db = await SourceDb.getSourceDb();
             const allIcons = db.chain.get('icons').value();
-            console.debug('all icons: ', allIcons.length);
+            // console.debug('all icons: ', allIcons.length);
 
             ctx.status = 200;
             ctx.body = {
@@ -377,14 +326,14 @@ export default class WebdataController {
 
         try {
             const { keyword } = ctx.params;
-            console.debug('keyword: ', keyword);
+            // console.debug('keyword: ', keyword);
             const db = await SourceDb.getSourceDb();
 
             const categories = db.chain.get('iconCategory').value();
             const searchIcons: {[key: string]: IIconProps[]} = {};
 
             const allIcons = db.chain.get('icons').filter( post => {
-                console.debug('post: ', post);
+                // console.debug('post: ', post);
                 // 尝试匹配name,title,tag,命中其中之一即算作匹配
                 const nmaeResult = post.name.includes(keyword);
                 const titleResult = post.title.includes(keyword);
@@ -419,37 +368,18 @@ export default class WebdataController {
             const db = await SourceDb.getSourceDb();
 
             const categories = db.chain.get('iconCategory').value();
-            console.debug("categories: ", categories);
-            // const allIconCategories: {[key:string]: {[key:string]: string}} = {};
+            // console.debug("categories: ", categories);
             const allIcons: {[key:string]: IIconProps[]} = {};
-            // categories.forEach( category => {
-            //     allIconCategories[category.id] = {
-            //         "en": category.name.en,
-            //         "zh": category.name.zh
-            //     }
-            // });
 
             categories.forEach(category => {
                 const categoryId = category.id;
                 const subIcons = db.chain.get('icons').filter( {categoryId: categoryId} ).value();
-                console.debug('subIcons: ', subIcons.length);
+                // console.debug('subIcons: ', subIcons.length);
                 if(subIcons.length > 0) {
                     // 如果无数据则无需汇总
                     allIcons[categoryId] = subIcons;
                 }
             })
-
-
-
-            // const iconCategory = db.chain.get('iconCategory').value();
-            // console.debug(iconCategory);
-            // const allIcons: {[key:string]: IIconProps[]} = {};
-            // iconCategory.map( category => {
-            //     const subIcons = db.chain.get('icons').filter( {category: category.name.en} ).value();
-            //     allIcons[category.name.en] = subIcons;
-            // })
-            // console.debug(allIcons);
-            // const allIcons = db.chain.get('icons').value();
 
             ctx.status = 200;
             ctx.body = {
@@ -475,7 +405,7 @@ export default class WebdataController {
 
         try {
             const { keyword } = ctx.params;
-            console.debug('keyword: ', keyword);
+            // console.debug('keyword: ', keyword);
             const db = await SourceDb.getSourceDb();
 
             const categories = db.chain.get('iconCategory').value();
@@ -484,7 +414,7 @@ export default class WebdataController {
             categories.forEach(category => {
                 const categoryId = category.id;
                 const subIcons = db.chain.get("icons").filter( {categoryId: categoryId} ).filter( post => {
-                    console.debug('post: ', post);
+                    // console.debug('post: ', post);
                     // 尝试匹配name,title,tag,命中其中之一即算作匹配
                     const nmaeResult = post.name.includes(keyword);
                     const titleResult = post.title.includes(keyword);
@@ -494,27 +424,12 @@ export default class WebdataController {
                     // console.debug('tagResult: ', tagResult);
                     return nmaeResult || titleResult || tagResult;
                 }).value();
-                console.debug('subIcons: ', subIcons.length);
+                // console.debug('subIcons: ', subIcons.length);
                 if(subIcons.length > 0) {
                     // 如果无数据则无需汇总
                     searchIcons[categoryId] = subIcons;
                 }
             })
-
-            // const icons = db.chain.get("icons").filter( post => {
-            //     console.debug('post: ', post);
-            //     // 尝试匹配name,title,tag,命中其中之一即算作匹配
-            //     const nmaeResult = post.name.includes(keyword);
-            //     const titleResult = post.title.includes(keyword);
-            //     const tagResult = post.tag.filter(item => {item.includes(keyword)}).length > 0 ? true : false;
-            //     // console.debug('nmaeResult: ', nmaeResult);
-            //     // console.debug('titleResult: ', titleResult);
-            //     // console.debug('tagResult: ', tagResult);
-            //     return nmaeResult || titleResult || tagResult;
-            // }).value();
-            // console.log(icons);
-
-            // console.log('cookie: ', ctx.cookies.get('token'));
             
             ctx.status = 200;
             ctx.body = {
@@ -540,7 +455,7 @@ export default class WebdataController {
         console.info("--webdataController.updateIconCategoryAndTag");
 
         const postData: IIconProps = ctx.request.body;
-        console.log(postData);
+        // console.log(postData);
 
         try {
             const db = await SourceDb.getSourceDb();
@@ -584,7 +499,7 @@ export default class WebdataController {
             categoryEN: string;
         }
         const postData:NewCategory  = ctx.request.body;
-        console.log(postData);
+        // console.log(postData);
 
         try {
             const db = await SourceDb.getSourceDb();

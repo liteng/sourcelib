@@ -11,7 +11,7 @@
         "moveStatic": "shx cp -r log dist/ && shx cp -r source dist/ && shx cp -r node_modules dist/ && shx cp -r ssl dist/ && shx cp -r package.json dist/ && shx cp -r types dist/ ",
         "compile": "tsc",
         "build": "npm-run-all resetFolder compile moveStatic",
-        "start": "cross-env NODE_ENV=production node src/server.js",
+        "start": "nohup cross-env NODE_ENV=production node server.js &",
         "icon": "ts-node src/icon/test.ts",
         "gulp": "ts-node src/icon/gulptest.ts",
         "test": "shx cp -r package.json dist/, shx cp -r source dist/"

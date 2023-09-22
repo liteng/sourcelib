@@ -219,10 +219,6 @@ const IconsManagement = (props) => {
         // 获取图标信息
         http.fetchRequest(`${serviceBasePath}/publicwebdata/getalliconslist`, {
             method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${user?.token}`
-            },
-            withCredentials: true,
         })
             .then(response => response.json())
             .then(result => {
