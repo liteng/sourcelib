@@ -8,7 +8,7 @@ import Config from '../../config';
 import './picviewer.less';
 // import CopyPlugin from 'copy-webpack-plugin';
 
-ReactModal.setAppElement('#xxx');
+ReactModal.setAppElement('#root');
 
 const serviceBasePath = Config.serviceBasePath;
 const sourceBasePath = Config.sourceBasePath;

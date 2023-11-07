@@ -2,7 +2,7 @@ import React, { createRef, useEffect, useRef, useState, useContext } from 'react
 import { Col, InputNumber, Popover, Row, Slider, Input, Button, Dropdown, message, Tooltip } from 'antd';
 import { SketchPicker } from 'react-color';
 import { Link, Element} from 'react-scroll';
-import {createIconsMap } from './createIconsMap';
+import { createIconsMap, createNavIconsMap } from './createIconsMap';
 import {More, Copy, SetUp} from '../../component/iconlib/react';
 import IconsManagement from '../../component/IconsManagement';
 import { Canvg } from 'canvg';
@@ -79,9 +79,10 @@ const SizeRegulator = (props) => {
     );
 }
 
-const IconlibList = () => {
+const NavIconlibList = () => {
     const [iconSize, setIconSize] = useState(32);
-    const [iconColor, setIconColor] = useState('#1F64FF');
+    const [iconColor1, setIconColor1] = useState('#027BFA');
+    const [iconColor2, setIconColor2] = useState('#57FF7E');
     const [iconsMap, setIconsMap] = useState(null);
     const [openIconsManagement, setOpenIconsManagement] = useState(false);
     const [iconCategoryMap, setIconCategoryMap] = useState(null);
@@ -95,29 +96,34 @@ const IconlibList = () => {
         setIconSize(newValue);
     }
 
-    const onColorChanged = (newColor) => {
-        setIconColor(newColor.hex);
+    const onColor1Changed = (newColor) => {
+        setIconColor1(newColor.hex);
     }
 
-    const handleColorInputChange = (e) => {
-        const {value: inputValue} = e.target;
-        const reg = /(^#[0-9A-F]{6}$)/i; //|(^#[0-9A-F]{3}$)
-        if(reg.test(inputValue)) {
-            setIconColor(inputValue);
-            iconColorInput.current.setInputValue = inputValue;
-        }else{
-            setIconColor('#1F64FF');
-            iconColorInput.current.value = '#FFFFFF';
-        }
+    const onColor2Changed = (newColor) => {
+        setIconColor2(newColor.hex);
     }
+
+    // const handleColorInputChange = (e) => {
+    //     const {value: inputValue} = e.target;
+    //     const reg = /(^#[0-9A-F]{6}$)/i; //|(^#[0-9A-F]{3}$)
+    //     if(reg.test(inputValue)) {
+    //         setIconColor(inputValue);
+    //         iconColorInput.current.setInputValue = inputValue;
+    //     }else{
+    //         setIconColor('#1F64FF');
+    //         iconColorInput.current.value = '#FFFFFF';
+    //     }
+    // }
 
     const setDefaultSetup = () => {
         setIconSize(32);
-        setIconColor('#1F64FF');
+        setIconColor1('#027BFA');
+        setIconColor2('#57FF7E');
     }
 
     const downLoadIconlib = () => {
-        window.location.href='/downloads/iconlib.zip'
+        window.location.href ='/downloads/naviconlib.zip'
     }
 
     const getSvg = (id) => {
@@ -143,14 +149,7 @@ const IconlibList = () => {
 
     const downloadAllSvg = () => {
         const zip = new JSZip();
-        
-        // 将按分类归并的集合扁平化
-        let flatIconsMap = [];
-        Object.keys(iconsMap).forEach((key) => {
-            flatIconsMap = [...flatIconsMap, ...iconsMap[key]];
-        });
-        
-        flatIconsMap.forEach( item => {
+        iconsMap.forEach( item => {
             const blob = getSvgBlob(item.name);
             zip.file(item.name + '.svg', blob);
         })
@@ -191,14 +190,7 @@ const IconlibList = () => {
 
     const downloadAllPng = () => {
         const zip = new JSZip();
-
-        // 将按分类归并的集合扁平化
-        let flatIconsMap = [];
-        Object.keys(iconsMap).forEach((key) => {
-            flatIconsMap = [...flatIconsMap, ...iconsMap[key]];
-        });
-        
-        flatIconsMap.forEach( item => {
+        iconsMap.forEach( item => {
             const url = getPng(item.name, 'base64');
             const base64 = url.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
             const binary = window.atob(base64);
@@ -260,7 +252,7 @@ const IconlibList = () => {
     const onClick = (key, element) => {
         // console.log(element);
         if(key === 'copyReactCode') {
-            const reactCode = `<${element.CompnentElement} theme="filled" size={${iconSize}} fill="${iconColor}"/>`;
+            const reactCode = `<${element.CompnentElement} theme="two-tone" size={${iconSize}} fill="[${iconColor1}, ${iconColor2}]"/>`;
             copyTextToClipboard(reactCode, 'reactCode');
         }
         if(key === 'copySVG') {
@@ -294,12 +286,12 @@ const IconlibList = () => {
     }
 
     const getIconsByKeyword = (keyword, event) => {
-        console.debug("debug: get icons for ", keyword);
+        console.debug("debug: get navigate icons for ", keyword);
         // setCurrCatecory(category);
         // 判断是否点击"清除"引起的调佣
         if ( keyword === '') {
             // 获取全部图标
-            fetch(`${serviceBasePath}/publicwebdata/getallicons`, {
+            fetch(`${serviceBasePath}/publicwebdata/getallnaviconslist`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${user?.token}`
@@ -308,15 +300,13 @@ const IconlibList = () => {
             })
                 .then(response => response.json())
                 .then(result => {
-                    // console.debug("--icons: ");
+                    // console.debug("--nav icons: ");
                     // console.debug(result);
-                    if(result.success === true) {
+
+                    if (result.success === true) {
                         const data = result.data;
-                        const iconsMap = {};
-                        Object.keys(data).forEach( (key) => {
-                            const icons = createIconsMap(data[key]);
-                            iconsMap[key] = icons;
-                        });
+                        // console.log('data: ', data);
+                        const iconsMap = createNavIconsMap(data);
                         // console.debug('--iconsMap: ');
                         // console.debug(iconsMap);
                         setIconsMap(iconsMap);
@@ -328,7 +318,7 @@ const IconlibList = () => {
                 });
         } else {
             // 根据keyword搜索
-            http.fetchRequest(`${serviceBasePath}/publicwebdata/geticonsbykeyword/${keyword}`, {
+            http.fetchRequest(`${serviceBasePath}/publicwebdata/getnaviconslistbykeyword/${keyword}`, {
                 method: 'GET',
             })
                 .then(response => response.json())
@@ -336,13 +326,10 @@ const IconlibList = () => {
                     // console.debug("--icons of ", keyword);
                     // console.debug(result);
     
-                    if(result.success === true) {
+                    if (result.success === true) {
                         const data = result.data;
-                        const iconsMap = {};
-                        Object.keys(data).forEach( (key) => {
-                            const icons = createIconsMap(data[key]);
-                            iconsMap[key] = icons;
-                        });
+                        // console.log('data: ', data);
+                        const iconsMap = createNavIconsMap(data);
                         // console.debug('--iconsMap: ');
                         // console.debug(iconsMap);
                         setIconsMap(iconsMap);
@@ -356,19 +343,19 @@ const IconlibList = () => {
         
     }
 
-    const renderIconSet = (categoryId, icons) => {
+    const renderIconSet = (icons) => {
         return(
-            <div key = {categoryId} >
-                <Element key={iconCategoryMap[categoryId].en} className='icon-category-title' name={iconCategoryMap[categoryId].en}>{iconCategoryMap[categoryId].zh}</Element>
-                <ul key={iconCategoryMap[categoryId].en + '-list'} className='icon-list'>
-                {
+            <>
+                {/* <Element key={iconCategoryMap[categoryId].en} className='icon-category-title' name={iconCategoryMap[categoryId].en}>{iconCategoryMap[categoryId].zh}</Element> */}
+                <ul className='icon-list'>
+                    {
                     // iconsMap && iconsMap.map(element => {
                     icons.map(element => {
                         return (
                             <li key={element.id} className='icon-list-item'>
                                 <div className='icon-item-wrapper'>
                                     <div className='icon-img'>
-                                        <element.Compnent id={element.name} theme='filled' size={iconSize} fill={iconColor}/>
+                                        <element.Compnent id={element.name} theme='two-tone' size={iconSize} fill={[iconColor1, iconColor2]}/>
                                     </div>
                                     <div className='icon-info-wrapper'>
                                         <div className='icon-info-title'><span>{element.title}</span></div>
@@ -390,7 +377,7 @@ const IconlibList = () => {
                     })
                 }
                 </ul>
-            </div>
+            </>
         )
     }
 
@@ -407,31 +394,11 @@ const IconlibList = () => {
         getAllIcons();
     }
 
-    // 获取所有图标类别
-    const getAllCategories = () => {
-        console.log("get icons category...");
-        http.fetchRequest(`${serviceBasePath}/publicwebdata/getallliconcategories`, {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(result => {
-                // console.debug("--iconCategory: ");
-                // console.debug(result);
-                if(result.success === true) {
-                    const data = result.data;
-                    setIconCategoryMap(data);
-                } else {
-                    console.error(result.code, result.error);
-                }
-            }).catch(err => {
-                console.log(err);
-            });
-    }
 
     // 获取所有图标
     const getAllIcons = () => {
-        console.log("get icons data...");
-        fetch(`${serviceBasePath}/publicwebdata/getallicons`, {
+        console.log("get navigate icons data...");
+        fetch(`${serviceBasePath}/publicwebdata/getallnaviconslist`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${user?.token}`
@@ -440,15 +407,12 @@ const IconlibList = () => {
         })
             .then(response => response.json())
             .then(result => {
-                // console.debug("--icons: ");
+                // console.debug("--nav icons: ");
                 // console.debug(result);
                 if(result.success === true) {
                     const data = result.data;
-                    const iconsMap = {};
-                    Object.keys(data).forEach( (key) => {
-                        const icons = createIconsMap(data[key]);
-                        iconsMap[key] = icons;
-                    });
+                    // console.log('data: ', data);
+                    const iconsMap = createNavIconsMap(data);
                     // console.debug('--iconsMap: ');
                     // console.debug(iconsMap);
                     setIconsMap(iconsMap);
@@ -461,7 +425,7 @@ const IconlibList = () => {
     }
 
     useEffect(()=>{
-        getAllCategories();
+        // getAllCategories();
         getAllIcons();
     },[])
 
@@ -491,20 +455,18 @@ const IconlibList = () => {
                         </div>
                     </div>
                     <div className='icon-content-wraper'>
-                        <div className='icon-category-aside'>
+                        {/* <div className='icon-category-aside'>
                             <ul className='icon-category-wrapper'>
                                 {
-                                    iconsMap && Object.keys(iconsMap).map(categoryId => {
+                                    iconsMap && Object.keys(iconsMap).map( categoryId => {
                                         return <li key={categoryId} className={categoryId === currCategory ? 'icon-category active' : 'icon-category'}><Link to={iconCategoryMap[categoryId].en} onClick={() => onCategoryClick(categoryId)} containerId="icon-list-container" smooth={true} duration={500} >{iconCategoryMap[categoryId].zh}</Link></li>
                                     })
                                 }
                             </ul>
-                        </div>
+                        </div> */}
                         <div className='icon-list-wrapper' id="icon-list-container">
                             {
-                                iconsMap && Object.keys(iconsMap).map( categoryId => {
-                                    return renderIconSet(categoryId, iconsMap[categoryId])
-                                })
+                                iconsMap && renderIconSet(iconsMap)
                             }
                         </div>
                     </div>
@@ -512,7 +474,7 @@ const IconlibList = () => {
                 <div className='icon-tools-aside'>
                     <div className='icon-download'>
                         <Dropdown.Button type='primary' className='download-btn' menu={menuProps} onClick={downLoadIconlib}>
-                            下载图标库包(React)
+                            下载导航图标库包(React)
                         </Dropdown.Button>
                     </div>
                     <div className='icon-tools-wrapper'>
@@ -528,13 +490,24 @@ const IconlibList = () => {
                                 <div className='tool-content'>
                                     <Popover
                                         placement='top'
-                                        content={<SketchPicker color={iconColor} disableAlpha={true} onChangeComplete={onColorChanged} />}
+                                        content={<SketchPicker color={iconColor1} disableAlpha={true} onChangeComplete={onColor1Changed} />}
                                         title="选择颜色"
                                         trigger="click"
                                     >
-                                        <div className='icon-color-preview' style={{backgroundColor: iconColor}}></div>
+                                        <div className='icon-color-preview' style={{backgroundColor: iconColor1}}></div>
                                     </Popover>
-                                    <span className='icon-color-span'>{iconColor}</span>
+                                    <span className='icon-color-span'>{iconColor1}</span>
+                                </div>
+                                <div className='tool-content'>
+                                    <Popover
+                                        placement='top'
+                                        content={<SketchPicker color={iconColor2} disableAlpha={true} onChangeComplete={onColor2Changed} />}
+                                        title="选择颜色"
+                                        trigger="click"
+                                    >
+                                        <div className='icon-color-preview' style={{ backgroundColor: iconColor2 }}></div>
+                                    </Popover>
+                                    <span className='icon-color-span'>{iconColor2}</span>
                                 </div>
                             </div>
                             <div className='icon-tool-reset'>
@@ -550,4 +523,4 @@ const IconlibList = () => {
     )
 }
 
-export default IconlibList;
+export default NavIconlibList;

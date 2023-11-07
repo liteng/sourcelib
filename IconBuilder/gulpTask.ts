@@ -6,6 +6,7 @@ import babel from 'gulp-babel';
 import ts from 'gulp-typescript';
 import merge from 'merge2';
 import { deleteFiles } from './utils/fsUtil';
+import { TaskCallback } from 'undertaker';
 // import less from 'gulp-less';
 // import minifyCss from 'gulp-minify-css';
 
@@ -65,9 +66,10 @@ function resolve(...arg: string[]): string {
 }
 
 // 构建任务
-function createBuildTask(name: 'react'): string {
+function createBuildTask(libType: string, name: 'react'): string {
     console.debug('++createBuildTask begain');
-    const cwd = resolve('./Icons/iconlib/', name);
+    const cwd = resolve(`./icons/${libType}/`, name);
+    // const cwd = resolve('./Icons/iconlib/', name);
     console.log('resolve-cwd: ', cwd);
 
     // 创建gulp任务: 编译typescript脚本
@@ -111,10 +113,15 @@ function createBuildTask(name: 'react'): string {
 }
 
 // 整合任务
-const gulpTasks = gulp.series(createBuildTask('react'));
+const gulpTasks = (libType: string, callback: TaskCallback) => { 
+    gulp.series(createBuildTask(libType, 'react'))(callback);
+}
+// const gulpTasks = gulp.series(createBuildTask('react'));
 // console.log(gulpTasks);
 export default gulpTasks;
 // 执行任务(for调试)
 // gulpTasks(()=>{console.log('Icon compiler task is finished.')});
+
+
 
 

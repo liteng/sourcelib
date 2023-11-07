@@ -12,14 +12,32 @@ const BUILD_CONFIG: Omit<IIconToolsOptions, 'type'> = {
     strokeLinejoin: 'round',
     strokeLinecap: 'round',
     cssPrefix: 'i',
+    // colors: [
+    //     {
+    //         type: 'color',
+    //         color: '#000'
+    //     },
+    //     {
+    //         type: 'color',
+    //         color: '#027BFA'
+    //     },
+    //     {
+    //         type: 'color',
+    //         color: '#FFF'
+    //     },
+    //     {
+    //         type: 'color',
+    //         color: '#57FF7E'
+    //     }
+    // ],
     colors: [
         {
             type: 'color',
-            color: '#000'
+            color: '#027BFA'
         },
         {
             type: 'color',
-            color: '#2F88FF'
+            color: '#57FF7E'
         },
         {
             type: 'color',
@@ -27,7 +45,7 @@ const BUILD_CONFIG: Omit<IIconToolsOptions, 'type'> = {
         },
         {
             type: 'color',
-            color: '#43CCF8'
+            color: '#333'
         }
     ],
     theme: [
@@ -36,7 +54,7 @@ const BUILD_CONFIG: Omit<IIconToolsOptions, 'type'> = {
             fill: [
                 {
                     type: 'color',
-                    color: '#333',
+                    color: '#000',
                     name: 'fill',
                     currentColor: true
                 },
@@ -54,13 +72,13 @@ const BUILD_CONFIG: Omit<IIconToolsOptions, 'type'> = {
             fill: [
                 {
                     type: 'color',
-                    color: '#333',
+                    color: '#000',
                     name: 'fill',
                     currentColor: true
                 },
                 {
                     type: 'color',
-                    color: '#FFF',
+                    color: '#027BFA',
                     fixed: true,
                     name: 'background'
                 }
@@ -72,13 +90,13 @@ const BUILD_CONFIG: Omit<IIconToolsOptions, 'type'> = {
             fill: [
                 {
                     type: 'color',
-                    color: '#333',
+                    color: '#027BFA',
                     name: 'fill',
                     currentColor: true
                 },
                 {
                     type: 'color',
-                    color: '#2F88FF',
+                    color: '#57FF7E',
                     name: 'twoTone'
                 }
             ],
@@ -89,13 +107,13 @@ const BUILD_CONFIG: Omit<IIconToolsOptions, 'type'> = {
             fill: [
                 {
                     type: 'color',
-                    color: '#333',
+                    color: '#000',
                     name: 'outStrokeColor',
                     currentColor: true
                 },
                 {
                     type: 'color',
-                    color: '#2F88FF',
+                    color: '#027BFA',
                     name: 'outFillColor'
                 },
                 {
@@ -105,7 +123,7 @@ const BUILD_CONFIG: Omit<IIconToolsOptions, 'type'> = {
                 },
                 {
                     type: 'color',
-                    color: '#43CCF8',
+                    color: '#57FF7E',
                     name: 'innerFillColor'
                 }
             ],
@@ -120,9 +138,10 @@ const compiler = IconCompiler.instance({
 });
 
 
-export const compilerIcon = async () => {
+export const compilerIcon = async (libType: string) => {
     console.debug('++compilerIcon begain');
-    const iconsInfo: IIconProps[] = await preprocess();
+    console.log('compiler lib type: ', libType);
+    const iconsInfo: IIconProps[] = await preprocess(libType);
     // console.debug('iconsInfo: ', iconsInfo);
 
     console.debug('编译器处理图标开始');
@@ -139,16 +158,20 @@ export const compilerIcon = async () => {
     lines.splice(0, 5);
     const newIndexFileContent = lines.join('\n');
     // console.debug('index.ts: ', newIndexFileContent);
-    console.debug('将index.ts写入: ', p.join(__dirname, './Icons/iconlib/react/src/index.ts'));
-    fs.writeFileSync( p.join(__dirname, './Icons/iconlib/react/src/index.ts'), newIndexFileContent, {encoding: 'utf8'});
+    console.debug('将index.ts写入: ', p.join(__dirname, `./icons/${libType}/react/src/index.ts`));
+    // console.debug('将index.ts写入: ', p.join(__dirname, './Icons/iconlib/react/src/index.ts'));
+    fs.writeFileSync(p.join(__dirname, `./icons/${libType}/react/src/index.ts`), newIndexFileContent, { encoding: 'utf8' });
+    // fs.writeFileSync( p.join(__dirname, './Icons/iconlib/react/src/index.ts'), newIndexFileContent, {encoding: 'utf8'});
     console.debug('index.ts写入结束');
 
-    console.debug('编译后图标组件写入: ', p.join(__dirname, './Icons/iconlib/react/src'));
+    console.debug('编译后图标组件写入: ', p.join(__dirname, `./icons/${libType}/react/src`));
+    // console.debug('编译后图标组件写入: ', p.join(__dirname, './Icons/iconlib/react/src'));
     iconsInfo.forEach(icon => {
         const file = compiler.getIconFile(icon.name);
         const iconCmpName = p.basename(file.path, '.tsx');
         // console.log('iconCmpName: ', iconCmpName);
-        const fp = p.join(__dirname, './Icons/iconlib/react/src', file.path);
+        const fp = p.join(__dirname, `./Icons/${libType}/react/src`, file.path);
+        // const fp = p.join(__dirname, './Icons/iconlib/react/src', file.path);
         mkdirp.sync(p.dirname(fp));
         console.debug('写入图标组件: ', fp);
         fs.writeFileSync(fp, file.content, 'utf8');
@@ -156,8 +179,10 @@ export const compilerIcon = async () => {
     })
     console.debug('编译后图标组件写入结束');
 
-    console.debug('iconMap写入: ', p.join(__dirname, './Icons/iconlib/react/iconsMap.json'));
-    fs.writeFileSync(p.join(__dirname, './Icons/iconlib/react/iconsMap.json'), JSON.stringify(iconsInfo, null, 4), {encoding: 'utf8'});
+    console.debug('iconMap写入: ', p.join(__dirname, `./Icons/${libType}/react/iconsMap.json`));
+    // console.debug('iconMap写入: ', p.join(__dirname, './Icons/iconlib/react/iconsMap.json'));
+    fs.writeFileSync(p.join(__dirname, `./Icons/${libType}/react/iconsMap.json`), JSON.stringify(iconsInfo, null, 4), { encoding: 'utf8' });
+    // fs.writeFileSync(p.join(__dirname, './Icons/iconlib/react/iconsMap.json'), JSON.stringify(iconsInfo, null, 4), {encoding: 'utf8'});
     console.debug('iconMap写入结束');
     console.debug('++compilerIcon end');
     return iconsInfo;

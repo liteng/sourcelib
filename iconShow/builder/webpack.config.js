@@ -31,6 +31,10 @@ module.exports = {
                 {
                     from: path.resolve(__dirname, '../public/downloads/iconlib.zip'),
                     to: path.resolve(__dirname, '../dist/downloads')
+                },
+                {
+                    from: path.resolve(__dirname, '../public/downloads/naviconlib.zip'),
+                    to: path.resolve(__dirname, '../dist/downloads')
                 }
             ]
         }),

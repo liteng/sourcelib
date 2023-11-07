@@ -11,7 +11,7 @@ import http from '../../common/http';
 import './IconsManagement.less';
 
 
-ReactModal.setAppElement('#xxx');
+ReactModal.setAppElement('#root');
 
 const serviceBasePath = Config.serviceBasePath;
 

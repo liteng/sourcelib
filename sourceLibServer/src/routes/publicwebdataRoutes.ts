@@ -9,6 +9,10 @@ publicWebdataRouter.get("/geticonslistbykeyword/:keyword", WebdataController.get
 publicWebdataRouter.get("/getallicons", WebdataController.getAllIcons);
 publicWebdataRouter.get("/geticonsbykeyword/:keyword", WebdataController.getIconsByKeyword);
 
+publicWebdataRouter.get("/getallnaviconslist", WebdataController.getAllNavIconsList);
+publicWebdataRouter.get("/getnaviconslistbykeyword/:keyword", WebdataController.getNavIconsListByKeyword);
+
+
 publicWebdataRouter.get("/getalllogocategories", WebdataController.getAllLogoCategory);
 publicWebdataRouter.get("/getalllogos", WebdataController.getAllLogos);
 publicWebdataRouter.get("/getlogosbycategory/:category", WebdataController.getLogosByCategory);

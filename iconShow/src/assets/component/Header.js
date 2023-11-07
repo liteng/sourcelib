@@ -42,7 +42,8 @@ const Header = (props) => {
         <div className='header'>
             <div className='logo'></div>
             <div className="head-blank"></div>
-            <NavLink className={({isActive}) => isActive ? 'head-nav-link head-nav-active' : 'head-nav-link' } to="/iconliblist" key="iconliblist">图标</NavLink>
+            <NavLink className={({ isActive }) => isActive ? 'head-nav-link head-nav-active' : 'head-nav-link'} to="/iconliblist" key="iconliblist">图标</NavLink>
+            <NavLink className={({ isActive }) => isActive ? 'head-nav-link head-nav-active' : 'head-nav-link'} to="/naviconliblist" key="naviconliblist">导航图标</NavLink>
             <NavLink className={({isActive}) => isActive ? "head-nav-link head-nav-active" : "head-nav-link"} to="/logoliblist" key="logoliblist">Logo</NavLink>
             <div className='userInfo'>
                 {

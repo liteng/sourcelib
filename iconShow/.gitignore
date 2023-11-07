@@ -4,6 +4,7 @@
 /node_modules
 /_bakup
 /src/assets/component/iconlib
+/src/assets/component/naviconlib
 /public/downloads
 /.pnp
 .pnp.js

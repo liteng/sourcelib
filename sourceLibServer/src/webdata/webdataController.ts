@@ -490,7 +490,7 @@ export default class WebdataController {
         }
     }
 
-    // 新增图表类别
+    // 新增图标类别
     public static async addNewCategory(ctx: Context) {
         console.info("--webdataController.addNewCategory");
 
@@ -521,6 +521,70 @@ export default class WebdataController {
                 code: ErrorCode.SUCCESS,
                 success: true,
                 data: newCategory,
+                error: null
+            }
+        } catch (err) {
+            console.error(err);
+            ctx.status = 500;
+            ctx.body = {
+                code: ErrorCode.SYS_ERROR,
+                success: false,
+                data: null,
+                error: err
+            }
+        }
+    }
+
+    // 获取所有导航Icon数据(无归并)
+    public static async getAllNavIconsList(ctx: Context) {
+        console.info("--webdataController.getAllNavIconsList");
+
+        try {
+            const db = await SourceDb.getSourceDb();
+            const allNavIcons = db.chain.get('navIcons').value();
+            // console.debug('all icons: ', allIcons.length);
+
+            ctx.status = 200;
+            ctx.body = {
+                code: ErrorCode.SUCCESS,
+                success: true,
+                data: allNavIcons,
+                error: null
+            }
+        } catch (err) {
+            ctx.status = 500;
+            ctx.body = {
+                code: ErrorCode.SYS_ERROR,
+                success: false,
+                data: null,
+                error: err
+            }
+        }
+    }
+
+    // 根据关键字获取导航Icon数据(模糊匹配，需匹配name, title, tag三个属性,无归并)
+    public static async getNavIconsListByKeyword(ctx: Context) {
+        console.info("--webdataController.getNavIconsListByKeyword");
+
+        try {
+            const { keyword } = ctx.params;
+            // console.debug('keyword: ', keyword);
+            const db = await SourceDb.getSourceDb();
+
+            const allIcons = db.chain.get('navIcons').filter(post => {
+                // console.debug('post: ', post);
+                // 尝试匹配name,title,tag,命中其中之一即算作匹配
+                const nmaeResult = post.name.includes(keyword);
+                const titleResult = post.title.includes(keyword);
+                const tagResult = post.tag.filter(item => { item.includes(keyword) }).length > 0 ? true : false;
+                return nmaeResult || titleResult || tagResult;
+            }).value();
+
+            ctx.status = 200;
+            ctx.body = {
+                code: ErrorCode.SUCCESS,
+                success: true,
+                data: allIcons,
                 error: null
             }
         } catch (err) {

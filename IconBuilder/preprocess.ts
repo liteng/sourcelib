@@ -54,7 +54,7 @@ const parseAndChangeFileName = (filePath: string): string[] => {
     return names;
 }
 
-// 解析svg并替换fill属性
+// 解析svg并替换fill属性 --废弃！
 const parseAndReplaceFill = (svg: string, color: string) => {
     console.debug('++parseAndReplaceFill begain');
     // console.debug('will replace fill: ', svg);
@@ -95,17 +95,23 @@ const parseAndReplaceFill = (svg: string, color: string) => {
 }
 
 // 初始化环境
-const initEnv = async () => {
+const initEnv = async (libType: string) => {
     console.debug('++initEnv begain');
     // 删除Icons/iconlib, 清空Icons/svg目录
-    const iconlibPath = path.resolve(__dirname, 'Icons/iconlib');
-    const svgPath = path.resolve(__dirname, 'Icons/svg/**')
-    console.debug('删除原编译目标文件开始\n', `${iconlibPath}\n${svgPath}`);
-    await del([iconlibPath, svgPath]);
+    const iconlibPath = path.resolve(__dirname, 'icons/' + libType);
+    // const iconlibPath = path.resolve(__dirname, 'Icons/iconlib');
+    const svgPath = path.resolve(__dirname, `${iconlibPath}/svg/**`)
+    // const svgPath = path.resolve(__dirname, 'Icons/svg/**')
+    console.debug('删除原编译目标文件开始\n', `${svgPath}`);
+    // console.debug('删除原编译目标文件开始\n', `${iconlibPath}\n${svgPath}`);
+    await del([iconlibPath]);
+    // await del([iconlibPath, svgPath]);
     console.debug('删除原编译目标文件结束');
     // copy iconlib模板目录
-    const tmpPath = path.resolve(__dirname, './iconlibTmp');
-    const tgtPath = path.resolve(__dirname, './Icons');
+    const tmpPath = path.resolve(__dirname, './iconlibTmp/' + libType);
+    // const tmpPath = path.resolve(__dirname, './iconlibTmp');
+    const tgtPath = path.resolve(__dirname, './icons/' + libType);
+    // const tgtPath = path.resolve(__dirname, './Icons');
     console.debug('复制模板开始\n', `${tmpPath}  ->\n${tgtPath}`);
     const result = copyFolder(tmpPath, tgtPath, {isCover: true, isMakeDir: true});
     result ? console.debug('复制模板成功') : console.debug('复制模板失败');
@@ -113,18 +119,20 @@ const initEnv = async () => {
 }
 
 // 预处理svg文件
-export const preprocess = async () => {
+export const preprocess = async (libType: string) => {
     console.debug('++preprocess begain');
-    await initEnv();
+    await initEnv(libType);
 
     // 简易icon信息列表
     const iconsInfo: IIconProps[] = [];
 
     // 读取文件列表
-    const svgTempDir = path.resolve( __dirname, 'SvgToBuild' );
+    const svgTempDir = path.resolve(__dirname, 'SvgToBuild/' + libType);
+    // const svgTempDir = path.resolve( __dirname, 'SvgToBuild' );
     console.debug('svg源目录: ', svgTempDir);
     // 目标目录
-    const tgtDir = path.resolve( __dirname, './Icons/svg');
+    const tgtDir = path.resolve(__dirname, `./icons/${libType}/svg`);
+    // const tgtDir = path.resolve( __dirname, './Icons/svg');
 
     console.debug('读取原svg文件开始');
     fs.readdirSync(svgTempDir).forEach( file => {
@@ -157,10 +165,11 @@ export const preprocess = async () => {
         console.log('optimize: ', svg.data);
     
         // 替换有效色值为'black'字符串
-        const svgString = parseAndReplaceFill(svg.data, 'black');
+        // const svgString = parseAndReplaceFill(svg.data, 'black');
         // console.log('fill success: ', svgString);
         console.debug('新svg写入目标目录');
-        fs.writeFileSync(tgtPath, svgString, {encoding: 'utf8'});
+        // fs.writeFileSync(tgtPath, svgString, {encoding: 'utf8'});
+        fs.writeFileSync(tgtPath, svg.data, { encoding: 'utf8' });
         // console.log('SVG file has been optimized.');
     
         const names = parseAndChangeFileName(tgtPath);
@@ -170,7 +179,8 @@ export const preprocess = async () => {
             id: uuidv4(),
             title:  names[1],
             name: names[0],
-            svg: svgString,
+            // svg: svgString,
+            svg: svg.data,
             tag: [
                 names[1]
             ],

@@ -1,0 +1,25 @@
+{
+    "name": "@naviconlib/react",
+    "version": "1.0.0",
+    "module": "es/index.js",
+    "keywords": [
+        "react",
+        "icon",
+        "navigate icon lib",
+        "svg"
+    ],
+    "engines": {
+        "node": ">= 8.0.0",
+        "npm": ">= 5.0.0"
+    },
+    "peerDependencies": {
+        "react": ">=16.9",
+        "react-dom": ">=16.9"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": [
+        "styles/**"
+    ]
+}

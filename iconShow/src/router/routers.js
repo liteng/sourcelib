@@ -1,4 +1,5 @@
 import IconlibList from '../assets/pages/Iconlib/iconlibList';
+import NavIconlibList from '../assets/pages/NavIconlib/navIconlibList';
 import LogolibList from '../assets/pages/Logolib/logolibList';
 
 let routers = [
@@ -9,6 +10,10 @@ let routers = [
     {
         path: '/iconliblist',
         compnent: IconlibList
+    },
+    {
+        path: '/naviconliblist',
+        compnent: NavIconlibList
     },
     {
         path: '/logoliblist',

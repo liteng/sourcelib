@@ -10,7 +10,10 @@
     
     "appendToRelease" : "npm-run-all -s compile append",
     "createNewRelease": "npm-run-all -s compile new",
-    "test": "ts-node ./preprocess.ts"
+    "test": "ts-node ./preprocess.ts",
+
+    "createIconRelease": "npm run compile iconlib && npm run new iconlib",
+    "createNavIconRelease": "npm run compile naviconlib && npm run new naviconlib"
   },
   "author": "usue",
   "license": "ISC",

@@ -98,6 +98,7 @@ export type SourceData = {
     logos: ILogoProps[];
     iconCategory: IIconCategoryProps[];
     icons: IIconProps[];
+    navIcons: IIconProps[];
 }
 
 export class SourceDb {
@@ -118,7 +119,8 @@ export class SourceDb {
                 logoCategory: [], 
                 logos: [],
                 iconCategory: [], 
-                icons: []
+                icons: [],
+                navIcons: []
             };
             const db = new LowWithLodash<SourceData>(adapter, defaultData);
 
