@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Col, InputNumber, Popover, Row, Slider, Input, Button, Dropdown, message, Tooltip, Modal, Upload } from 'antd';
 import { Edit } from '../../component/iconlib/react';
-import http from '../../../common/http';
+import {get} from '../../../common/http';
 import {UserContext} from '../../../UserContext';
 import {More} from '../../component/iconlib/react';
 import { Canvg } from 'canvg';
@@ -9,6 +9,7 @@ import JSZip from 'jszip';
 import saveAs from 'file-saver';
 import PicViewer from '../../component/PicViewer';
 import PicEditor from '../../component/PicEditor';
+import AddPic from '../../component/AddPic'
 import Config from '../../../config';
 import util from '../../../util';
 import './index.less';
@@ -32,9 +33,10 @@ const LogolibList = () => {
     const [logosMap, setlogosMap] = useState(null);
     const [logoCategoryMap, setLogoCategoryMap] = useState(null);
     const [currCatecory, setCurrCatecory] = useState("all");
+    const [openAddNewLogo, setOpenAddNewLogo] = useState(false);
 
     const context = useContext(UserContext);
-    const {user} = context;
+    const {user, login, logout} = context;
 
     const downLoadIconlib = () => {
         window.location.href='/downloads/iconlib.zip'
@@ -342,6 +344,16 @@ const LogolibList = () => {
         setOpenDetails(false);
     }
 
+    const addLogo = () => {
+        setOpenAddNewLogo(true);
+    }
+
+    const addLogoClose = () => {
+        setOpenAddNewLogo(false);
+        // getAllCategories();
+        // getAllIcons();
+    }
+
     const editLogoInfo = (logo) => {
         console.log(logo);
         setCurrLogo(logo);
@@ -378,28 +390,15 @@ const LogolibList = () => {
         return formats;
     }
 
+    // 根据类目获取logo
     const getLogosByCategory = category => {
-        console.debug("debug: get logos for ", category);
+        console.debug("--get logos for ", category);
         setCurrCatecory(category);
-        // const params = new URLSearchParams({category: category});
-        // fetch(`http://localhost:10000/webdata/getlogosbycategory?${params.toString()}`)
-        // fetch(`http://localhost:10000/webdata/getlogosbycategory/${category}`)
-        console.log('xxxx: ', util.getToken());
-        // fetch(`${serviceBasePath}/webdata/getlogosbycategory/${category}`, {
-        //     method: 'GET',
-        //     headers: {
-        //         'Authorization': `Bearer ${user?.token}`
-        //     },
-        //     withCredentials: true,
-        // })
-        http.fetchRequest(`${serviceBasePath}/publicwebdata/getlogosbycategory/${category}`, {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(result => {
+        get(`/publicwebdata/getlogosbycategory/${category}`)
+            .then(res => {
                 console.debug("--logos of ", category);
                 console.debug(result);
-                if(result.success === true) {
+                if (result.success === true) {
                     const data = result.data;
                     setlogosMap(data);
                 } else {
@@ -411,78 +410,50 @@ const LogolibList = () => {
     }
 
     useEffect(() => {
-        console.log("get cookie...");
-        console.log(util.getCookie());
-        // const cookieString = document.cookie;
-        // console.log(cookieString);
-        // const cookiesGroup = cookieString.split('; ');
-        // const cookies = {};
-        // for(const cookie of cookiesGroup) {
-        //     const [cookieName, cookieValue] = cookie.split('=');
-        //     cookies[cookieName] = cookieValue;
-        // }
-        // console.log(cookies);
-
-        console.log("get logos data...");
-        // fetch('/public/logos.json')
-        // fetch('http://localhost:10000/webdata/getalllogos')
-        fetch(`${serviceBasePath}/publicwebdata/getalllogos`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${user?.token}`
-            },
-            withCredentials: true,
-        })
-            .then(response => response.json())
-            .then(result => {
-                console.debug("--logos: ");
-                console.debug(result);
-                if(result.success === true) {
+        // 获取所有logo
+        console.debug("--get logos data...");
+        get('/publicwebdata/getalllogos')
+            .then(res => {
+                console.debug("--logos data: ", res.data);
+                const result = res.data;
+                if (result.success === true) {
                     const data = result.data;
                     setlogosMap(data);
                 } else {
                     console.error(result.code, result.error);
                 }
-            }).catch(err=>{
+            }).catch(err => {
                 console.error(err);
             });
 
-        console.log("get logo category data...");
-        // fetch('/public/logoCategory.json')
-        // fetch('http://localhost:10000/webdata/getalllogocategories')
-        fetch(`${serviceBasePath}/publicwebdata/getalllogocategories`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${user?.token}`
-            },
-            withCredentials: true,
-        })
-            .then(response => response.json())
-            .then(result => {
-                console.debug("--logoCategory: ");
-                console.debug(result);
-                if(result.success === true) {
+        // 获取所有logo类目
+        console.debug("--get logo category data...");
+        get('/publicwebdata/getalllogocategories')
+            .then(res => {
+                console.debug("--logoCategory data: ", res.data);
+                const result = res.data;
+                if (result.success === true) {
                     const data = result.data;
                     setLogoCategoryMap(data);
                 } else {
                     console.error(result.code, result.error);
                 }
-                
-            }).catch(err=>{
+            }).catch(err => {
                 console.error(err);
             });
-
     }, [])
     
 
     return (
         <>
             <div className='logo-wrapper'>
-                {/* <div className="logo-toolbar">
-                    <Upload action="http://localhost:10000/upload/logo" onChange={onUploadFinished} showUploadList={false}>
-                        <Button >Upload</Button>
-                    </Upload>
-                </div> */}
+                <div className="logo-toolbar">
+                    {
+                        user && (
+                            <Button onClick={addLogo}>新增</Button>
+                        )
+                    }
+                </div>
                 <div className='logo-list-wrapper'>
                     <ul className='logo-list'>
                         {
@@ -491,7 +462,8 @@ const LogolibList = () => {
                                     <li key={logo.id} className='logo-list-item'>
                                         <div className='logo-item-wrapper'>
                                             <div className='logo-img' onClick={()=>showDetails(logo)}>
-                                                <img id={`pic_${logo.id}`} src={`${logoBasePath}${logo.thumbnail}`} alt={logo.title} />
+                                                {/* <img id={`pic_${logo.id}`} src={`${logoBasePath}${logo.thumbnail}`} alt={logo.title} /> */}
+                                                <img id={`pic_${logo.id}`} src={logo.thumbnail ? `${logoBasePath}${logo.thumbnail}` : ''} alt={logo.title} />
                                             </div>
                                             {
                                                 user ? (
@@ -543,6 +515,7 @@ const LogolibList = () => {
             </Modal> */}
             {openDetails ? <PicViewer id="picviewer" open={openDetails} path={sourcePath} name={sourceName}  sources={sources} className="" onCancel={handlePicViewerModelCancel}/> : null}
             {openLogoInfoEdit ? <PicEditor id="piceditor" open={openLogoInfoEdit} info={currLogo} className="" onCancel={handlePicEditorModelCancel}/> : null}
+            {openAddNewLogo ? <AddPic id="addpic" open={openAddNewLogo} className="" onCancel={addLogoClose} /> : null}
             <canvas id="logolib_convert_canvas" style={{display: "none"}} />
         </>
     )

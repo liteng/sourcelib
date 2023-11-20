@@ -5,6 +5,7 @@ export const UserContext = createContext();
 
 export const UserProvider = ({children}) => {
     const localUserInfo = util.getLocalUserInfo();
+    console.log('UserProvider localUserInfo: ', localUserInfo);
     const [user, setUser] = useState(
         localUserInfo ? 
         {
@@ -15,10 +16,16 @@ export const UserProvider = ({children}) => {
         null
     );
     const login = (userInfo) => {
-        const newUserInfo = {...userInfo};
-        setUser(newUserInfo);
+        console.log('--UserContext login');
+        // const newUserInfo = { ...userInfo };
+        // 写入浏览器
+        util.setLocalUserInfo(userInfo);
+        setUser(userInfo);
     }
     const logout = () => {
+        console.log('--UserContext logout')
+        // 写浏览器(清空用户信息)
+        util.removeLocalUserInfo();
         setUser(null);
     }
     const value = {user, login, logout};

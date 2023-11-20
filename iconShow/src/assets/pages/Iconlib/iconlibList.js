@@ -14,7 +14,7 @@ import { Form } from 'react-router-dom';
 
 import Config from '../../../config';
 import {UserContext} from '../../../UserContext';
-import http from '../../../common/http';
+import { get, post } from '../../../common/http';
 
 const serviceBasePath = Config.serviceBasePath;
 const sourceBasePath = Config.sourceBasePath;
@@ -299,59 +299,95 @@ const IconlibList = () => {
         // 判断是否点击"清除"引起的调佣
         if ( keyword === '') {
             // 获取全部图标
-            fetch(`${serviceBasePath}/publicwebdata/getallicons`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${user?.token}`
-                },
-                withCredentials: true,
-            })
-                .then(response => response.json())
-                .then(result => {
-                    // console.debug("--icons: ");
-                    // console.debug(result);
-                    if(result.success === true) {
+            // fetch(`${serviceBasePath}/publicwebdata/getallicons`, {
+            //     method: 'GET',
+            //     headers: {
+            //         'Authorization': `Bearer ${user?.token}`
+            //     },
+            //     withCredentials: true,
+            // })
+            //     .then(response => response.json())
+            //     .then(result => {
+            //         // console.debug("--icons: ");
+            //         // console.debug(result);
+            //         if(result.success === true) {
+            //             const data = result.data;
+            //             const iconsMap = {};
+            //             Object.keys(data).forEach( (key) => {
+            //                 const icons = createIconsMap(data[key]);
+            //                 iconsMap[key] = icons;
+            //             });
+            //             // console.debug('--iconsMap: ');
+            //             // console.debug(iconsMap);
+            //             setIconsMap(iconsMap);
+            //         } else {
+            //             console.error(result.code, result.error);
+            //         }
+            //     }).catch(err=>{
+            //         console.error(err);
+            //     });
+            get('/publicwebdata/getallicons')
+                .then( res => {
+                    const result = res.data;
+                    if (result.success === true) {
                         const data = result.data;
                         const iconsMap = {};
-                        Object.keys(data).forEach( (key) => {
+                        Object.keys(data).forEach((key) => {
                             const icons = createIconsMap(data[key]);
                             iconsMap[key] = icons;
                         });
-                        // console.debug('--iconsMap: ');
-                        // console.debug(iconsMap);
-                        setIconsMap(iconsMap);
-                    } else {
-                        console.error(result.code, result.error);
-                    }
-                }).catch(err=>{
-                    console.error(err);
-                });
-        } else {
-            // 根据keyword搜索
-            http.fetchRequest(`${serviceBasePath}/publicwebdata/geticonsbykeyword/${keyword}`, {
-                method: 'GET',
-            })
-                .then(response => response.json())
-                .then(result => {
-                    // console.debug("--icons of ", keyword);
-                    // console.debug(result);
-    
-                    if(result.success === true) {
-                        const data = result.data;
-                        const iconsMap = {};
-                        Object.keys(data).forEach( (key) => {
-                            const icons = createIconsMap(data[key]);
-                            iconsMap[key] = icons;
-                        });
-                        // console.debug('--iconsMap: ');
-                        // console.debug(iconsMap);
                         setIconsMap(iconsMap);
                     } else {
                         console.error(result.code, result.error);
                     }
                 }).catch(err => {
-                    console.log(err);
-                })
+                    const orgErr = err.response
+                    console.error(orgErr);
+                });
+        } else {
+            // 根据keyword搜索
+            // http.fetchRequest(`${serviceBasePath}/publicwebdata/geticonsbykeyword/${keyword}`, {
+            //     method: 'GET',
+            // })
+            //     .then(response => response.json())
+            //     .then(result => {
+            //         // console.debug("--icons of ", keyword);
+            //         // console.debug(result);
+    
+            //         if(result.success === true) {
+            //             const data = result.data;
+            //             const iconsMap = {};
+            //             Object.keys(data).forEach( (key) => {
+            //                 const icons = createIconsMap(data[key]);
+            //                 iconsMap[key] = icons;
+            //             });
+            //             // console.debug('--iconsMap: ');
+            //             // console.debug(iconsMap);
+            //             setIconsMap(iconsMap);
+            //         } else {
+            //             console.error(result.code, result.error);
+            //         }
+            //     }).catch(err => {
+            //         console.log(err);
+            //     })
+            get('/publicwebdata/geticonsbykeyword/${keyword')
+                .then( res => {
+                    const result = res.data;
+                    if (result.success === true) {
+                        const data = result.data;
+                        const iconsMap = {};
+                        Object.keys(data).forEach((key) => {
+                            const icons = createIconsMap(data[key]);
+                            iconsMap[key] = icons;
+                        });
+                        setIconsMap(iconsMap);
+                    } else {
+                        console.error(result.code, result.error);
+                    }
+                }).catch(err => {
+                    const orgErr = err.response
+                    console.error(orgErr);
+                });
         }
         
     }
@@ -410,53 +446,84 @@ const IconlibList = () => {
     // 获取所有图标类别
     const getAllCategories = () => {
         console.log("get icons category...");
-        http.fetchRequest(`${serviceBasePath}/publicwebdata/getallliconcategories`, {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(result => {
-                // console.debug("--iconCategory: ");
-                // console.debug(result);
-                if(result.success === true) {
+        // http.fetchRequest(`${serviceBasePath}/publicwebdata/getallliconcategories`, {
+        //     method: 'GET',
+        // })
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         // console.debug("--iconCategory: ");
+        //         // console.debug(result);
+        //         if(result.success === true) {
+        //             const data = result.data;
+        //             setIconCategoryMap(data);
+        //         } else {
+        //             console.error(result.code, result.error);
+        //         }
+        //     }).catch(err => {
+        //         console.log(err);
+        //     });
+        get('/publicwebdata/getallliconcategories')
+            .then( res => {
+                const result = res.data;
+                if (result.success === true) {
                     const data = result.data;
                     setIconCategoryMap(data);
                 } else {
                     console.error(result.code, result.error);
                 }
             }).catch(err => {
-                console.log(err);
+                const orgErr = err.response
+                console.error(orgErr);
             });
     }
 
     // 获取所有图标
     const getAllIcons = () => {
         console.log("get icons data...");
-        fetch(`${serviceBasePath}/publicwebdata/getallicons`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${user?.token}`
-            },
-            withCredentials: true,
-        })
-            .then(response => response.json())
-            .then(result => {
-                // console.debug("--icons: ");
-                // console.debug(result);
-                if(result.success === true) {
+        // fetch(`${serviceBasePath}/publicwebdata/getallicons`, {
+        //     method: 'GET',
+        //     headers: {
+        //         'Authorization': `Bearer ${user?.token}`
+        //     },
+        //     withCredentials: true,
+        // })
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         // console.debug("--icons: ");
+        //         // console.debug(result);
+        //         if(result.success === true) {
+        //             const data = result.data;
+        //             const iconsMap = {};
+        //             Object.keys(data).forEach( (key) => {
+        //                 const icons = createIconsMap(data[key]);
+        //                 iconsMap[key] = icons;
+        //             });
+        //             // console.debug('--iconsMap: ');
+        //             // console.debug(iconsMap);
+        //             setIconsMap(iconsMap);
+        //         } else {
+        //             console.error(result.code, result.error);
+        //         }
+        //     }).catch(err=>{
+        //         console.error(err);
+        //     });
+        get('/publicwebdata/getallicons')
+            .then( res => {
+                const result = res.data;
+                if (result.success === true) {
                     const data = result.data;
                     const iconsMap = {};
-                    Object.keys(data).forEach( (key) => {
+                    Object.keys(data).forEach((key) => {
                         const icons = createIconsMap(data[key]);
                         iconsMap[key] = icons;
                     });
-                    // console.debug('--iconsMap: ');
-                    // console.debug(iconsMap);
                     setIconsMap(iconsMap);
                 } else {
                     console.error(result.code, result.error);
                 }
-            }).catch(err=>{
-                console.error(err);
+            }).catch(err => {
+                const orgErr = err.response
+                console.error(orgErr);
             });
     }
 

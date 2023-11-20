@@ -41,6 +41,7 @@ interface ISource {
     [key:string]: {
         format: string;
         path: string;
+        orgName: string;
     };
 }
 
@@ -50,7 +51,7 @@ interface ILogoProps {
     title: string;
     category: string;
     sources: ISource;
-    thumbnail: string;
+    thumbnail: string | null;
     tag: string[];
 }
 

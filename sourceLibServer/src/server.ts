@@ -14,6 +14,7 @@ import { config } from "./config.js";
 import ErrorCode from "./common/ErrorCode.js";
 import unprotectedRouter from "./routes/unprotectedRoutes.js"
 import protectedRouter from "./routes/protectedRoutes.js"
+import { NewLineKind } from "typescript";
 
 const app = new Koa();
 const __dirname = path.dirname( fileURLToPath(import.meta.url) )
@@ -85,7 +86,6 @@ try {
     })
 
     app.use(async (ctx, next)=>{
-        // console.log('server-token: ', ctx.cookies.get('token'));
         console.log('请求头-Authorization: ', ctx.request.header.authorization);
         await next();
     });
@@ -112,13 +112,30 @@ try {
 
     // 注册无需验证的路由
     app.use(unprotectedRouter.routes()).use(unprotectedRouter.allowedMethods());
-    console.log("XXXXXXXXXXXXXXXXXX");
 
     // 注册jwt验证中间件
     app.use(jwt({
         secret: config.jwtSecretKey,
         debug: true
     }));
+
+    // const onUnauthorized = async (ctx: Context, next: Next) => {
+    //     ctx.status = 401;
+    //     ctx.body = { error: 'JWT验证失败' };
+    //     await next();
+    // };
+
+    // app.use(async (ctx, next) => {
+    //     console.log('===========================');
+    //     console.log(ctx.state.user);
+    //     console.log('---------------------------');
+    //     if(!ctx.state.user) {
+    //         // JWT 验证未通过，执行自定义未授权处理逻辑
+    //         await onUnauthorized(ctx, next);
+    //     } else {
+    //         await next();
+    //     }
+    // })
 
     // 注册需验证的路由
     app.use(protectedRouter.routes()).use(protectedRouter.allowedMethods());

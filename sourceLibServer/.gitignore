@@ -7,7 +7,9 @@
 /source/asset/iconlib/*
 /source/asset/iconTemp/*
 /source/asset/logos/*
-/source/asset/temp/*
+/source_副本
+/source/asset
+/source/db/db 2.json
 /.pnp
 .pnp.js
 

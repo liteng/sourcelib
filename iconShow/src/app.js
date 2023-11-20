@@ -50,8 +50,7 @@ const App = () => {
         // setUserInfo({userId:userInfo.userId, account: userInfo.account});
         // 更新Context 
         login(userInfo);
-        // 写入浏览器
-        sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
+        // sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
         // 关闭登录对话框
         setShowLoginModal(false);
     }

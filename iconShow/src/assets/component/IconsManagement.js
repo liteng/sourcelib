@@ -7,7 +7,7 @@ import { Canvg } from 'canvg';
 import { Add, Add2 } from '../component/iconlib/react';
 import ReactModal from 'react-modal';
 import Config from '../../config';
-import http from '../../common/http';
+import { get, post } from '../../common/http';
 import './IconsManagement.less';
 
 
@@ -113,40 +113,70 @@ const IconsManagement = (props) => {
         // 判断是否点击"清除"引起的调佣
         if ( keyword === '') {
             // 获取全部图标
-            http.fetchRequest(`${serviceBasePath}/publicwebdata/getalliconslist`, {
-                method: 'GET'
-            })
-                .then(response => response.json())
-                .then(result => {
-                    console.debug("--icons: ");
+            // http.fetchRequest(`${serviceBasePath}/publicwebdata/getalliconslist`, {
+            //     method: 'GET'
+            // })
+            //     .then(response => response.json())
+            //     .then(result => {
+            //         console.debug("--icons: ");
+            //         console.debug(result);
+            //         if(result.success === true) {
+            //             const icons = createIconsMap(result.data);
+            //             setIconsMap(icons);
+            //         } else {
+            //             console.error(result.code, result.error);
+            //         }
+            //     }).catch(err=>{
+            //         console.error(err);
+            //     });
+            get('/publicwebdata/getalliconslist')
+                .then( res => {
+                    const result = res.data;
                     console.debug(result);
-                    if(result.success === true) {
-                        const icons = createIconsMap(result.data);
-                        setIconsMap(icons);
-                    } else {
-                        console.error(result.code, result.error);
-                    }
-                }).catch(err=>{
-                    console.error(err);
-                });
-        } else {
-            // 根据keyword搜索
-            http.fetchRequest(`${serviceBasePath}/publicwebdata/geticonslistbykeyword/${keyword}`, {
-                method: 'GET',
-            })
-                .then(response => response.json())
-                .then(result => {
-                    console.debug("--icons of ", keyword);
-                    console.debug(result);
-                    if(result.success === true) {
+                    if (result.success === true) {
                         const icons = createIconsMap(result.data);
                         setIconsMap(icons);
                     } else {
                         console.error(result.code, result.error);
                     }
                 }).catch(err => {
-                    console.log(err);
-                })
+                    const orgErr = err.response
+                    console.error(orgErr);
+                });
+        } else {
+            // 根据keyword搜索
+            // http.fetchRequest(`${serviceBasePath}/publicwebdata/geticonslistbykeyword/${keyword}`, {
+            //     method: 'GET',
+            // })
+            //     .then(response => response.json())
+            //     .then(result => {
+            //         console.debug("--icons of ", keyword);
+            //         console.debug(result);
+            //         if(result.success === true) {
+            //             const icons = createIconsMap(result.data);
+            //             setIconsMap(icons);
+            //         } else {
+            //             console.error(result.code, result.error);
+            //         }
+            //     }).catch(err => {
+            //         console.log(err);
+            //     })
+
+            get(`/publicwebdata/geticonslistbykeyword/${keyword}`)
+                .then(res => {
+                    const result = res.data;
+                    console.debug("--icons of ", keyword);
+                    console.debug(result);
+                    if (result.success === true) {
+                        const icons = createIconsMap(result.data);
+                        setIconsMap(icons);
+                    } else {
+                        console.error(result.code, result.error);
+                    }
+                }).catch(err => {
+                    const orgErr = err.response
+                    console.error(orgErr);
+                });
         }
         
     }
@@ -158,23 +188,46 @@ const IconsManagement = (props) => {
             newCategoryENRef.current.input.value.trim() !== '') {
             console.log(newCategoryCNRef.current.input.value, newCategoryENRef.current.input.value)
             // 提交数据
-            http.fetchRequest(`${serviceBasePath}/privatewebdata/addnewcategory`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    categoryCN: newCategoryCNRef.current.input.value,
-                    categoryEN: newCategoryENRef.current.input.value
-                })
-            })
-                .then(response => response.json())
-                .then(result => {
-                    console.debug(result.data);
-                    const data = result.data;
-                    if(result.success === true) {
+            // http.fetchRequest(`${serviceBasePath}/privatewebdata/addnewcategory`, {
+            //     method: "POST",
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({
+            //         categoryCN: newCategoryCNRef.current.input.value,
+            //         categoryEN: newCategoryENRef.current.input.value
+            //     })
+            // })
+            //     .then(response => response.json())
+            //     .then(result => {
+            //         console.debug(result.data);
+            //         const data = result.data;
+            //         if(result.success === true) {
+            //             // 更新类别字典
+            //             const {...iconCategory} = iconCategoryEnum;
+            //             iconCategory[data.id] = {
+            //                 text: data.name.cn,
+            //                 en: data.name.en
+            //             };
+            //             setIconCategoryEnum(iconCategory);
+            //         } else {
+            //             console.error(result.code, result.error);
+            //         }
+            //     }).catch(err=>{
+            //         console.error(err);
+            //     });
+            const postData = {
+                categoryCN: newCategoryCNRef.current.input.value,
+                categoryEN: newCategoryENRef.current.input.value
+            };
+            post('/privatewebdata/addnewcategory', postData)
+                .then( res => {
+                    const result = res.data;
+                    console.debug(result);
+                    if (result.success === true) {
+                        const data = result.data;
                         // 更新类别字典
-                        const {...iconCategory} = iconCategoryEnum;
+                        const { ...iconCategory } = iconCategoryEnum;
                         iconCategory[data.id] = {
                             text: data.name.cn,
                             en: data.name.en
@@ -183,22 +236,46 @@ const IconsManagement = (props) => {
                     } else {
                         console.error(result.code, result.error);
                     }
-                }).catch(err=>{
-                    console.error(err);
+                }).catch(err => {
+                    const orgErr = err.response
+                    console.error(orgErr);
                 });
         }
     }
     
     useEffect( () => {
         // 获取分类信息
-        http.fetchRequest(`${serviceBasePath}/publicwebdata/getallliconcategories`, {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(result => {
+
+        // http.fetchRequest(`${serviceBasePath}/publicwebdata/getallliconcategories`, {
+        //     method: 'GET',
+        // })
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         console.debug("--iconCategory: ");
+        //         console.debug(result);
+        //         if(result.success === true) {
+        //             // const data = result.data;
+        //             const data = {}
+        //             Object.keys(result.data).forEach(key => {
+        //                 data[key] = {
+        //                     text: result.data[key].zh,
+        //                     en: result.data[key].en,
+        //                 }
+        //             })
+        //             console.log('iconCategoryEnum', data);
+        //             setIconCategoryEnum(data);
+        //         } else {
+        //             console.error(result.code, result.error);
+        //         }
+        //     }).catch(err => {
+        //         console.log(err);
+        //     })
+        get('/publicwebdata/getallliconcategories')
+            .then( res => {
+                const result = res.data;
                 console.debug("--iconCategory: ");
                 console.debug(result);
-                if(result.success === true) {
+                if (result.success === true) {
                     // const data = result.data;
                     const data = {}
                     Object.keys(result.data).forEach(key => {
@@ -207,31 +284,47 @@ const IconsManagement = (props) => {
                             en: result.data[key].en,
                         }
                     })
-                    console.log('iconCategoryEnum', data);
+                    console.debug('iconCategoryEnum', data);
                     setIconCategoryEnum(data);
                 } else {
                     console.error(result.code, result.error);
                 }
             }).catch(err => {
-                console.log(err);
-            })
+                const orgErr = err.response
+                console.error(orgErr);
+            });
 
         // 获取图标信息
-        http.fetchRequest(`${serviceBasePath}/publicwebdata/getalliconslist`, {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(result => {
+        // http.fetchRequest(`${serviceBasePath}/publicwebdata/getalliconslist`, {
+        //     method: 'GET',
+        // })
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         console.debug("--all icons: ");
+        //         console.debug(result);
+        //         if(result.success === true) {
+        //             const icons = createIconsMap(result.data);
+        //             setIconsMap(icons);
+        //         } else {
+        //             console.error(result.code, result.error);
+        //         }
+        //     }).catch(err=>{
+        //         console.error(err);
+        //     });
+        get('/publicwebdata/getalliconslist')
+            .then( res => {
+                const result = res.data;
                 console.debug("--all icons: ");
                 console.debug(result);
-                if(result.success === true) {
+                if (result.success === true) {
                     const icons = createIconsMap(result.data);
                     setIconsMap(icons);
                 } else {
                     console.error(result.code, result.error);
                 }
-            }).catch(err=>{
-                console.error(err);
+            }).catch(err => {
+                const orgErr = err.response
+                console.error(orgErr);
             });
     }, [])
 
@@ -302,24 +395,38 @@ const IconsManagement = (props) => {
                                     Array.isArray(data.tag) ? icon.tag = data.tag : icon.tag = data.tag.split(',').map(item => item.trim());
                                     // TODO: 保存至数据库
                                     console.debug('icon: ', icon);
-                                    http.fetchRequest(`${serviceBasePath}/privatewebdata/updateiconcategoryandtag`, {
-                                        method: "POST",
-                                        headers: {
-                                            'Content-Type': 'application/json'
-                                        },
-                                        body: JSON.stringify(icon)
-                                    })
-                                        .then(response => response.json())
-                                        .then(result => {
+                                    post('/privatewebdata/updateiconcategoryandtag', icon)
+                                        .then( res => {
+                                            const result = res.data;
                                             console.debug(result);
-                                            if(result.success === true) {
+                                            if (result.success === true) {
                                                 setIconsMap(icons);
                                             } else {
+                                                message('修改图标信息失败！');
                                                 console.error(result.code, result.error);
                                             }
-                                        }).catch(err=>{
-                                            console.error(err);
+                                        }).catch(err => {
+                                            const orgErr = err.response
+                                            console.error(orgErr);
                                         });
+                                    // http.fetchRequest(`${serviceBasePath}/privatewebdata/updateiconcategoryandtag`, {
+                                    //     method: "POST",
+                                    //     headers: {
+                                    //         'Content-Type': 'application/json'
+                                    //     },
+                                    //     body: JSON.stringify(icon)
+                                    // })
+                                    //     .then(response => response.json())
+                                    //     .then(result => {
+                                    //         console.debug(result);
+                                    //         if(result.success === true) {
+                                    //             setIconsMap(icons);
+                                    //         } else {
+                                    //             console.error(result.code, result.error);
+                                    //         }
+                                    //     }).catch(err=>{
+                                    //         console.error(err);
+                                    //     });
                                 }
                             }}
                             search={false}

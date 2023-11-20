@@ -22,11 +22,13 @@ export default class UploadController {
     // console.log(tmepPath);
     
     try {
+      console.log(ctx.request.files);
       // 获取上传的文件
       const file = ctx.request.files!.file;
       // console.log(file);
       // 重命名并保存文件
       if(!Array.isArray(file)){
+        // 单个文件
         console.log("filepath: ", file.filepath);
         console.log("newFilename: ", file.newFilename);
         console.log("originalFilename: ", file.originalFilename);
@@ -35,32 +37,60 @@ export default class UploadController {
         const fileId = uuidv4();
         const tempFileName = `${fileId}${extName}`;
         const writer = fs.createWriteStream(`${tmepPath}/${tempFileName}`);
-        reader.pipe(writer);
-        ctx.status = 200;
-        ctx.body = {
-          code: ErrorCode.SUCCESS,
-          success: true,
-          data: {fileId: fileId, fileName: tempFileName},
-          error: null
-        }
-        console.log(`File uploaded and saved as ${tempFileName}`);
-        return;
+
+        await new Promise((resolve, reject) => {
+          reader.pipe(writer);
+          reader.on('error', (err) => {
+            console.log(`File uploaded failed: ${err.message}`);
+            reject(err);
+          });
+          writer.on('error', (err) => {
+            console.log(`File uploaded failed: ${err.message}`);
+            reject(err);
+          });
+          writer.on('finish', () => {
+            console.log(`File uploaded and saved as ${tempFileName}`);
+            resolve(null);
+          });
+        }).then( () => {
+          console.log("resolve!");
+          ctx.status = 200;
+          ctx.body = {
+            code: ErrorCode.SUCCESS,
+            success: true,
+            data: { fileId: fileId, fileName: tempFileName },
+            error: null
+          }
+        }).catch((err) => {
+          console.error(err);
+          ctx.status = 500;
+          ctx.body = {
+            code: ErrorCode.UPLOAD_FASILED,
+            success: false,
+            data: null,
+            error: "File upload failed - " + err.message
+          };
+        });
+
+        await next();
       } else {
+        // 多个文件
 
       }
       
-      ctx.status = 500;
-      ctx.body = ctx.body = {
-        code: ErrorCode.UPLOAD_FASILED,
-        success: false,
-        data: null,
-        error: "File upload failed"
-      };
+      // ctx.status = 500;
+      // ctx.body = ctx.body = {
+      //   code: ErrorCode.UPLOAD_FASILED,
+      //   success: false,
+      //   data: null,
+      //   error: "File upload failed"
+      // };
         
     } catch (err:any) {
       // 操作失败，回滚事务
+      console.error(err);
       ctx.status = 500;
-      ctx.body = ctx.body = {
+      ctx.body = {
         code: ErrorCode.UPLOAD_FASILED,
         success: false,
         data: null,

@@ -24,18 +24,19 @@ const Header = (props) => {
             console.debug(result);
             if(result.success === true) {
                 logout();
-                sessionStorage.removeItem('userInfo');
+                // sessionStorage.removeItem('userInfo');
             }
         });
     }
 
     useEffect( () => {
         // 验证是否在线
-        const userInfo = util.getLocalUserInfo();
-        if(userInfo) {
-            // 获取在线状态的用户名
-            login({userId:userInfo.userId, account: userInfo.account})
-        }
+        // const userInfo = util.getLocalUserInfo();
+        // if(userInfo) {
+        //     // 获取在线状态的用户名
+        //     console.log('Header useEffect...')
+        //     login({userId:userInfo.userId, account: userInfo.account})
+        // }
     }, [])
 
     return (

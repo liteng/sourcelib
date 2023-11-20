@@ -1,0 +1,76 @@
+.pic-add-content {
+    width: 100%;
+    max-width: 1024px;
+    .pic-add-wrapper {
+        .new-logo-info-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+        
+            .left-column {
+                min-width: 256px;
+            }
+        
+            .right-column {
+                width: 100%;
+                // padding: 24px 0 24px 24px;
+                padding-left: 24px;
+            }
+        
+            .preview-wrapper {
+                width: 256px;
+                height: 256px;
+                border-radius: 8px;
+                max-height: 256px;
+                max-width: 256px;
+                padding: 8px;
+                background-color: #f8f8f8;
+
+                .upload-thumbnail {
+                    width: 100%;
+                    height: 100%;
+                    .ant-upload {
+                        &.ant-upload-select {
+                            width: 100%;
+                            height: 100%;
+                            margin: 0;
+                        }
+                    }
+                }
+        
+                .piceditor-logo-img {
+                    width: 240px;
+                    height: 240px;
+                    max-height: 240px;
+                    max-width: 240px;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+}
+.icon-management-overlay {
+    background-color: rgba(0,0,0,0.25);
+    position: fixed;
+    inset: 0px;
+    z-index: 1009;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.add-category-wrapper {
+    margin-right: 8px;
+    margin-top: 16px;
+    margin-bottom:8px;
+    .category-name-label {
+        margin-bottom: 4px;
+        color: #666666;
+        display: block;
+    }
+    .category-name-value {
+        margin-bottom: 16px; 
+        width: 280px;
+    }
+}

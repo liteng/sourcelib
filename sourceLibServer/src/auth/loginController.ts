@@ -20,7 +20,7 @@ export default class LoginController {
             console.log(ctx.request.body);
             const db = await SourceDb.getSourceDb();
             const user: IUser = db.chain.get('users').find({account: account}).value();
-            if(undefined == user || null == user) {
+            if (undefined == user || null == user || user.passwd !== passwd) {
                 ctx.status = 500;
                 ctx.body = {
                     code: ErrorCode.LOGIN_FAILED,
@@ -45,6 +45,7 @@ export default class LoginController {
             });
             // 生成token
             const token = jwt.sign({userId: user.id, account: user.account}, config.jwtSecretKey, {expiresIn: config.tokenExpires});
+            console.log("生成令牌: ", token);
 
             // 设置cookie
             ctx.cookies.set('token', token, {

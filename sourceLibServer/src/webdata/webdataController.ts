@@ -15,6 +15,7 @@ interface ISource {
     [key:string]: {
         format: string;
         path: string;
+        orgName: string;
     };
 }
 
@@ -159,6 +160,83 @@ export default class WebdataController {
         }
     }
 
+    // 新增Logo
+    public static async addLogo(ctx: Context) {
+        console.info("--webdataController.addLogo");
+
+        type AddLogoData = {
+            title: string;
+            category: string;
+            tag: string[];
+            sources: { [key: string]: { fileId: string, fileName: string, orgName: string }};
+            thumbnailFile: string | null;
+        }
+        const postData: AddLogoData = ctx.request.body;
+        console.log("postData: ", postData);
+
+        try {
+            const db = await SourceDb.getSourceDb();
+
+            let sources: ISource = {};
+            Object.keys(postData.sources).forEach((key) => {
+                // 将增添的logo资源文件从临时目录移至资源目录
+                const fileName = postData.sources[key].fileName;
+                const orgFileName = postData.sources[key].orgName;
+                fs.rename(`${config.updateTempPath}/${fileName}`, `${config.logoStorePath}/${fileName}`, (err) => {
+                    if (err) throw err;
+                });
+                // 构建新的logo资源数据-加入新增资源
+                sources[key] = {
+                    format: fileName.substring(fileName.lastIndexOf('.') + 1),
+                    path: `/${fileName}`,
+                    orgName: orgFileName
+                };
+            });
+
+            // 更新thumbnail
+            if (postData.thumbnailFile !== null) {
+                // 等tumbnail都移植到thumbnail目录后，实现删除原thumbnail文件
+                fs.rename(`${config.updateTempPath}/${postData.thumbnailFile}`, `${config.logoStorePath}/thumbnail/${postData.thumbnailFile}`, (err) => {
+                    if (err) throw err;
+                });
+            }
+
+            const newId = uuidv4();
+            const newLogoData = {
+                id: newId,
+                title: postData.title,
+                category: postData.category,
+                sources: sources,
+                thumbnail: postData.thumbnailFile === null ? null : `/thumbnail/${postData.thumbnailFile}`,
+                tag: postData.tag,
+            }
+            console.log('newLogoData: ', newLogoData);
+
+            db.chain.get('logos')
+                .push(newLogoData)
+                .value();
+
+            db.write();
+
+            ctx.status = 200;
+            ctx.body = {
+                code: ErrorCode.SUCCESS,
+                success: true,
+                data: newLogoData,
+                error: null
+            }
+        } catch (err) {
+            console.error(err);
+            ctx.status = 500;
+            ctx.body = {
+                code: ErrorCode.SYS_ERROR,
+                success: false,
+                data: null,
+                error: err
+            }
+        }
+    }
+
     // 更新Logo
     public static async updateLogo(ctx: Context) {
         console.info("--webdataController.updateLogo");
@@ -168,12 +246,12 @@ export default class WebdataController {
             title: string;
             category: string;
             tag: string[];
-            newSources: {fileId:string, fileName:string}[];
+            newSources: {fileId:string, fileName:string, orgName:string}[];
             removeSources: string[];
             newThumbnailFile: string | null;
         }
         const postData: UpdateLogoData = ctx.request.body;
-        // console.log(postData);
+        console.log(postData);
 
         try{
             const db = await SourceDb.getSourceDb();
@@ -203,7 +281,8 @@ export default class WebdataController {
                 // 构建新的logo资源数据-加入新增资源
                 newSources[item.fileId] = {
                     format: item.fileName.substring(item.fileName.lastIndexOf('.') + 1),
-                    path: `/${item.fileName}`
+                    path: `/${item.fileName}`,
+                    orgName: item.orgName
                 };
             })
             // 构建新的logo资源数据-加入原有资源(不包含被删除资源)
@@ -223,6 +302,15 @@ export default class WebdataController {
                     // console.log(`${config.updateTempPath}/${postData.newThumbnailFile} was moved and renamed to ${config.logoStorePath}/thumbnail/${postData.newThumbnailFile}`);
                 });
             }
+
+            console.log('newSources: ');
+            console.log({
+                title: postData.title,
+                category: postData.category,
+                tag: postData.tag,
+                sources: newSources,
+                thumbnail: postData.newThumbnailFile === null ? orgLogo.thumbnail : `/thumbnail/${postData.newThumbnailFile}`
+            });
 
             db.chain.get('logos')
                 .find({id: postData.id})

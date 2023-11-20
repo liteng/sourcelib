@@ -1,9 +1,12 @@
-import React, { createRef, useEffect, useRef, useState } from 'react';
-import { Button, Upload, Select, Input, message, Form } from 'antd';
+import React, { createRef, useEffect, useRef, useState, useContext } from 'react';
+import { Button, Upload, Select, Input, message, Form, Modal } from 'antd';
 import { Canvg } from 'canvg';
 import { Delete } from '../component/iconlib/react';
 import {Close2} from './iconlib/react';
 import ReactModal from 'react-modal';
+import util from '../../util';
+import { UserContext } from '../../UserContext';
+import { get, post, upload } from '../../common/http';
 import Config from '../../config';
 import './piceditor.less';
 import { file } from 'jszip';
@@ -14,6 +17,8 @@ ReactModal.setAppElement('#root');
 const serviceBasePath = Config.serviceBasePath;
 const sourceBasePath = Config.sourceBasePath;
 const logoBasePath = `${sourceBasePath}/asset/logos`;
+
+const token = util.getToken();
 
 const PicEditor = (props) => {
 
@@ -45,6 +50,9 @@ const PicEditor = (props) => {
     const [newewThumbnailFileId, setNewThumbnailFileId] = useState(null);
     const [newThumbnailFile, setNewThumbnailFile] = useState(null);
 
+    const context = useContext(UserContext);
+    const { user, login, logout } = context;
+
     const options = [];
     const handleChange = (value) => {
         console.log(`selected ${value}`);
@@ -63,7 +71,7 @@ const PicEditor = (props) => {
             // const attachFileIds = [...newAttachFileIds];
             const attachFilesInfo = [...newAttachFilesInfo];
             // attachFileIds.push(newFileId);
-            attachFilesInfo.push({fileId: newFileId, fileName: newFileName});
+            attachFilesInfo.push({ fileId: newFileId, fileName: newFileName, orgName: fileName });
             // setNewAttachFileIds(attachFileIds);
             setNewAttachFilesInfo(attachFilesInfo);
             // setNewFileId(newFileId);
@@ -73,11 +81,18 @@ const PicEditor = (props) => {
             console.debug(newAttachList);
             newAttachList[newFileId] = {
                 format: fileFormat,
-                fileName: fileName
+                fileName: newFileName,
+                orgName: fileName
             };
             setAttachList(newAttachList);
         } else if (updateInfo.file.status === 'error') {
-            message.error(`文件"${updateInfo.file.name}"上传失败`);
+            let errorMsg = '';
+            if (updateInfo.file.response.code === 4001 || updateInfo.file.response.code === '4001') {
+                errorMsg = `文件"${updateInfo.file.name}"上传失败，身份验证失败`
+                logout();
+            }
+            message.error(errorMsg);
+            console.log(typeof updateInfo.file.response.code)
             console.log(updateInfo.file.response); // 服务端响应信息
         }
     }
@@ -88,8 +103,72 @@ const PicEditor = (props) => {
         reader.readAsDataURL(img);
       };
 
+    // 上传头像文件
+    const uploadThumbnail = async ({file, onSuccess, onError}) => {
+        console.log('uploadThumbnail');
+        console.log(user);
+        try {
+            upload('upload/logo', file)
+                .then( res => {
+                    console.debug('--upload thumbnail: ', res);
+                    const data = res.data;
+                    if (data.status === 401) {
+                        throw new Error('401');
+                    }
+                    onSuccess(data);
+                }).catch(err => {
+                    console.error(err.response)
+                    const orgErr = err.response;
+                    if (orgErr.data.code === 4001 || orgErr.data.code === '4001') {
+                        message.error('文件上传失败！未通过身份验证，请重新登录后操作。');
+                        logout();
+                    }else {
+                        message.error('文件上传失败');
+                    }
+                })
+
+        } catch (error) {
+            // 在上传失败时执行 onError
+            console.error(error);
+            message.error('文件上传失败');
+            onError(error);
+        }
+    }
+
+    // 上传资源文件
+    const uploadSource = async ({ file, onSuccess, onError }) => {
+        console.log('uploadSource');
+        console.log(user);
+        try {
+            upload('upload/logo', file)
+                .then(res => {
+                    console.debug('--upload source: ', res);
+                    const data = res.data;
+                    if (data.status === 401) {
+                        throw new Error('401');
+                    }
+                    onSuccess(data);
+                }).catch(err => {
+                    console.error(err.response)
+                    const orgErr = err.response;
+                    if (orgErr.data.code === 4001 || orgErr.data.code === '4001') {
+                        message.error('文件上传失败！未通过身份验证，请重新登录后操作。');
+                        logout();
+                    } else {
+                        message.error('文件上传失败');
+                    }
+                })
+        } catch (error) {
+            // 在上传失败时执行 onError
+            console.error(error);
+            message.error('文件上传失败');
+            onError(error);
+        }
+    }
+
     // 缩略图上传后更新页面上的缩略图
     const onThumbnailUploadFinished = (updateInfo) => {
+        console.log('updateInfo: ', updateInfo);
         if (updateInfo.file.status === 'done') {
             const newFileName = updateInfo.file.response.data.fileName;
             // const newFileId = updateInfo.file.response.data.fileId;
@@ -133,26 +212,22 @@ const PicEditor = (props) => {
             // thumbnail: values.thumbnailPic ? values.thumbnailPic[0].name : info.thumbnail,
             tag: values.logoTags ? values.logoTags : info.tag
         };
-        console.log('post data: ', postValues);
 
-        fetch('http://localhost:10000/webdata/updatelogo', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(postValues)
-        })
-            .then(response => response.json())
-            .then(result => {
+        console.log('post data: ', postValues);
+        post('privatewebdata/updatelogo', postValues)
+            .then(res => {
+                const result = res.data;
                 console.debug(result);
-                if(result.success === true) {
-                    const data = result.data;
-                    setlogosMap(data);
+                if (result.success === true) {
+                    onCancel()
                 } else {
+                    message('提交logo修改信息失败！')
                     console.error(result.code, result.error);
                 }
-            }).catch(err=>{
-                console.error(err);
+            }).catch(err => {
+                const orgErr = err.response;
+                message('提交logo修改信息失败！');
+                console.error(orgErr)
             });
     }
 
@@ -161,20 +236,24 @@ const PicEditor = (props) => {
         Object.keys(info.sources).forEach(key => {
             const attach = {
                 format: info.sources[key].format,
-                fileName: info.sources[key].path.substring( info.sources[key].path.lastIndexOf('/') + 1)
+                fileName: info.sources[key].path.substring( info.sources[key].path.lastIndexOf('/') + 1),
+                orgName: info.sources[key].orgName
             };
             newAttachList[key] = attach;
         });
         setAttachList(newAttachList);
     }, [])
 
-    return <ReactModal
-        isOpen={open}
-        onRequestClose={onCancel}
-        overlayClassName={"piceditor-overlay"}
-        className="piceditor-content"
+    return < Modal
+        footer = { null}
+        title = "编辑Logo"
+        open = { open }
+        onCancel = { onCancel }
+        width = { 1024}
+        mask = {{ backgroundColor: "rgba(0,0,0,0.25)" }}
+        className= "piceditor-content"
     >
-        <span className="piceditor-close" onClick={onCancel}><Close2 theme="filled" size={32} fill="#ffffff"/></span>
+        <span className="piceditor-close" onClick={onCancel}><Close2 theme="filled" size={32} fill="#ffffff" /></span>
         <div className="piceditor-wrapper">
             <Form name="pic_edit" layout="vertical" onFinish={onFinish}>
                 <div className="piceditor-logo-info-wrapper">
@@ -183,7 +262,13 @@ const PicEditor = (props) => {
                             <img id="piceditor_logo_img" className="piceditor-logo-img" src={thumbnailUrl} alt={info.title} />
                         </div>
                         <Form.Item name="thumbnailPic" valuePropName="fileList" getValueFromEvent={normFile}>
-                            <Upload id="select_thumbnail" action="http://localhost:10000/upload/logo" onChange={onThumbnailUploadFinished} showUploadList={false}>
+                            {/* <Upload id="select_thumbnail" action="https://localhost:10000/upload/logo" onChange={onThumbnailUploadFinished} showUploadList={false} headers={{ 'Authorization': `Bearer ${token}` }}> */}
+                            <Upload 
+                                id="select_thumbnail" 
+                                customRequest={uploadThumbnail} 
+                                onChange={onThumbnailUploadFinished} 
+                                showUploadList={false} 
+                            >
                                 <span className='upload-thumbnail-option'>更换缩略图</span>
                             </Upload>
                         </Form.Item>
@@ -214,33 +299,48 @@ const PicEditor = (props) => {
                                         console.log(fileId, attachList[fileId]);
                                         return (
                                             <li key={fileId} className='logo-source-item'>
-                                                <span className={`format-pre ${attachList[fileId].format}`}>{attachList[fileId].fileName}</span>
-                                                <a className='remove-source' onClick={ () => { removeAttach(fileId) }}><Delete theme="filled" size={16} fill="#1F64FF"/></a>
+                                                <span className={`format-pre ${attachList[fileId].format}`}>{attachList[fileId].orgName}</span>
+                                                <a className='remove-source' onClick={() => { removeAttach(fileId) }}><Delete theme="filled" size={16} fill="#1F64FF" /></a>
                                             </li>
                                         )
                                     })
                                 }
                             </ul>
-                            <Form.Item name="attachPics" label="" valuePropName="fileList" getValueFromEvent={normFile}>
-                                <Upload id="select_attach" action="http://localhost:10000/upload/logo" onChange={onAttachUploadFinished} showUploadList={false}>
+                            <Form.Item name="attachPics" label="" valuePropName="fileList" getValueFromEvent={normFile} rules={[
+                                ({ getFieldValue }) => ({
+                                    validator(_, value) {
+                                        if (Object.keys(attachList).length > 0) {
+                                            return Promise.resolve();
+                                        } else {
+                                            return Promise.reject(new Error('需至少上传一个附件'));
+                                        }
+                                    }
+                                })
+                            ]}>
+                                <Upload 
+                                    id="select_attach" 
+                                    customRequest={uploadSource} 
+                                    action="https://localhost:10000/upload/logo" 
+                                    onChange={onAttachUploadFinished} 
+                                    showUploadList={false} 
+                                >
                                     <Button >Upload</Button>
                                 </Upload>
                             </Form.Item>
                         </div>
                         <div>
-                            <Button>取消</Button>
-                            <Button 
+                            <Button onClick={onCancel}>取消</Button>
+                            <Button
                                 type="primary"
                                 htmlType="submit">
-                                    确定
+                                确定
                             </Button>
                         </div>
                     </div>
                 </div>
             </Form>
         </div>
-        
-    </ReactModal>
+    </Modal>
 }
 
 export default PicEditor;

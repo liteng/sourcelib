@@ -23,8 +23,17 @@ class Util {
     getLocalUserInfo() {
         const userInfoString = sessionStorage.getItem('userInfo');
         const userInfo = JSON.parse(userInfoString);
-        // console.log(userInfoString, userInfo);
+        console.log('userInfoString: ', userInfoString);
+        console.log('userInfo: ', userInfo);
         return userInfo;
+    }
+
+    setLocalUserInfo(userInfo) {
+        sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
+    }
+
+    removeLocalUserInfo() {
+        sessionStorage.removeItem('userInfo');
     }
 
     // 从sessionStorage获取本地存储的Token
@@ -44,5 +53,12 @@ class Util {
     //     const token = this.getToken();
     //     return token ? true : false;
     // }
+
+    // 获取图片的base64编码
+    getBase64(img, callback) {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(img);
+    };
 }
 export default new Util();

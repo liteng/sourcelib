@@ -14,7 +14,7 @@ import { Form } from 'react-router-dom';
 
 import Config from '../../../config';
 import {UserContext} from '../../../UserContext';
-import http from '../../../common/http';
+import { get, post } from '../../../common/http';
 
 const serviceBasePath = Config.serviceBasePath;
 const sourceBasePath = Config.sourceBasePath;
@@ -291,54 +291,82 @@ const NavIconlibList = () => {
         // 判断是否点击"清除"引起的调佣
         if ( keyword === '') {
             // 获取全部图标
-            fetch(`${serviceBasePath}/publicwebdata/getallnaviconslist`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${user?.token}`
-                },
-                withCredentials: true,
-            })
-                .then(response => response.json())
-                .then(result => {
-                    // console.debug("--nav icons: ");
-                    // console.debug(result);
+            // fetch(`${serviceBasePath}/publicwebdata/getallnaviconslist`, {
+            //     method: 'GET',
+            //     headers: {
+            //         'Authorization': `Bearer ${user?.token}`
+            //     },
+            //     withCredentials: true,
+            // })
+            //     .then(response => response.json())
+            //     .then(result => {
+            //         // console.debug("--nav icons: ");
+            //         // console.debug(result);
 
+            //         if (result.success === true) {
+            //             const data = result.data;
+            //             // console.log('data: ', data);
+            //             const iconsMap = createNavIconsMap(data);
+            //             // console.debug('--iconsMap: ');
+            //             // console.debug(iconsMap);
+            //             setIconsMap(iconsMap);
+            //         } else {
+            //             console.error(result.code, result.error);
+            //         }
+            //     }).catch(err=>{
+            //         console.error(err);
+            //     });
+            get('/publicwebdata/getallnaviconslist')
+                .then( res => {
+                    const result = res.data;
                     if (result.success === true) {
                         const data = result.data;
-                        // console.log('data: ', data);
                         const iconsMap = createNavIconsMap(data);
-                        // console.debug('--iconsMap: ');
-                        // console.debug(iconsMap);
-                        setIconsMap(iconsMap);
-                    } else {
-                        console.error(result.code, result.error);
-                    }
-                }).catch(err=>{
-                    console.error(err);
-                });
-        } else {
-            // 根据keyword搜索
-            http.fetchRequest(`${serviceBasePath}/publicwebdata/getnaviconslistbykeyword/${keyword}`, {
-                method: 'GET',
-            })
-                .then(response => response.json())
-                .then(result => {
-                    // console.debug("--icons of ", keyword);
-                    // console.debug(result);
-    
-                    if (result.success === true) {
-                        const data = result.data;
-                        // console.log('data: ', data);
-                        const iconsMap = createNavIconsMap(data);
-                        // console.debug('--iconsMap: ');
-                        // console.debug(iconsMap);
                         setIconsMap(iconsMap);
                     } else {
                         console.error(result.code, result.error);
                     }
                 }).catch(err => {
-                    console.log(err);
-                })
+                    const orgErr = err.response
+                    console.error(orgErr);
+                });
+        } else {
+            // 根据keyword搜索
+            // http.fetchRequest(`${serviceBasePath}/publicwebdata/getnaviconslistbykeyword/${keyword}`, {
+            //     method: 'GET',
+            // })
+            //     .then(response => response.json())
+            //     .then(result => {
+            //         // console.debug("--icons of ", keyword);
+            //         // console.debug(result);
+    
+            //         if (result.success === true) {
+            //             const data = result.data;
+            //             // console.log('data: ', data);
+            //             const iconsMap = createNavIconsMap(data);
+            //             // console.debug('--iconsMap: ');
+            //             // console.debug(iconsMap);
+            //             setIconsMap(iconsMap);
+            //         } else {
+            //             console.error(result.code, result.error);
+            //         }
+            //     }).catch(err => {
+            //         console.log(err);
+            //     })
+            get(`/publicwebdata/getnaviconslistbykeyword/${keyword}`)
+                .then( res => {
+                    const result = res.data;
+                    if (result.success === true) {
+                        const data = result.data;
+                        const iconsMap = createNavIconsMap(data);
+                        setIconsMap(iconsMap);
+                    } else {
+                        console.error(result.code, result.error);
+                    }
+                }).catch(err => {
+                    const orgErr = err.response
+                    console.error(orgErr);
+                });
         }
         
     }
@@ -398,30 +426,45 @@ const NavIconlibList = () => {
     // 获取所有图标
     const getAllIcons = () => {
         console.log("get navigate icons data...");
-        fetch(`${serviceBasePath}/publicwebdata/getallnaviconslist`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${user?.token}`
-            },
-            withCredentials: true,
-        })
-            .then(response => response.json())
-            .then(result => {
-                // console.debug("--nav icons: ");
-                // console.debug(result);
-                if(result.success === true) {
+        // fetch(`${serviceBasePath}/publicwebdata/getallnaviconslist`, {
+        //     method: 'GET',
+        //     headers: {
+        //         'Authorization': `Bearer ${user?.token}`
+        //     },
+        //     withCredentials: true,
+        // })
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         // console.debug("--nav icons: ");
+        //         // console.debug(result);
+        //         if(result.success === true) {
+        //             const data = result.data;
+        //             // console.log('data: ', data);
+        //             const iconsMap = createNavIconsMap(data);
+        //             // console.debug('--iconsMap: ');
+        //             // console.debug(iconsMap);
+        //             setIconsMap(iconsMap);
+        //         } else {
+        //             console.error(result.code, result.error);
+        //         }
+        //     }).catch(err=>{
+        //         console.error(err);
+        //     });
+        get('/publicwebdata/getallnaviconslist')
+            .then( res => {
+                const result = res.data;
+                if (result.success === true) {
                     const data = result.data;
-                    // console.log('data: ', data);
                     const iconsMap = createNavIconsMap(data);
-                    // console.debug('--iconsMap: ');
-                    // console.debug(iconsMap);
                     setIconsMap(iconsMap);
                 } else {
                     console.error(result.code, result.error);
                 }
-            }).catch(err=>{
-                console.error(err);
+            }).catch(err => {
+                const orgErr = err.response
+                console.error(orgErr);
             });
+        
     }
 
     useEffect(()=>{
