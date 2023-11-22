@@ -1,9 +1,10 @@
-import React, { createRef, useEffect, useRef, useState } from 'react';
+import React, { createRef, useEffect, useRef, useState, useContext } from 'react';
 import { Button, Upload, Select, Input, message, Modal, Form } from 'antd';
 import { createIconsMap } from '../pages/Iconlib/createIconsMap';
 import { ProTable, EditableProTable } from '@ant-design/pro-components';
 import _ from 'lodash';
 import { Add, Add2, Delete } from '../component/iconlib/react';
+import { UserContext } from '../../UserContext';
 import util from '../../util';
 import ReactModal from 'react-modal';
 import Config from '../../config';
@@ -31,6 +32,10 @@ const AddPic = (props) => {
     const [thumbnailFile, setThumbnailFile] = useState(null);
     const [previewImage, setPreviewImage] = useState('');
     const [previewOpen, setPreviewOpen] = useState(false);
+    const [categories, setCategories] = useState([]);
+
+    const context = useContext(UserContext);
+    const { user, login, logout } = context;
 
     const options = [];
 
@@ -256,7 +261,7 @@ const AddPic = (props) => {
         const postValues = {
             // id: info.id,
             title: values.logoTitle,
-            category: "industrialCustomers",    // TODO: 所属分类待实现
+            categoryId: values.logoCategory ?? null,    // TODO: 所属分类待实现
             // newSources: newAttachFileIds,
             sources: attachList,
             // removeSources: removeAttachFileIds,
@@ -267,18 +272,9 @@ const AddPic = (props) => {
             tag: values.logoTags ? values.logoTags : []
         };
         console.log('post data: ', postValues);
-
-        fetch('https://localhost:10000/privatewebdata/addlogo', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(postValues)
-        })
-            .then(response => response.json())
-            .then(result => {
-                console.debug(result);
+        post('/privatewebdata/addlogo', postValues)
+            .then( res => {
+                const result = res.data;
                 if (result.success === true) {
                     // const data = result.data;
                     onCancel()
@@ -286,13 +282,61 @@ const AddPic = (props) => {
                     console.error(result.code, result.error);
                 }
             }).catch(err => {
-                console.error(err);
-            });
+                console.error(err.response)
+                const orgErr = err.response;
+                if (orgErr.data.code === 4001 || orgErr.data.code === '4001') {
+                    message.error('提交logo信息失败！未通过身份验证，请重新登录后操作。');
+                    logout();
+                } else {
+                    message.error('提交logo信息失败！');
+                }
+            })
+
+        // fetch('https://localhost:10000/privatewebdata/addlogo', {
+        //     method: "POST",
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': `Bearer ${token}`
+        //     },
+        //     body: JSON.stringify(postValues)
+        // })
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         console.debug(result);
+        //         if (result.success === true) {
+        //             // const data = result.data;
+        //             onCancel()
+        //         } else {
+        //             console.error(result.code, result.error);
+        //         }
+        //     }).catch(err => {
+        //         console.error(err);
+        //     });
     }
 
     
     useEffect( () => {
-        
+        // 获取所有logo类目
+        console.debug("--get logo category data...");
+        get('/publicwebdata/getalllogocategories')
+            .then(res => {
+                console.debug("--logoCategory data: ", res.data);
+                const result = res.data;
+                if (result.success === true) {
+                    const categories = []
+                    result.data.forEach(category => {
+                        categories.push({
+                            value: category.id,
+                            label: category.name.zh
+                        })
+                    })
+                    setCategories(categories);
+                } else {
+                    console.error(result.code, result.error);
+                }
+            }).catch(err => {
+                console.error(err);
+            });
     }, [])
 
     return <Modal
@@ -340,29 +384,18 @@ const AddPic = (props) => {
                                         open={false}
                                     />
                                 </Form.Item>
+                                <Form.Item name="logoCategory" label="所属分类" >
+                                    <Select
+                                        allowClear
+                                        style={{
+                                            width: '100%',
+                                        }}
+                                        placeholder="选择分类"
+                                        options={categories}
+                                    />
+                                </Form.Item>
                                 <div className="picviewer-logo-sources-list-wrapper">
                                     <span>添加资源</span>
-                                    
-                                    {/* <Upload 
-                                        action="https://localhost:10000/upload/logo"
-                                        listType='picture-card'
-                                        onPreview={showPreview}
-                                        onChange={onAttachUploadFinished}
-                                        headers={{ 'Authorization': `Bearer ${token}` }}
-                                    >
-                                        {attachList.length >= 8 ? null : uploadButton}
-                                    </Upload>
-                                    <Modal open={previewOpen} title="资源预览" footer={null} onCancel={closePreview}>
-                                        <img
-                                            style={{
-                                                width: '100%',
-                                            }}
-                                            src={previewImage}
-                                        />
-                                    </Modal> */}
-
-
-
                                     <ul className='picviewer-logo-sources-list'>
                                         {
                                             Object.keys(attachList).map(fileId => {

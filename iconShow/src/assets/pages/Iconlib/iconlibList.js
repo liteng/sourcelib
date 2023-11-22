@@ -370,7 +370,7 @@ const IconlibList = () => {
             //     }).catch(err => {
             //         console.log(err);
             //     })
-            get('/publicwebdata/geticonsbykeyword/${keyword')
+            get(`/publicwebdata/geticonsbykeyword/${keyword}`)
                 .then( res => {
                     const result = res.data;
                     if (result.success === true) {

@@ -49,7 +49,7 @@ interface ISource {
 interface ILogoProps {
     id: string;
     title: string;
-    category: string;
+    categoryId: string | null;
     sources: ISource;
     thumbnail: string | null;
     tag: string[];

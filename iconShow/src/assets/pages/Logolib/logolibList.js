@@ -396,6 +396,7 @@ const LogolibList = () => {
         setCurrCatecory(category);
         get(`/publicwebdata/getlogosbycategory/${category}`)
             .then(res => {
+                const result = res.data;
                 console.debug("--logos of ", category);
                 console.debug(result);
                 if (result.success === true) {
@@ -494,10 +495,11 @@ const LogolibList = () => {
                 </div>
                 <div className='logo-tools-aside'>
                     <ul className='aside-category'>
+                        <li key='all' className={currCatecory === 'all' ? 'aside-category-item category-active' : 'aside-category-item'}><a className='category-link' onClick={() => { getLogosByCategory('all') }}>全部</a></li>
                         {
                             logoCategoryMap ? logoCategoryMap.map(category => {
                                 return (
-                                    <li key={category.en} className={currCatecory === category.en ? 'aside-category-item category-active' : 'aside-category-item'}><a className='category-link' onClick={ () => { getLogosByCategory(category.en) }}>{category.zh}</a></li>
+                                    <li key={category.id} className={currCatecory === category.name.en ? 'aside-category-item category-active' : 'aside-category-item'}><a className='category-link' onClick={ () => { getLogosByCategory(category.id) }}>{category.name.zh}</a></li>
                                 )
                             }) : <div>loading...</div>
                         }

@@ -15,7 +15,7 @@ publicWebdataRouter.get("/getnaviconslistbykeyword/:keyword", WebdataController.
 
 publicWebdataRouter.get("/getalllogocategories", WebdataController.getAllLogoCategory);
 publicWebdataRouter.get("/getalllogos", WebdataController.getAllLogos);
-publicWebdataRouter.get("/getlogosbycategory/:category", WebdataController.getLogosByCategory);
+publicWebdataRouter.get("/getlogosbycategory/:categoryId", WebdataController.getLogosByCategory);
 
 
 // test

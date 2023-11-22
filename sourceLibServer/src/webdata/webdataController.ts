@@ -79,7 +79,7 @@ export default class WebdataController {
         try {
             const db = await SourceDb.getSourceDb();
             const allLogos = db.chain.get('logos').value();
-            // console.debug("logos: ", allLogos);
+            console.debug("logos: ", allLogos);
 
             // console.log('cookie: ', ctx.cookies.get('token'));
 
@@ -106,14 +106,13 @@ export default class WebdataController {
         console.info("--webdataController.getLogosByCategory");
 
         try {
-            const { category } = ctx.params;
+            const { categoryId } = ctx.params;
+            console.debug('categoryId: ', categoryId);
             const db = await SourceDb.getSourceDb();
-            const logos = "all" === category ? 
+            const logos = "all" === categoryId ? 
                 db.chain.get('logos').value() : 
-                db.chain.get("logos").filter({category: category}).value();
+                db.chain.get("logos").filter({ categoryId: categoryId }).value();
             // console.log(logos);
-
-            // console.log('cookie: ', ctx.cookies.get('token'));
             
             ctx.status = 200;
             ctx.body = {
@@ -140,7 +139,7 @@ export default class WebdataController {
         try{
             const db = await SourceDb.getSourceDb();
             const allLogoCategories = db.chain.get('logoCategory').value();
-            // console.debug("logoCategories: ", allLogoCategories);
+            console.debug("logoCategories: ", allLogoCategories);
 
             ctx.status = 200;
             ctx.body = {
@@ -166,7 +165,7 @@ export default class WebdataController {
 
         type AddLogoData = {
             title: string;
-            category: string;
+            categoryId: string;
             tag: string[];
             sources: { [key: string]: { fileId: string, fileName: string, orgName: string }};
             thumbnailFile: string | null;
@@ -205,7 +204,7 @@ export default class WebdataController {
             const newLogoData = {
                 id: newId,
                 title: postData.title,
-                category: postData.category,
+                categoryId: postData.categoryId,
                 sources: sources,
                 thumbnail: postData.thumbnailFile === null ? null : `/thumbnail/${postData.thumbnailFile}`,
                 tag: postData.tag,
@@ -244,7 +243,7 @@ export default class WebdataController {
         type UpdateLogoData = {
             id: string;
             title: string;
-            category: string;
+            categoryId: string;
             tag: string[];
             newSources: {fileId:string, fileName:string, orgName:string}[];
             removeSources: string[];
@@ -306,7 +305,7 @@ export default class WebdataController {
             console.log('newSources: ');
             console.log({
                 title: postData.title,
-                category: postData.category,
+                categoryId: postData.categoryId,
                 tag: postData.tag,
                 sources: newSources,
                 thumbnail: postData.newThumbnailFile === null ? orgLogo.thumbnail : `/thumbnail/${postData.newThumbnailFile}`
@@ -316,7 +315,7 @@ export default class WebdataController {
                 .find({id: postData.id})
                 .assign({
                     title: postData.title,
-                    category: postData.category,
+                    categoryId: postData.categoryId,
                     tag: postData.tag,
                     sources: newSources,
                     thumbnail: postData.newThumbnailFile === null ? orgLogo.thumbnail : `/thumbnail/${postData.newThumbnailFile}`
@@ -493,7 +492,7 @@ export default class WebdataController {
 
         try {
             const { keyword } = ctx.params;
-            // console.debug('keyword: ', keyword);
+            console.debug('keyword: ', keyword);
             const db = await SourceDb.getSourceDb();
 
             const categories = db.chain.get('iconCategory').value();

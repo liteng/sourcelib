@@ -85,9 +85,6 @@ const NavIconlibList = () => {
     const [iconColor2, setIconColor2] = useState('#57FF7E');
     const [iconsMap, setIconsMap] = useState(null);
     const [openIconsManagement, setOpenIconsManagement] = useState(false);
-    const [iconCategoryMap, setIconCategoryMap] = useState(null);
-    const [currCategory, setCurrCategory] = useState('');
-    // const iconColorInput = useRef(null);
 
     const context = useContext(UserContext);
     const {user} = context;
@@ -409,20 +406,6 @@ const NavIconlibList = () => {
         )
     }
 
-    const onCategoryClick = (categoryId) => {
-        setCurrCategory(categoryId);
-    }
-
-    const iconsManagementOpen = () => {
-        setOpenIconsManagement(true);
-    }
-    const iconsManagementClose = () => {
-        setOpenIconsManagement(false);
-        getAllCategories();
-        getAllIcons();
-    }
-
-
     // 获取所有图标
     const getAllIcons = () => {
         console.log("get navigate icons data...");
@@ -488,13 +471,7 @@ const NavIconlibList = () => {
                             />
                         </div>
                         <div className='icon-tools-top-placeholder-end'>
-                            {
-                                user && (
-                                    <Tooltip title="管理">
-                                        <Button className='icon-tool-top-manage' onClick={iconsManagementOpen} icon={<SetUp theme="filled" size={16} fill="#1F64FF"/>}></Button>
-                                    </Tooltip>
-                                )
-                            }
+                           
                         </div>
                     </div>
                     <div className='icon-content-wraper'>
@@ -560,7 +537,6 @@ const NavIconlibList = () => {
                     </div>
                 </div>
             </div>
-            {openIconsManagement ? <IconsManagement id="iconManagement" open={openIconsManagement} className="" onCancel={iconsManagementClose}/> : null}
             <canvas style={{display: "none"}} />
         </>
     )

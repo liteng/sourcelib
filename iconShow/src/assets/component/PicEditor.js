@@ -49,6 +49,7 @@ const PicEditor = (props) => {
     const [newAttachFilesInfo, setNewAttachFilesInfo] = useState([]);
     const [newewThumbnailFileId, setNewThumbnailFileId] = useState(null);
     const [newThumbnailFile, setNewThumbnailFile] = useState(null);
+    const [categories, setCategories] = useState([]);
 
     const context = useContext(UserContext);
     const { user, login, logout } = context;
@@ -202,7 +203,7 @@ const PicEditor = (props) => {
         const postValues = {
             id: info.id,
             title: values.logoTitle ?  values.logoTitle : info.title,
-            category: info.category,    // TODO: 所属分类待实现
+            categoryId: values.logoCategory ?? null,    // TODO: 所属分类待实现
             // newSources: newAttachFileIds,
             newSources: newAttachFilesInfo,
             removeSources: removeAttachFileIds,
@@ -225,10 +226,15 @@ const PicEditor = (props) => {
                     console.error(result.code, result.error);
                 }
             }).catch(err => {
+                console.error(err.response)
                 const orgErr = err.response;
-                message('提交logo修改信息失败！');
-                console.error(orgErr)
-            });
+                if (orgErr.data.code === 4001 || orgErr.data.code === '4001') {
+                    message.error('提交logo修改信息失败！未通过身份验证，请重新登录后操作。');
+                    logout();
+                } else {
+                    message.error('提交logo修改信息失败！');
+                }
+            })
     }
 
     useEffect( () => {
@@ -242,6 +248,27 @@ const PicEditor = (props) => {
             newAttachList[key] = attach;
         });
         setAttachList(newAttachList);
+        // 获取所有logo类目
+        console.debug("--get logo category data...");
+        get('/publicwebdata/getalllogocategories')
+            .then(res => {
+                console.debug("--logoCategory data: ", res.data);
+                const result = res.data;
+                if (result.success === true) {
+                    const categories = []
+                    result.data.forEach(category => {
+                        categories.push({
+                            value: category.id,
+                            label: category.name.zh
+                        })
+                    })
+                    setCategories(categories);
+                } else {
+                    console.error(result.code, result.error);
+                }
+            }).catch(err => {
+                console.error(err);
+            });
     }, [])
 
     return < Modal
@@ -289,6 +316,17 @@ const PicEditor = (props) => {
                                 placeholder="编辑标签"
                                 onChange={handleChange}
                                 options={options}
+                            />
+                        </Form.Item>
+                        <Form.Item name="logoCategory" label="所属分类" >
+                            <Select
+                                allowClear
+                                style={{
+                                    width: '100%',
+                                }}
+                                defaultValue={info.categoryId}
+                                placeholder="选择分类"
+                                options={categories}
                             />
                         </Form.Item>
                         <div className="picviewer-logo-sources-list-wrapper">

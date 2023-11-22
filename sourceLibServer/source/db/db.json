@@ -38,35 +38,45 @@
   ],
   "logoCategory": [
     {
-      "en": "all",
-      "zh": "全部"
+      "id": "b013dec6-677b-4a8a-868b-62be62eedf19",
+      "name": {
+        "en": "industrialCustomers",
+        "zh": "行业用户"
+      }
     },
     {
-      "en": "industrialCustomers",
-      "zh": "行业用户"
+      "id": "4a6d7c6e-154f-48dd-91a0-e04281888630",
+      "name": {
+        "en": "organization",
+        "zh": "机构"
+      }
     },
     {
-      "en": "organization",
-      "zh": "机构"
+      "id": "6d80aff6-111b-458b-bd96-5bd5afbaad5d",
+      "name": {
+        "en": "company",
+        "zh": "厂商"
+      }
     },
     {
-      "en": "company",
-      "zh": "厂商"
+      "id": "4bb434e7-4ebd-4a3e-a615-fccbf5477865",
+      "name": {
+        "en": "productService",
+        "zh": "产品/服务"
+      }
     },
     {
-      "en": "productService",
-      "zh": "产品/服务"
-    },
-    {
-      "en": "internal",
-      "zh": "内部"
+      "id": "eacb3d07-fba9-42d2-8102-9dd03859b81c",
+      "name": {
+        "en": "internal",
+        "zh": "内部"
+      }
     }
   ],
   "logos": [
     {
       "id": "zhongliangjituanyouxiangongsi",
-      "title": "中粮集团有限公司1",
-      "category": "industrialCustomers",
+      "title": "中粮集团有限公司",
       "sources": {
         "b67544b6-8dc6-41a2-8743-1a72f9956954": {
           "format": "svg",
@@ -92,12 +102,13 @@
       "thumbnail": "/中粮集团有限公司.png",
       "tag": [
         "中粮集团有限公司"
-      ]
+      ],
+      "categoryId": "4a6d7c6e-154f-48dd-91a0-e04281888630"
     },
     {
       "id": "zhonghejituan",
       "title": "中核集团",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "ba0e7d60-e458-4510-b973-d5d0f90d27b1": {
           "format": "svg",
@@ -123,7 +134,7 @@
     {
       "id": "zhongguozhongmeinengyuanjituanyouxiangongsi",
       "title": "中国中煤能源集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "afdc6983-757a-4c26-82b7-34930dc15561": {
           "format": "svg",
@@ -149,7 +160,7 @@
     {
       "id": "zhongguozhonghuakongguyouxianzerengongsi",
       "title": "中国中化控股有限责任公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "01030a2c-f66e-4485-a29d-3ea22698721b": {
           "format": "svg",
@@ -175,7 +186,7 @@
     {
       "id": "zhongguozhonggangjituanyouxiangongsi",
       "title": "中国中钢集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "bc55246e-85d9-47f3-a8d4-3e4c1c7aba3f": {
           "format": "svg",
@@ -201,7 +212,7 @@
     {
       "id": "zhongguozhongchejituanyouxiangongsi",
       "title": "中国中车集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "ee42b7d7-e1e5-4fe2-afae-217d41880396": {
           "format": "svg",
@@ -227,7 +238,7 @@
     {
       "id": "zhongguochangjiangsanxiajituanyouxiangongsi",
       "title": "中国长江三峡集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "145f8218-7588-4f21-a8e4-fb05beac99ab": {
           "format": "svg",
@@ -253,7 +264,7 @@
     {
       "id": "zhongguoyuanyanghaiyunjituanyouxiangongsi",
       "title": "中国远洋海运集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "86d3db03-d621-4e03-bd18-122bd39225c2": {
           "format": "svg",
@@ -279,7 +290,7 @@
     {
       "id": "zhongguoyousekuangyejituanyouxiangongsi",
       "title": "中国有色矿业集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "b7d150b2-5492-4713-9d9d-c6dbf1f0c9d0": {
           "format": "svg",
@@ -305,7 +316,7 @@
     {
       "id": "zhongguoyidongtongxinjituanyouxiangongsi",
       "title": "中国移动通信集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "72aacd6a-8458-4e08-b15e-5d3cf13c0a45": {
           "format": "svg",
@@ -326,7 +337,7 @@
     {
       "id": "zhongguoyiyaojituanyouxiangongsi",
       "title": "中国医药集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "81c783c5-37c9-4a9d-952e-ba452397cae5": {
           "format": "svg",
@@ -352,7 +363,7 @@
     {
       "id": "zhongguoyizhongjituanyouxiangongsi",
       "title": "中国一重集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "e9902c7a-858c-4a0a-93e5-6bda8a6ebd83": {
           "format": "svg",
@@ -378,7 +389,7 @@
     {
       "id": "zhongguoyejindizhizongju",
       "title": "中国冶金地质总局",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "6f66d5d1-cd54-4533-a481-7f77dfb7255d": {
           "format": "svg",
@@ -404,7 +415,7 @@
     {
       "id": "zhongguoyanyejituanyouxiangongsi",
       "title": "中国盐业集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "51f9cd62-3c02-4ca1-ba21-05407adf3a08": {
           "format": "svg",
@@ -430,7 +441,7 @@
     {
       "id": "zhongguoxinxitongxinkejijituanyouxiangongsi",
       "title": "中国信息通信科技集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "7763521d-72f7-4b98-b40f-4b2e74a58e1f": {
           "format": "svg",
@@ -456,7 +467,7 @@
     {
       "id": "zhongguoxitujituanyouxiangongsi",
       "title": "中国稀土集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "e4aefcc9-594e-4b98-9217-854a1edc5851": {
           "format": "png",
@@ -472,7 +483,7 @@
     {
       "id": "zhongguowuliujituanyouxiangongsi",
       "title": "中国物流集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "88be374f-a231-4ac7-9ccb-1053887ac0cb": {
           "format": "svg",
@@ -493,7 +504,7 @@
     {
       "id": "zhongguowukuangjituanyouxiangongsi",
       "title": "中国五矿集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "51ba0b9d-265f-4cc0-a8ca-afef8645d059": {
           "format": "svg",
@@ -519,7 +530,7 @@
     {
       "id": "zhongguoweixingwangluojituanyouxiangongsi",
       "title": "中国卫星网络集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "33f9046c-7426-4d6f-b1a7-d86ecceddc20": {
           "format": "png",
@@ -535,7 +546,7 @@
     {
       "id": "zhongguotongyongjishujituankongguyouxianzerengongsi",
       "title": "中国通用技术（集团）控股有限责任公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "b4a4d4f2-6e1f-469c-887b-9b461e35525b": {
           "format": "svg",
@@ -561,7 +572,7 @@
     {
       "id": "zhongguotielutongxinxinhaojituanyouxiangongsi",
       "title": "中国铁路通信信号集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "3f2d237c-0334-4060-9ec8-249981c022e1": {
           "format": "svg",
@@ -587,7 +598,7 @@
     {
       "id": "zhongguotielugongchengjituanyouxiangongsi",
       "title": "中国铁路工程集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "955351d1-a53a-4ebe-8831-e3d3871ce6e2": {
           "format": "svg",
@@ -613,7 +624,7 @@
     {
       "id": "zhongguotiedaojianzhujituanyouxiangongsi",
       "title": "中国铁道建筑集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "d42fa8c2-af49-4cde-a88a-cecbc5f5bebc": {
           "format": "svg",
@@ -639,7 +650,7 @@
     {
       "id": "zhongguoshiyoutianranqijituanyouxiangongsi",
       "title": "中国石油天然气集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "1dd58492-8bb6-4cb6-90a6-cdc56363989b": {
           "format": "svg",
@@ -665,7 +676,7 @@
     {
       "id": "zhongguoshiyouhuagongjituanyouxiangongsi",
       "title": "中国石油化工集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "f4245255-19fe-4aef-a868-d5aa5dc13d17": {
           "format": "svg",
@@ -691,7 +702,7 @@
     {
       "id": "zhongguoshangyongfeijiyouxianzerengongsi",
       "title": "中国商用飞机有限责任公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "511d98ba-4afc-4153-a965-940993763abc": {
           "format": "svg",
@@ -717,7 +728,7 @@
     {
       "id": "zhongguorongtongzichanguanlijituanyouxiangongsi",
       "title": "中国融通资产管理集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "851a7055-61fa-4807-90d6-053cb9ebebea": {
           "format": "png",
@@ -733,7 +744,7 @@
     {
       "id": "zhongguonongyefazhanjituanyouxiangongsi",
       "title": "中国农业发展集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "99437a32-e57c-4496-867d-1cb56e1eeeb8": {
           "format": "png",
@@ -749,7 +760,7 @@
     {
       "id": "zhongguonengyuanjianshejituanyouxiangongsi",
       "title": "中国能源建设集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "750e5c3e-6f38-4e6e-b06c-3a0c4eb0b331": {
           "format": "svg",
@@ -775,7 +786,7 @@
     {
       "id": "zhongguonanguangjituanyouxiangongsi",
       "title": "中国南光集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "2c42d57d-601e-450f-b938-1d26ba08bee7": {
           "format": "png",
@@ -791,7 +802,7 @@
     {
       "id": "zhongguonanfanghangkongjituanyouxiangongsi",
       "title": "中国南方航空集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "86b79c14-6984-4748-a2d1-66cb7a4fa723": {
           "format": "svg",
@@ -817,7 +828,7 @@
     {
       "id": "zhongguonanfangdianwangyouxianzerengongsi",
       "title": "中国南方电网有限责任公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "95d1f35e-748a-4a5e-875d-fa09748f4f93": {
           "format": "svg",
@@ -843,7 +854,7 @@
     {
       "id": "zhongguominhangxinxijituanyouxiangongsi",
       "title": "中国民航信息集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "14b2db84-61e6-437a-b812-1eb27556aab0": {
           "format": "svg",
@@ -869,7 +880,7 @@
     {
       "id": "zhongguomeitankegongjituanyouxiangongsi",
       "title": "中国煤炭科工集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "b424b83c-9068-4673-a07e-96bb13342112": {
           "format": "svg",
@@ -895,7 +906,7 @@
     {
       "id": "zhongguomeitandizhizongju",
       "title": "中国煤炭地质总局",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "27f04f1b-b225-4303-8892-09acca6e49f0": {
           "format": "png",
@@ -911,7 +922,7 @@
     {
       "id": "zhongguolvyejituanyouxiangongsi",
       "title": "中国铝业集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "daadc5c8-f00b-4436-875f-bf7c20f32a73": {
           "format": "svg",
@@ -937,7 +948,7 @@
     {
       "id": "zhongguolvyoujituanyouxiangongsi",
       "title": "中国旅游集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "2b80ce1d-1290-4bfa-84e9-f03449211d80": {
           "format": "svg",
@@ -963,7 +974,7 @@
     {
       "id": "zhongguolinyejituanyouxiangongsi",
       "title": "中国林业集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "12262288-c40a-4a3f-b154-4fcd3bf1f7bd": {
           "format": "svg",
@@ -989,7 +1000,7 @@
     {
       "id": "zhongguolianhewangluotongxinjituanyouxiangongsi",
       "title": "中国联合网络通信集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "a7842121-3c95-4ecb-9b49-4c4a96c5c5da": {
           "format": "svg",
@@ -1015,7 +1026,7 @@
     {
       "id": "zhongguokuangchanziyuanjituanyouxiangongsi",
       "title": "中国矿产资源集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "33b137e5-5b63-4af1-b6b8-60d5170e77dc": {
           "format": "png",
@@ -1031,7 +1042,7 @@
     {
       "id": "zhongguojienenghuanbaojituanyouxiangongsi",
       "title": "中国节能环保集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "42365f7a-97fe-4294-aa72-50a8b147c80c": {
           "format": "svg",
@@ -1057,7 +1068,7 @@
     {
       "id": "zhongguojiaotongjianshejituanyouxiangongsi",
       "title": "中国交通建设集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "5182a4fc-ad13-4249-bf13-c4fa710ca41e": {
           "format": "svg",
@@ -1083,7 +1094,7 @@
     {
       "id": "zhongguojianzhukexueyanjiuyuanyouxiangongsi",
       "title": "中国建筑科学研究院有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "543cc78a-66f7-419f-9268-c209b8f2c208": {
           "format": "svg",
@@ -1109,7 +1120,7 @@
     {
       "id": "zhongguojianzhujituanyouxiangongsi",
       "title": "中国建筑集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "bbf60e0a-f09e-44c3-a7ef-6dd6076f2560": {
           "format": "svg",
@@ -1135,7 +1146,7 @@
     {
       "id": "zhongguojianshekejiyouxiangongsi",
       "title": "中国建设科技有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "8e7828f9-300e-4881-b945-f76165c6614d": {
           "format": "png",
@@ -1151,7 +1162,7 @@
     {
       "id": "zhongguojiancaijituanyouxiangongsi",
       "title": "中国建材集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "73629303-3811-45fd-9ede-1effbfbdf6c2": {
           "format": "svg",
@@ -1177,7 +1188,7 @@
     {
       "id": "zhongguojianyanrenzhengjituanyouxiangongsi",
       "title": "中国检验认证（集团）有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "ec0479c5-0fe2-4f42-a1eb-29c981dfc4ee": {
           "format": "svg",
@@ -1203,7 +1214,7 @@
     {
       "id": "zhongguojixiekexueyanjiuzongyuanjituanyouxiangongsi",
       "title": "中国机械科学研究总院集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "d699f0d3-65c3-49ed-8aab-70a205288066": {
           "format": "png",
@@ -1219,7 +1230,7 @@
     {
       "id": "zhongguojixiegongyejituanyouxiangongsi",
       "title": "中国机械工业集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "a1db3df7-dfff-45cb-8ba4-41f65826069b": {
           "format": "svg",
@@ -1245,7 +1256,7 @@
     {
       "id": "zhongguohuangjinjituanyouxiangongsi",
       "title": "中国黄金集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "297cc6cd-e3c3-4c5d-89a9-db6950dbcd88": {
           "format": "svg",
@@ -1271,7 +1282,7 @@
     {
       "id": "zhongguohuaxuegongchengjituanyouxiangongsi",
       "title": "中国化学工程集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "a852c386-c230-4b58-96ad-650a452d7851": {
           "format": "svg",
@@ -1297,7 +1308,7 @@
     {
       "id": "zhongguohuanengjituanyouxiangongsi",
       "title": "中国华能集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "a3e92dc5-51fb-4789-b8ec-f64cde753684": {
           "format": "svg",
@@ -1323,7 +1334,7 @@
     {
       "id": "zhongguohualujituanyouxiangongsi",
       "title": "中国华录集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "d14e0d38-597d-4003-a164-dc40728b5a16": {
           "format": "png",
@@ -1339,7 +1350,7 @@
     {
       "id": "zhongguohuadianjituanyouxiangongsi",
       "title": "中国华电集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "21fc354f-c03e-4fb1-89d0-19a2e5d72978": {
           "format": "svg",
@@ -1365,7 +1376,7 @@
     {
       "id": "zhongguohangtiankejijituanyouxiangongsi",
       "title": "中国航天科技集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "c095e151-d695-4051-a8b5-d86c1f72f986": {
           "format": "psd",
@@ -1386,7 +1397,7 @@
     {
       "id": "zhongguohangtiankegongjituanyouxiangongsi",
       "title": "中国航天科工集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "934a77f1-c0ad-4b7e-922b-79396423a54d": {
           "format": "svg",
@@ -1412,7 +1423,7 @@
     {
       "id": "zhongguohangkongyouliaojituanyouxiangongsi",
       "title": "中国航空油料集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "83526486-354a-4045-a05f-a6538a3b8b8f": {
           "format": "svg",
@@ -1438,7 +1449,7 @@
     {
       "id": "zhongguohangkongqicaijituanyouxiangongsi",
       "title": "中国航空器材集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "e1fe08c7-d367-4c05-87f6-70df1e3e36d9": {
           "format": "png",
@@ -1454,7 +1465,7 @@
     {
       "id": "zhongguohangkongjituanyouxiangongsi",
       "title": "中国航空集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "4db77937-a6b7-45aa-aaa2-c218fe25349d": {
           "format": "svg",
@@ -1480,7 +1491,7 @@
     {
       "id": "zhongguohangkonggongyejituanyouxiangongsi",
       "title": "中国航空工业集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "f4b196ba-a7f1-4702-9300-de80d8854e5d": {
           "format": "svg",
@@ -1506,7 +1517,7 @@
     {
       "id": "zhongguohangkongfadongjijituanyouxiangongsi",
       "title": "中国航空发动机集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "cb8989ef-ce6f-4a18-bec6-a9df07e95892": {
           "format": "ai",
@@ -1532,7 +1543,7 @@
     {
       "id": "zhongguohaiyangshiyoujituanyouxiangongsi",
       "title": "中国海洋石油集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "09998085-496a-4261-8fba-c9db5946c9b8": {
           "format": "svg",
@@ -1558,7 +1569,7 @@
     {
       "id": "zhongguoguoxinkongguyouxianzerengongsi",
       "title": "中国国新控股有限责任公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "db85aebc-f5c7-465b-a898-e2d263fe9c1e": {
           "format": "png",
@@ -1574,7 +1585,7 @@
     {
       "id": "zhongguoguojijishuzhilihezuojituanyouxiangongsi",
       "title": "中国国际技术智力合作集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "241aac43-9781-4c1e-ba89-968e79ed556a": {
           "format": "png",
@@ -1590,7 +1601,7 @@
     {
       "id": "zhongguoguojigongchengzixunyouxiangongsi",
       "title": "中国国际工程咨询有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "436ade03-1c96-4867-b877-2a21e7f741ec": {
           "format": "png",
@@ -1606,7 +1617,7 @@
     {
       "id": "zhongguoguanghejituanyouxiangongsi",
       "title": "中国广核集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "1f75a45e-7ace-4355-b81a-4ddcd98bddda": {
           "format": "svg",
@@ -1632,7 +1643,7 @@
     {
       "id": "zhongguogangyankejijituanyouxiangongsi",
       "title": "中国钢研科技集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "1de54171-b4e2-4576-8799-854eb2699c33": {
           "format": "png",
@@ -1648,7 +1659,7 @@
     {
       "id": "zhongguodongfanghangkongjituanyouxiangongsi",
       "title": "中国东方航空集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "3668254c-4f75-4281-831b-be57c5f75eef": {
           "format": "svg",
@@ -1674,7 +1685,7 @@
     {
       "id": "zhongguodongfangdianqijituanyouxiangongsi",
       "title": "中国东方电气集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "209ad8b2-d06e-46f0-98ba-f41111c3c91a": {
           "format": "svg",
@@ -1700,7 +1711,7 @@
     {
       "id": "zhongguodianzixinxichanyejituanyouxiangongsi",
       "title": "中国电子信息产业集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "dd2adbcb-1034-4bad-aae7-b97ac4231b82": {
           "format": "svg",
@@ -1726,7 +1737,7 @@
     {
       "id": "zhongguodianzikejijituanyouxiangongsi",
       "title": "中国电子科技集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "c7d30bde-81b9-440a-8f03-afe3e7479015": {
           "format": "svg",
@@ -1752,7 +1763,7 @@
     {
       "id": "zhongguodianxinjituanyouxiangongsi",
       "title": "中国电信集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "676aae70-233f-4a5b-8663-53e6bfe2f9ee": {
           "format": "svg",
@@ -1778,7 +1789,7 @@
     {
       "id": "zhongguodianqizhuangbeijituanyouxiangongsi",
       "title": "中国电气装备集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "12b2705b-4d05-4216-9071-76543857720a": {
           "format": "png",
@@ -1794,7 +1805,7 @@
     {
       "id": "zhongguodianlijianshejituanyouxiangongsi",
       "title": "中国电力建设集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "aa73a303-9f7b-4eb5-a156-6fe5de49045d": {
           "format": "svg",
@@ -1820,7 +1831,7 @@
     {
       "id": "zhongguodiyiqichejituanyouxiangongsi",
       "title": "中国第一汽车集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "2f9e5c56-eb7d-41f5-a112-c4eb2f55c88f": {
           "format": "svg",
@@ -1846,7 +1857,7 @@
     {
       "id": "zhongguodatangjituanyouxiangongsi",
       "title": "中国大唐集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "dd0461a6-b223-435f-8af9-3f9db76f9a02": {
           "format": "svg",
@@ -1872,7 +1883,7 @@
     {
       "id": "zhongguochuanbojituanyouxiangongsi",
       "title": "中国船舶集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "651e3aa4-31c7-4211-a16f-36adfa4a9053": {
           "format": "svg",
@@ -1898,7 +1909,7 @@
     {
       "id": "zhongguochubeiliangguanlijituanyouxiangongsi",
       "title": "中国储备粮管理集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "130c9120-580c-4a2a-9416-52f37da4c058": {
           "format": "svg",
@@ -1924,7 +1935,7 @@
     {
       "id": "zhongguochengtongkonggujituanyouxiangongsi",
       "title": "中国诚通控股集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "4b5b7341-d597-4604-8d34-3731039da6d9": {
           "format": "png",
@@ -1940,7 +1951,7 @@
     {
       "id": "zhongguobingqizhuangbeijituanyouxiangongsi",
       "title": "中国兵器装备集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "e8502884-7d1c-4872-9ede-1d989722647f": {
           "format": "svg",
@@ -1966,7 +1977,7 @@
     {
       "id": "zhongguobingqigongyejituanyouxiangongsi",
       "title": "中国兵器工业集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "da5a7ceb-51a2-4dda-b3b0-63113a1b81cc": {
           "format": "svg",
@@ -1992,7 +2003,7 @@
     {
       "id": "zhongguobaolijituanyouxiangongsi",
       "title": "中国保利集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "e7122960-849d-4757-aada-852c6cf2ce3b": {
           "format": "svg",
@@ -2018,7 +2029,7 @@
     {
       "id": "zhongguobaowugangtiejituanyouxiangongsi",
       "title": "中国宝武钢铁集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "4efb67cb-9b49-4ff1-be0f-3210e0f241f3": {
           "format": "svg",
@@ -2044,7 +2055,7 @@
     {
       "id": "zhongguoannengjianshejituanyouxiangongsi",
       "title": "中国安能建设集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "eea71600-ca9d-4d5f-ac13-871c5479277a": {
           "format": "svg",
@@ -2070,7 +2081,7 @@
     {
       "id": "zhaoshangjujituanyouxiangongsi",
       "title": "招商局集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "56b13d26-ecfe-4880-92d9-761d05ec2d4c": {
           "format": "svg",
@@ -2096,7 +2107,7 @@
     {
       "id": "youyankejijituanyouxiangongsi",
       "title": "有研科技集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "7a243630-287f-4617-9cb5-884833a850d5": {
           "format": "png",
@@ -2112,7 +2123,7 @@
     {
       "id": "xinxingjihuajituanyouxiangongsi",
       "title": "新兴际华集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "d63592aa-dde6-4f54-9000-2625d2444637": {
           "format": "svg",
@@ -2138,7 +2149,7 @@
     {
       "id": "kuangyekejijituanyouxiangongsi",
       "title": "矿冶科技集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "f069418c-4429-4f36-a4fc-6e19421ab25c": {
           "format": "svg",
@@ -2164,7 +2175,7 @@
     {
       "id": "huarunjituanyouxiangongsi",
       "title": "华润集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "75d90587-e90d-4f45-8934-7fd6bdc05bd9": {
           "format": "svg",
@@ -2190,7 +2201,7 @@
     {
       "id": "huaqiaochengjituanyouxiangongsi",
       "title": "华侨城集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "c8080f51-8c84-4ae2-92f6-fa70c73c1769": {
           "format": "svg",
@@ -2216,7 +2227,7 @@
     {
       "id": "haerbindianqijituanyouxiangongsi",
       "title": "哈尔滨电气集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "355df021-9e2d-4f50-8c1a-1a065d58fa5f": {
           "format": "svg",
@@ -2242,7 +2253,7 @@
     {
       "id": "guojiashiyoutianranqiguanwangjituanyouxiangongsi",
       "title": "国家石油天然气管网集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "0e78d263-74ff-4211-8833-26ec0d46c963": {
           "format": "svg",
@@ -2268,7 +2279,7 @@
     {
       "id": "guojianengyuantouzijituanyouxianzerengongsi",
       "title": "国家能源投资集团有限责任公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "e293d6ab-b81f-48e6-9199-6543269f1cb2": {
           "format": "svg",
@@ -2294,7 +2305,7 @@
     {
       "id": "guojiakaifatouzijituanyouxiangongsi",
       "title": "国家开发投资集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "ddf9a99c-b2b2-4f1c-a7f4-0893b84d49fb": {
           "format": "svg",
@@ -2320,7 +2331,7 @@
     {
       "id": "guojiadianwangyouxiangongsi",
       "title": "国家电网有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "ffc7da87-1a1b-4670-b795-42557f2f03fa": {
           "format": "svg",
@@ -2346,7 +2357,7 @@
     {
       "id": "guojiadianlitouzijituanyouxiangongsi",
       "title": "国家电力投资集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "5680243f-c2ca-4f1c-9081-e63380ed5d9a": {
           "format": "svg",
@@ -2372,7 +2383,7 @@
     {
       "id": "dongfengqichejituanyouxiangongsi",
       "title": "东风汽车集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "fc6f7750-cd14-4c1b-91e1-500e4c0a388a": {
           "format": "svg",
@@ -2398,7 +2409,7 @@
     {
       "id": "angangjituanyouxiangongsi",
       "title": "鞍钢集团有限公司",
-      "category": "industrialCustomers",
+      "categoryId": "b013dec6-677b-4a8a-868b-62be62eedf19",
       "sources": {
         "67d4d238-906d-4e4e-b35b-60cc59d717dc": {
           "format": "svg",
@@ -2420,47 +2431,6 @@
       "tag": [
         "鞍钢集团有限公司"
       ]
-    },
-    {
-      "id": "e987d266-89f4-4225-b8b3-7f450928b7d3",
-      "title": "gggggggg",
-      "category": "industrialCustomers",
-      "sources": {
-        "9f0b1d4e-9a42-4a0c-be7f-b63680c53985": {
-          "format": "svg",
-          "path": "/9f0b1d4e-9a42-4a0c-be7f-b63680c53985.svg",
-          "orgName": "9f0b1d4e-9a42-4a0c-be7f-b63680c53985.svg"
-        },
-        "4872d6a3-7406-4b83-8b09-db3c4a244d0c": {
-          "format": "svg",
-          "path": "/4872d6a3-7406-4b83-8b09-db3c4a244d0c.svg",
-          "orgName": "4872d6a3-7406-4b83-8b09-db3c4a244d0c.svg"
-        }
-      },
-      "thumbnail": "/thumbnail/ef141e87-6a97-4eeb-abb2-0cdfdbd1a648.svg",
-      "tag": [
-        "g",
-        "t"
-      ]
-    },
-    {
-      "id": "266811b9-5b2b-4948-ad09-f20a9c38b061",
-      "title": "rrrrrrrrrrrr",
-      "category": "industrialCustomers",
-      "sources": {
-        "4f8dbf51-5de5-4ce5-8a75-d2b8f941914c": {
-          "format": "svg",
-          "path": "/4f8dbf51-5de5-4ce5-8a75-d2b8f941914c.svg",
-          "orgName": "edit#编辑.svg"
-        },
-        "00fd455c-b52e-42b2-9e65-ac3f6e8482f6": {
-          "format": "svg",
-          "path": "/00fd455c-b52e-42b2-9e65-ac3f6e8482f6.svg",
-          "orgName": "set-up#设置.svg"
-        }
-      },
-      "thumbnail": null,
-      "tag": []
     }
   ],
   "iconCategory": [

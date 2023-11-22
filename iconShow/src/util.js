@@ -23,8 +23,8 @@ class Util {
     getLocalUserInfo() {
         const userInfoString = sessionStorage.getItem('userInfo');
         const userInfo = JSON.parse(userInfoString);
-        console.log('userInfoString: ', userInfoString);
-        console.log('userInfo: ', userInfo);
+        // console.debug('userInfoString: ', userInfoString);
+        // console.debug('userInfo: ', userInfo);
         return userInfo;
     }
 
