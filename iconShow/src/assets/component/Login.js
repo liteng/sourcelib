@@ -18,12 +18,12 @@ const Login = (props) => {
     const [form] = Form.useForm();
 
     const onFinish = (values) => {
-        console.log('Finish: ', values);
+        // console.debug('Finish: ', values);
         const postValues = {
             account: values.account,
             passwd: values.passwd
         };
-        console.log('post data: ', postValues);
+        // console.debug('post data: ', postValues);
 
         // fetch('https://localhost:10000/login', {
         fetch(`${serviceBasePath}/login`, {
@@ -39,15 +39,15 @@ const Login = (props) => {
         })
             .then(response => response.json())
             .then(result => {
-                console.debug(result);
+                // console.debug(result);
                 if(result.success === true) {
                     const data = result.data;
                     const userId = data.userId;
                     const account = data.account;
                     const token = data.token;
-                    console.debug('登录成功相应数据: ',  data);
+                    // console.debug('登录成功相应数据: ',  data);
                     const tokenPayload = jwtDecode(token);
-                    console.debug("base64编码token: ", tokenPayload);
+                    // console.debug("base64编码token: ", tokenPayload);
                     onSuccess({userId: userId, account: account, token: token});
                     form.resetFields();
                 } else {

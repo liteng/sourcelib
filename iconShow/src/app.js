@@ -20,7 +20,7 @@ const App = () => {
     const [userInfo, setUserInfo] = useState(null);
 
     const context = useContext(UserContext);
-    console.log("context:" ,context);
+    // console.debug("context:" ,context);
     const {login} = context;
     // const UserContext = createContext();
     // const context = useContext(UserContext);
@@ -45,7 +45,7 @@ const App = () => {
     
     // 登录成功, 更新Context、sessionStorage、关闭登录对话框
     const onLoginSuccessed = (userInfo) => {
-        console.log(userInfo);
+        // console.debug(userInfo);
         // setIsLogin(true);
         // setUserInfo({userId:userInfo.userId, account: userInfo.account});
         // 更新Context 
@@ -92,7 +92,7 @@ const App = () => {
                 <Routes>
                     {
                         routers.map((value, key) => {
-                            console.log(value.path);
+                            // console.debug(value.path);
                             if(value.exact == true) {
                                 return <Route exact path={value.path} element={<value.compnent/>} key={key} />
                             } else {

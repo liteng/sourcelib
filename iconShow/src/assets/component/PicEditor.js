@@ -27,7 +27,7 @@ const PicEditor = (props) => {
         info,
         onCancel
     } = props;
-    console.log(info);
+    // console.debug(info);
 
 
 
@@ -56,7 +56,7 @@ const PicEditor = (props) => {
 
     const options = [];
     const handleChange = (value) => {
-        console.log(`selected ${value}`);
+        // console.debug(`selected ${value}`);
     };
 
     // 资源文件上传结束
@@ -66,7 +66,7 @@ const PicEditor = (props) => {
             const fileFormat = fileName.substring(fileName.lastIndexOf('.') + 1);
             message.success(`文件"${fileName}"已上传`);
             // 后端返回新文件临时信息
-            console.debug(updateInfo.file.response); // 服务端响应信息
+            // console.debug(updateInfo.file.response); // 服务端响应信息
             const newFileId = updateInfo.file.response.data.fileId;
             const newFileName = updateInfo.file.response.data.fileName;
             // const attachFileIds = [...newAttachFileIds];
@@ -79,7 +79,7 @@ const PicEditor = (props) => {
 
             // 更新原资源列表信息
             const newAttachList = {...attachList};
-            console.debug(newAttachList);
+            // console.debug(newAttachList);
             newAttachList[newFileId] = {
                 format: fileFormat,
                 fileName: newFileName,
@@ -93,8 +93,8 @@ const PicEditor = (props) => {
                 logout();
             }
             message.error(errorMsg);
-            console.log(typeof updateInfo.file.response.code)
-            console.log(updateInfo.file.response); // 服务端响应信息
+            // console.debug(typeof updateInfo.file.response.code)
+            console.error(updateInfo.file.response); // 服务端响应信息
         }
     }
 
@@ -106,12 +106,12 @@ const PicEditor = (props) => {
 
     // 上传头像文件
     const uploadThumbnail = async ({file, onSuccess, onError}) => {
-        console.log('uploadThumbnail');
-        console.log(user);
+        // console.debug('uploadThumbnail');
+        // console.debug(user);
         try {
             upload('upload/logo', file)
                 .then( res => {
-                    console.debug('--upload thumbnail: ', res);
+                    // console.debug('--upload thumbnail: ', res);
                     const data = res.data;
                     if (data.status === 401) {
                         throw new Error('401');
@@ -138,12 +138,12 @@ const PicEditor = (props) => {
 
     // 上传资源文件
     const uploadSource = async ({ file, onSuccess, onError }) => {
-        console.log('uploadSource');
-        console.log(user);
+        // console.debug('uploadSource');
+        // console.debug(user);
         try {
             upload('upload/logo', file)
                 .then(res => {
-                    console.debug('--upload source: ', res);
+                    // console.debug('--upload source: ', res);
                     const data = res.data;
                     if (data.status === 401) {
                         throw new Error('401');
@@ -169,11 +169,11 @@ const PicEditor = (props) => {
 
     // 缩略图上传后更新页面上的缩略图
     const onThumbnailUploadFinished = (updateInfo) => {
-        console.log('updateInfo: ', updateInfo);
+        // console.debug('updateInfo: ', updateInfo);
         if (updateInfo.file.status === 'done') {
             const newFileName = updateInfo.file.response.data.fileName;
             // const newFileId = updateInfo.file.response.data.fileId;
-            console.log(updateInfo);
+            // console.debug(updateInfo);
             // setNewThumbnailFileId(newFileId);
             getBase64(updateInfo.file.originFileObj, (url) => {
                 setThumbnailUrl(url);
@@ -199,7 +199,7 @@ const PicEditor = (props) => {
     }
 
     const onFinish = (values) => {
-        console.log('Finish: ', values);
+        // console.debug('Finish: ', values);
         const postValues = {
             id: info.id,
             title: values.logoTitle ?  values.logoTitle : info.title,
@@ -214,11 +214,11 @@ const PicEditor = (props) => {
             tag: values.logoTags ? values.logoTags : info.tag
         };
 
-        console.log('post data: ', postValues);
+        // console.debug('post data: ', postValues);
         post('privatewebdata/updatelogo', postValues)
             .then(res => {
                 const result = res.data;
-                console.debug(result);
+                // console.debug(result);
                 if (result.success === true) {
                     onCancel()
                 } else {
@@ -249,10 +249,10 @@ const PicEditor = (props) => {
         });
         setAttachList(newAttachList);
         // 获取所有logo类目
-        console.debug("--get logo category data...");
+        // console.debug("--get logo category data...");
         get('/publicwebdata/getalllogocategories')
             .then(res => {
-                console.debug("--logoCategory data: ", res.data);
+                // console.debug("--logoCategory data: ", res.data);
                 const result = res.data;
                 if (result.success === true) {
                     const categories = []
@@ -334,7 +334,7 @@ const PicEditor = (props) => {
                             <ul className='picviewer-logo-sources-list'>
                                 {
                                     Object.keys(attachList).map(fileId => {
-                                        console.log(fileId, attachList[fileId]);
+                                        // console.debug(fileId, attachList[fileId]);
                                         return (
                                             <li key={fileId} className='logo-source-item'>
                                                 <span className={`format-pre ${attachList[fileId].format}`}>{attachList[fileId].orgName}</span>

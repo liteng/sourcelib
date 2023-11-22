@@ -57,7 +57,7 @@ const PicViewer = (props) => {
     }
 
     const dynamicCopyItems = (allSources) => {
-        console.log(allSources);
+        // console.debug(allSources);
         const copyItems = [];
         // const copyEnabled = ['SVG', 'PNG', 'JPG', 'JPEG', 'BMP', 'GIF', 'TIFF', 'WEBP'];
         // let existPng = false;
@@ -133,7 +133,7 @@ const PicViewer = (props) => {
     }
 
     const copyPic = async (format, path) => {
-        console.log(format, path);
+        // console.debug/(format, path);
         // const logoSource = `/public/logos${sources[logoKey]}`;
         try {
             // let result = null;
@@ -153,7 +153,7 @@ const PicViewer = (props) => {
                 const response = await fetch(path);
                 const result = await response.blob();
                 const mimeType = result.type;
-                console.log('mime type:', mimeType);
+                // console.debug('mime type:', mimeType);
                 const clipboardItemData = {};
                 clipboardItemData[mimeType] = result;
                 const img = new ClipboardItem(clipboardItemData);
@@ -174,7 +174,7 @@ const PicViewer = (props) => {
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0);
                 canvas.toBlob(blob => {
-                    console.log(blob);
+                    // console.debug(blob);
                     const png = new ClipboardItem({ 'image/png': blob });
                     // 将剪贴板项写入剪贴板
                     navigator.clipboard.write([png])
@@ -195,7 +195,7 @@ const PicViewer = (props) => {
     }
 
     const copySvgToPng = async (logoKey) => {
-        console.log(logoKey);
+        // console.debug(logoKey);
         const logoSource = `/public/logos${sources[logoKey]}`;
         try{
             let result = null;

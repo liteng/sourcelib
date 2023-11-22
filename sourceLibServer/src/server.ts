@@ -86,7 +86,7 @@ try {
     })
 
     app.use(async (ctx, next)=>{
-        console.log('请求头-Authorization: ', ctx.request.header.authorization);
+        // console.debug('请求头-Authorization: ', ctx.request.header.authorization);
         await next();
     });
 

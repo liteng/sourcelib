@@ -283,7 +283,7 @@ const NavIconlibList = () => {
     }
 
     const getIconsByKeyword = (keyword, event) => {
-        console.debug("debug: get navigate icons for ", keyword);
+        // console.debug("debug: get navigate icons for ", keyword);
         // setCurrCatecory(category);
         // 判断是否点击"清除"引起的调佣
         if ( keyword === '') {
@@ -408,7 +408,7 @@ const NavIconlibList = () => {
 
     // 获取所有图标
     const getAllIcons = () => {
-        console.log("get navigate icons data...");
+        // console.debug("get navigate icons data...");
         // fetch(`${serviceBasePath}/publicwebdata/getallnaviconslist`, {
         //     method: 'GET',
         //     headers: {

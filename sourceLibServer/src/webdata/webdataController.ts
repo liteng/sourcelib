@@ -79,7 +79,7 @@ export default class WebdataController {
         try {
             const db = await SourceDb.getSourceDb();
             const allLogos = db.chain.get('logos').value();
-            console.debug("logos: ", allLogos);
+            // console.debug("logos: ", allLogos);
 
             // console.log('cookie: ', ctx.cookies.get('token'));
 
@@ -107,7 +107,7 @@ export default class WebdataController {
 
         try {
             const { categoryId } = ctx.params;
-            console.debug('categoryId: ', categoryId);
+            // console.debug('categoryId: ', categoryId);
             const db = await SourceDb.getSourceDb();
             const logos = "all" === categoryId ? 
                 db.chain.get('logos').value() : 
@@ -139,7 +139,7 @@ export default class WebdataController {
         try{
             const db = await SourceDb.getSourceDb();
             const allLogoCategories = db.chain.get('logoCategory').value();
-            console.debug("logoCategories: ", allLogoCategories);
+            // console.debug("logoCategories: ", allLogoCategories);
 
             ctx.status = 200;
             ctx.body = {
@@ -171,7 +171,7 @@ export default class WebdataController {
             thumbnailFile: string | null;
         }
         const postData: AddLogoData = ctx.request.body;
-        console.log("postData: ", postData);
+        // console.debug("postData: ", postData);
 
         try {
             const db = await SourceDb.getSourceDb();
@@ -209,7 +209,7 @@ export default class WebdataController {
                 thumbnail: postData.thumbnailFile === null ? null : `/thumbnail/${postData.thumbnailFile}`,
                 tag: postData.tag,
             }
-            console.log('newLogoData: ', newLogoData);
+            // console.debug('newLogoData: ', newLogoData);
 
             db.chain.get('logos')
                 .push(newLogoData)
@@ -250,7 +250,7 @@ export default class WebdataController {
             newThumbnailFile: string | null;
         }
         const postData: UpdateLogoData = ctx.request.body;
-        console.log(postData);
+        // console.debug(postData);
 
         try{
             const db = await SourceDb.getSourceDb();
@@ -302,14 +302,14 @@ export default class WebdataController {
                 });
             }
 
-            console.log('newSources: ');
-            console.log({
-                title: postData.title,
-                categoryId: postData.categoryId,
-                tag: postData.tag,
-                sources: newSources,
-                thumbnail: postData.newThumbnailFile === null ? orgLogo.thumbnail : `/thumbnail/${postData.newThumbnailFile}`
-            });
+            // console.debug('newSources: ');
+            // console.debug({
+            //     title: postData.title,
+            //     categoryId: postData.categoryId,
+            //     tag: postData.tag,
+            //     sources: newSources,
+            //     thumbnail: postData.newThumbnailFile === null ? orgLogo.thumbnail : `/thumbnail/${postData.newThumbnailFile}`
+            // });
 
             db.chain.get('logos')
                 .find({id: postData.id})
@@ -492,7 +492,7 @@ export default class WebdataController {
 
         try {
             const { keyword } = ctx.params;
-            console.debug('keyword: ', keyword);
+            // console.debug('keyword: ', keyword);
             const db = await SourceDb.getSourceDb();
 
             const categories = db.chain.get('iconCategory').value();

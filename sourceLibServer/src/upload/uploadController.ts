@@ -16,22 +16,22 @@ export default class UploadController {
     }
 
   public static async uploadLogo(ctx: Context, next: Next): Promise<void> {
-    console.log("--uploadController.uploadLogo");
+    // console.debug("--uploadController.uploadLogo");
 
     const tmepPath = config.updateTempPath;
     // console.log(tmepPath);
     
     try {
-      console.log(ctx.request.files);
+      // console.debug(ctx.request.files);
       // 获取上传的文件
       const file = ctx.request.files!.file;
       // console.log(file);
       // 重命名并保存文件
       if(!Array.isArray(file)){
         // 单个文件
-        console.log("filepath: ", file.filepath);
-        console.log("newFilename: ", file.newFilename);
-        console.log("originalFilename: ", file.originalFilename);
+        // console.debug("filepath: ", file.filepath);
+        // console.debug("newFilename: ", file.newFilename);
+        // console.debug("originalFilename: ", file.originalFilename);
         const reader = fs.createReadStream(file.filepath);
         const extName = file.originalFilename?.substring(file.originalFilename?.lastIndexOf('.'));
         const fileId = uuidv4();
@@ -41,19 +41,19 @@ export default class UploadController {
         await new Promise((resolve, reject) => {
           reader.pipe(writer);
           reader.on('error', (err) => {
-            console.log(`File uploaded failed: ${err.message}`);
+            // console.debug(`File uploaded failed: ${err.message}`);
             reject(err);
           });
           writer.on('error', (err) => {
-            console.log(`File uploaded failed: ${err.message}`);
+            // console.debug(`File uploaded failed: ${err.message}`);
             reject(err);
           });
           writer.on('finish', () => {
-            console.log(`File uploaded and saved as ${tempFileName}`);
+            // console.debug(`File uploaded and saved as ${tempFileName}`);
             resolve(null);
           });
         }).then( () => {
-          console.log("resolve!");
+          // console.debug("resolve!");
           ctx.status = 200;
           ctx.body = {
             code: ErrorCode.SUCCESS,

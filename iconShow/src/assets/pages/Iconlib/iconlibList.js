@@ -294,7 +294,7 @@ const IconlibList = () => {
     }
 
     const getIconsByKeyword = (keyword, event) => {
-        console.debug("debug: get icons for ", keyword);
+        // console.debug("debug: get icons for ", keyword);
         // setCurrCatecory(category);
         // 判断是否点击"清除"引起的调佣
         if ( keyword === '') {

@@ -21,7 +21,7 @@ const Header = (props) => {
         })
         .then(response => response.json())
         .then(result => {
-            console.debug(result);
+            // console.debug(result);
             if(result.success === true) {
                 logout();
                 // sessionStorage.removeItem('userInfo');

@@ -232,7 +232,7 @@ const LogolibList = () => {
     }
 
     const copyPic = async (logoKey, path) => {
-        console.log(logoKey, path);
+        // console.debug(logoKey, path);
         // const logoSource = `/public/logos${sources[logoKey]}`;
         try {
             // let result = null;
@@ -252,7 +252,7 @@ const LogolibList = () => {
                 const response = await fetch(path);
                 const result = await response.blob();
                 const mimeType = result.type;
-                console.log('mime type:', mimeType);
+                // console.debug('mime type:', mimeType);
                 const clipboardItemData = {};
                 clipboardItemData[mimeType] = result;
                 const img = new ClipboardItem(clipboardItemData);
@@ -273,7 +273,7 @@ const LogolibList = () => {
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0);
                 canvas.toBlob(blob => {
-                    console.log(blob);
+                    // console.debug(blob);
                     const png = new ClipboardItem({ 'image/png': blob });
                     // 将剪贴板项写入剪贴板
                     navigator.clipboard.write([png])
@@ -294,7 +294,7 @@ const LogolibList = () => {
     }
 
     const copySvgToPng = async (domid, path) => {
-        console.log(path);
+        // console.debug(path);
         try{
             let result = null;
             const response = await fetch(path);
@@ -331,7 +331,7 @@ const LogolibList = () => {
     }
 
     const showDetails = (logo) => {
-        console.log(logo);
+        // console.debug(logo);
         setSourcePath(`${logoBasePath}${logo.thumbnail}`);
         setSourceName(logo.title);
         setSources(logo.sources);
@@ -355,7 +355,7 @@ const LogolibList = () => {
     }
 
     const editLogoInfo = (logo) => {
-        console.log(logo);
+        // console.debug(logo);
         setCurrLogo(logo);
         setOpenLogoInfoEdit(true);
     }
@@ -366,14 +366,14 @@ const LogolibList = () => {
 
     const onUploadFinished = (info) => {
         if (info.file.status !== 'uploading') {
-            console.log(info.file, info.fileList);
+            // console.debug(info.file, info.fileList);
           }
           if (info.file.status === 'done') {
             message.success(`${info.file.name} file uploaded successfully`);
-            console.log(info.file.response); // 服务端响应信息
+            // console.debug(info.file.response); // 服务端响应信息
           } else if (info.file.status === 'error') {
             message.error(`${info.file.name} file upload failed.`);
-            console.log(info.file.response); // 服务端响应信息
+            // console.debug(info.file.response); // 服务端响应信息
           }
     }
 
@@ -392,13 +392,13 @@ const LogolibList = () => {
 
     // 根据类目获取logo
     const getLogosByCategory = category => {
-        console.debug("--get logos for ", category);
+        // console.debug("--get logos for ", category);
         setCurrCatecory(category);
         get(`/publicwebdata/getlogosbycategory/${category}`)
             .then(res => {
                 const result = res.data;
-                console.debug("--logos of ", category);
-                console.debug(result);
+                // console.debug("--logos of ", category);
+                // console.debug(result);
                 if (result.success === true) {
                     const data = result.data;
                     setlogosMap(data);
@@ -406,16 +406,16 @@ const LogolibList = () => {
                     console.error(result.code, result.error);
                 }
             }).catch(err => {
-                console.log(err);
+                console.error(err);
             })
     }
 
     useEffect(() => {
         // 获取所有logo
-        console.debug("--get logos data...");
+        // console.debug("--get logos data...");
         get('/publicwebdata/getalllogos')
             .then(res => {
-                console.debug("--logos data: ", res.data);
+                // console.debug("--logos data: ", res.data);
                 const result = res.data;
                 if (result.success === true) {
                     const data = result.data;
@@ -428,10 +428,10 @@ const LogolibList = () => {
             });
 
         // 获取所有logo类目
-        console.debug("--get logo category data...");
+        // console.debug("--get logo category data...");
         get('/publicwebdata/getalllogocategories')
             .then(res => {
-                console.debug("--logoCategory data: ", res.data);
+                // console.debug("--logoCategory data: ", res.data);
                 const result = res.data;
                 if (result.success === true) {
                     const data = result.data;

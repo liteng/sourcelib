@@ -6,16 +6,16 @@ class Util {
     // }
 
     getCookie() {
-        console.log("get cookie...");
+        // console.debug("get cookie...");
         const cookieString = document.cookie;
-        console.log(cookieString);
+        // console.debug(cookieString);
         const cookiesGroup = cookieString.split('; ');
         const cookies = {};
         for(const cookie of cookiesGroup) {
             const [cookieName, cookieValue] = cookie.split('=');
             cookies[cookieName] = cookieValue;
         }
-        console.log(cookies);
+        // console.debug(cookies);
         return cookies;
     }
 
@@ -40,7 +40,7 @@ class Util {
     getToken() {
         const userInfo = this.getLocalUserInfo();
         const token =  userInfo === null ? null : userInfo.token;
-        console.log('getToken:', token);
+        // console.debug('getToken:', token);
         return token;
     }
 

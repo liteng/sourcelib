@@ -47,8 +47,8 @@ const AddPic = (props) => {
     };
 
     const onThumbnailUploadFinished = (updateInfo) => {
-        console.log('--onThumbnailUploadFinished');
-        console.log(updateInfo);
+        // console.debug('--onThumbnailUploadFinished');
+        // console.debug(updateInfo);
         if (updateInfo.file.status === 'error') {
             // TODO 弹登录对话框，登录对话框应该有全局状态来控制
 
@@ -61,7 +61,7 @@ const AddPic = (props) => {
             });
 
             // 后端返回新文件临时信息
-            console.debug(updateInfo.file.response); // 服务端响应信息
+            // console.debug(updateInfo.file.response); // 服务端响应信息
             const newFileName = updateInfo.file.response.data.fileName;
             setThumbnailFile(newFileName);
         }
@@ -73,9 +73,9 @@ const AddPic = (props) => {
     }
 
     const onAttachUploadFinished = (updateInfo) => {
-        console.log('--onAttachUploadFinished');
+        // console.debug('--onAttachUploadFinished');
     // const onAttachUploadFinished = ({ file: newFile, fileList: newFileList }) => {
-        // console.log(newFile);
+        // console.debug(newFile);
         // setAttachList(newFileList);
 
 
@@ -84,7 +84,7 @@ const AddPic = (props) => {
             const fileFormat = fileName.substring(fileName.lastIndexOf('.') + 1);
             message.success(`文件"${fileName}"已上传`);
             // 后端返回新文件临时信息
-            console.debug(updateInfo.file.response); // 服务端响应信息
+            // console.debug(updateInfo.file.response); // 服务端响应信息
             const fileId = updateInfo.file.response.data.fileId;
             const newFileName = updateInfo.file.response.data.fileName;
             // const attachFileIds = [...newAttachFileIds];
@@ -95,12 +95,12 @@ const AddPic = (props) => {
             // setNewAttachFilesInfo(attachFilesInfo);
             // setNewFileId(newFileId);
 
-            console.log('fileName: ', fileName);
-            console.log('newFileName: ', newFileName);
+            // console.debug('fileName: ', fileName);
+            // console.debug('newFileName: ', newFileName);
 
             // 更新原资源列表信息
             const newAttachList = { ...attachList };
-            console.debug(newAttachList);
+            // console.debug(newAttachList);
             newAttachList[fileId] = {
                 format: fileFormat,
                 fileName: newFileName,
@@ -109,7 +109,7 @@ const AddPic = (props) => {
             setAttachList(newAttachList);
         } else if (updateInfo.file.status === 'error') {
             message.error(`文件"${updateInfo.file.name}"上传失败`);
-            console.log(updateInfo.file.response); // 服务端响应信息
+            console.error(updateInfo.file.response); // 服务端响应信息
         }
     }
 
@@ -183,11 +183,11 @@ const AddPic = (props) => {
 
     // 上传头像文件
     const uploadThumbnail = async ({ file, onSuccess, onError }) => {
-        console.log('uploadThumbnail');
+        // console.debug('uploadThumbnail');
         try {
             upload('upload/logo', file)
                 .then(res => {
-                    console.debug('--upload thumbnail: ', res);
+                    // console.debug('--upload thumbnail: ', res);
                     const data = res.data;
                     if (data.status === 401) {
                         throw new Error('401');
@@ -214,11 +214,11 @@ const AddPic = (props) => {
 
     // 上传资源文件
     const uploadSource = async ({ file, onSuccess, onError }) => {
-        console.log('uploadSource');
+        // console.debug('uploadSource');
         try {
             upload('upload/logo', file)
                 .then(res => {
-                    console.debug('--upload source: ', res);
+                    // console.debug('--upload source: ', res);
                     const data = res.data;
                     if (data.status === 401) {
                         throw new Error('401');
@@ -257,7 +257,7 @@ const AddPic = (props) => {
 
 
     const onFinish = (values) => {
-        console.log('Finish: ', values);
+        // console.debug('Finish: ', values);
         const postValues = {
             // id: info.id,
             title: values.logoTitle,
@@ -271,7 +271,7 @@ const AddPic = (props) => {
             // thumbnail: values.thumbnailPic ? values.thumbnailPic[0].name : info.thumbnail,
             tag: values.logoTags ? values.logoTags : []
         };
-        console.log('post data: ', postValues);
+        // console.debug('post data: ', postValues);
         post('/privatewebdata/addlogo', postValues)
             .then( res => {
                 const result = res.data;
@@ -317,10 +317,10 @@ const AddPic = (props) => {
     
     useEffect( () => {
         // 获取所有logo类目
-        console.debug("--get logo category data...");
+        // console.debug("--get logo category data...");
         get('/publicwebdata/getalllogocategories')
             .then(res => {
-                console.debug("--logoCategory data: ", res.data);
+                // console.debug("--logoCategory data: ", res.data);
                 const result = res.data;
                 if (result.success === true) {
                     const categories = []
@@ -399,7 +399,7 @@ const AddPic = (props) => {
                                     <ul className='picviewer-logo-sources-list'>
                                         {
                                             Object.keys(attachList).map(fileId => {
-                                                console.log(fileId, attachList[fileId]);
+                                                // console.debug(fileId, attachList[fileId]);
                                                 return (
                                                     <li key={fileId} className='logo-source-item'>
                                                         <span className={`format-pre ${attachList[fileId].format}`}>{attachList[fileId].orgName}</span>

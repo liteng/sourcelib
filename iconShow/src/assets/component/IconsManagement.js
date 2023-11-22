@@ -97,8 +97,8 @@ const IconsManagement = (props) => {
                 <a
                     key="editable"
                     onClick={() => {
-                        console.log('record.id: ', record.id);
-                        console.log("iconCategoryEnum: ", JSON.stringify(iconCategoryEnum));
+                        // console.debug('record.id: ', record.id);
+                        // console.debug("iconCategoryEnum: ", JSON.stringify(iconCategoryEnum));
                         action?.startEditable?.(record.id);
                     }}
                 >
@@ -109,7 +109,7 @@ const IconsManagement = (props) => {
     ];
 
     const getIconsByKeyword = (keyword, event) => {
-        console.debug("debug: get icons for ", keyword);
+        // console.debug("debug: get icons for ", keyword);
         // 判断是否点击"清除"引起的调佣
         if ( keyword === '') {
             // 获取全部图标
@@ -132,7 +132,7 @@ const IconsManagement = (props) => {
             get('/publicwebdata/getalliconslist')
                 .then( res => {
                     const result = res.data;
-                    console.debug(result);
+                    // console.debug(result);
                     if (result.success === true) {
                         const icons = createIconsMap(result.data);
                         setIconsMap(icons);
@@ -165,8 +165,8 @@ const IconsManagement = (props) => {
             get(`/publicwebdata/geticonslistbykeyword/${keyword}`)
                 .then(res => {
                     const result = res.data;
-                    console.debug("--icons of ", keyword);
-                    console.debug(result);
+                    // console.debug("--icons of ", keyword);
+                    // console.debug(result);
                     if (result.success === true) {
                         const icons = createIconsMap(result.data);
                         setIconsMap(icons);
@@ -186,7 +186,7 @@ const IconsManagement = (props) => {
             newCategoryENRef.current && 
             newCategoryCNRef.current.input.value.trim() !== '' && 
             newCategoryENRef.current.input.value.trim() !== '') {
-            console.log(newCategoryCNRef.current.input.value, newCategoryENRef.current.input.value)
+            // console.debug(newCategoryCNRef.current.input.value, newCategoryENRef.current.input.value)
             // 提交数据
             // http.fetchRequest(`${serviceBasePath}/privatewebdata/addnewcategory`, {
             //     method: "POST",
@@ -223,7 +223,7 @@ const IconsManagement = (props) => {
             post('/privatewebdata/addnewcategory', postData)
                 .then( res => {
                     const result = res.data;
-                    console.debug(result);
+                    // console.debug(result);
                     if (result.success === true) {
                         const data = result.data;
                         // 更新类别字典
@@ -273,8 +273,8 @@ const IconsManagement = (props) => {
         get('/publicwebdata/getallliconcategories')
             .then( res => {
                 const result = res.data;
-                console.debug("--iconCategory: ");
-                console.debug(result);
+                // console.debug("--iconCategory: ");
+                // console.debug(result);
                 if (result.success === true) {
                     // const data = result.data;
                     const data = {}
@@ -284,7 +284,7 @@ const IconsManagement = (props) => {
                             en: result.data[key].en,
                         }
                     })
-                    console.debug('iconCategoryEnum', data);
+                    // console.debug('iconCategoryEnum', data);
                     setIconCategoryEnum(data);
                 } else {
                     console.error(result.code, result.error);
@@ -314,8 +314,8 @@ const IconsManagement = (props) => {
         get('/publicwebdata/getalliconslist')
             .then( res => {
                 const result = res.data;
-                console.debug("--all icons: ");
-                console.debug(result);
+                // console.debug("--all icons: ");
+                // console.debug(result);
                 if (result.success === true) {
                     const icons = createIconsMap(result.data);
                     setIconsMap(icons);
@@ -384,7 +384,7 @@ const IconsManagement = (props) => {
                             editable={{
                                 type: 'multiple',
                                 onSave: async (rowKey, data, row) => {
-                                    console.log(rowKey, data, row);
+                                    // console.debug(rowKey, data, row);
                                     let icons = [...iconsMap];
                                     let icon = _.find(icons, {id: rowKey});
                                     icon.categoryId = data.categoryId;
@@ -394,11 +394,11 @@ const IconsManagement = (props) => {
                                     icon.categoryEN = iconCategoryEnum[data.categoryId].en;
                                     Array.isArray(data.tag) ? icon.tag = data.tag : icon.tag = data.tag.split(',').map(item => item.trim());
                                     // TODO: 保存至数据库
-                                    console.debug('icon: ', icon);
+                                    // console.debug('icon: ', icon);
                                     post('/privatewebdata/updateiconcategoryandtag', icon)
                                         .then( res => {
                                             const result = res.data;
-                                            console.debug(result);
+                                            // console.debug(result);
                                             if (result.success === true) {
                                                 setIconsMap(icons);
                                             } else {
