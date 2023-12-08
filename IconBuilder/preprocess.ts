@@ -35,7 +35,7 @@ const isColor = (value: string | null): boolean => {
     );
 }
 
-// 解析svg文件名为元数据, [0]: 英文名称 [1]: 中文名称
+// 解析svg文件名为元数据, [0]: 英文名称 [1]: 中文名称 [2]: ID
 const parseAndChangeFileName = (filePath: string): string[] => {
     console.debug('++parseAndChangeFileName begain');
     const fileName = path.basename(filePath, '.svg');
