@@ -176,7 +176,8 @@ export const preprocess = async (libType: string) => {
     
         // 构建icon信息json
         const iconInfo = {
-            id: uuidv4(),
+            // id: uuidv4(),
+            id: names[2],
             title:  names[1],
             name: names[0],
             // svg: svgString,
