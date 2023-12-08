@@ -3,6 +3,7 @@
   "version": "1.1.0",
   "description": "The Icon builder built the svg icon as a react component.",
   "scripts": {
+    "generateUuId": "ts-node ./tools/generateUuId.ts",
     "build": "echo \"Icon builder is running!\"",
     "compile": "ts-node ./compile-cmd.ts",
     "append": "ts-node ./append-to-release-cmd.ts",
