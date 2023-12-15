@@ -42,3 +42,7 @@ export const BABEL_CONFIG_REACT = {
         ],
     ]
 };
+
+export const SERVICE_BASE_PATH = "https://localhost:10000"
+export const NAV_ICON_LIB = "naviconlib";
+export const ICON_LIB = "iconlib";

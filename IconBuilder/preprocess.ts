@@ -5,6 +5,10 @@ import * as svgo from 'svgo';
 import * as xml2js from 'xml2js';
 import { v4 as uuidv4 } from 'uuid';
 import { copyFolder } from './utils/fsUtil';
+import { SERVICE_BASE_PATH, NAV_ICON_LIB, ICON_LIB } from './config';
+import axios from 'axios';
+import https  from 'https';
+import _ from 'lodash';
 
 export interface IIconProps {
     id: string;
@@ -19,6 +23,8 @@ export interface IIconProps {
     rtl: boolean;
     CompnentElement: string;
 }
+
+let currIcons: IIconProps[] = [];
 
 // 判断是否是色值
 const isColor = (value: string | null): boolean => {
@@ -116,6 +122,30 @@ const initEnv = async (libType: string) => {
     const result = copyFolder(tmpPath, tgtPath, {isCover: true, isMakeDir: true});
     result ? console.debug('复制模板成功') : console.debug('复制模板失败');
     console.debug('++initEnv end');
+    console.debug('获取当前图标库明细');
+    const url = libType === NAV_ICON_LIB ? `${SERVICE_BASE_PATH}/publicwebdata/getallnaviconslist` : (libType === ICON_LIB ? `${SERVICE_BASE_PATH}/publicwebdata/getalliconslist` : '');
+    console.debug(url);
+    const agent = new https.Agent({
+        rejectUnauthorized: false
+    });
+    await axios.get(url, {
+        httpsAgent: agent,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => {
+        const result = res.data;
+        if (result.success === true) {
+            currIcons = result.data;
+            // console.debug(currIcons);
+        } else {
+            console.error(result.code, result.error);
+        }
+    }).catch(err => {
+        console.log(err);
+        const orgErr = err.response
+        console.error(orgErr);
+    });
 }
 
 // 预处理svg文件
@@ -173,26 +203,63 @@ export const preprocess = async (libType: string) => {
         // console.log('SVG file has been optimized.');
     
         const names = parseAndChangeFileName(tgtPath);
-    
-        // 构建icon信息json
-        const iconInfo = {
-            // id: uuidv4(),
-            id: names[2],
-            title:  names[1],
-            name: names[0],
-            // svg: svgString,
-            svg: svg.data,
-            tag: [
-                names[1]
-            ],
-            categoryId: "12733f05-df85-bf3f-5d76-7d7972d73e32",
-            categoryEN: "Base",
-            categoryCN: "基础",
-            author: "USUE",
-            rtl: false,
-            CompnentElement: ''
+        // 在原图标库中查找该文件是否有对应图标
+        const currIcon = _.find(currIcons, {id: names[2]});
+        console.debug(currIcon);
+        // 构建icon信息json，如果icon在库中已存在则读取原分类信息，否则赋默认分类
+        let iconInfo: IIconProps | null = null; 
+        if (currIcon) {
+            iconInfo = {
+                id: currIcon.id,
+                title: names[1],
+                name: names[0],
+                svg: svg.data,
+                tag: currIcon.tag,
+                categoryId: currIcon.categoryId,
+                categoryEN: currIcon.categoryEN,
+                categoryCN: currIcon.categoryCN,
+                author: currIcon.author,
+                rtl: currIcon.rtl,
+                CompnentElement: ''
+            }
+        } else {
+            iconInfo = {
+                id: names[2],
+                title: names[1],
+                name: names[0],
+                svg: svg.data,
+                tag: [
+                    names[1]
+                ],
+                categoryId: "12733f05-df85-bf3f-5d76-7d7972d73e32",
+                categoryEN: "Base",
+                categoryCN: "基础",
+                author: "USUE",
+                rtl: false,
+                CompnentElement: ''
+            }
         }
-        iconsInfo.push(iconInfo);
+        // const iconInfo = {
+        //     // id: uuidv4(),
+        //     id: names[2],
+        //     title:  names[1],
+        //     name: names[0],
+        //     // svg: svgString,
+        //     svg: svg.data,
+        //     tag: [
+        //         names[1]
+        //     ],
+        //     categoryId: "12733f05-df85-bf3f-5d76-7d7972d73e32",
+        //     categoryEN: "Base",
+        //     categoryCN: "基础",
+        //     author: "USUE",
+        //     rtl: false,
+        //     CompnentElement: ''
+        // }
+
+        if(iconInfo) {
+            iconsInfo.push(iconInfo)
+        };
     });
 
     console.debug('++preprocess end');
