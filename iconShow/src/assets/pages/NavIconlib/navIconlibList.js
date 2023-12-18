@@ -249,7 +249,7 @@ const NavIconlibList = () => {
     const onClick = (key, element) => {
         // console.log(element);
         if(key === 'copyReactCode') {
-            const reactCode = `<${element.CompnentElement} theme="two-tone" size={${iconSize}} fill="[${iconColor1}, ${iconColor2}]"/>`;
+            const reactCode = `<${element.CompnentElement} theme="two-tone" size={${iconSize}} fill={["${iconColor1}", "${iconColor2}"]}/>`;
             copyTextToClipboard(reactCode, 'reactCode');
         }
         if(key === 'copySVG') {
@@ -408,31 +408,6 @@ const NavIconlibList = () => {
 
     // 获取所有图标
     const getAllIcons = () => {
-        // console.debug("get navigate icons data...");
-        // fetch(`${serviceBasePath}/publicwebdata/getallnaviconslist`, {
-        //     method: 'GET',
-        //     headers: {
-        //         'Authorization': `Bearer ${user?.token}`
-        //     },
-        //     withCredentials: true,
-        // })
-        //     .then(response => response.json())
-        //     .then(result => {
-        //         // console.debug("--nav icons: ");
-        //         // console.debug(result);
-        //         if(result.success === true) {
-        //             const data = result.data;
-        //             // console.log('data: ', data);
-        //             const iconsMap = createNavIconsMap(data);
-        //             // console.debug('--iconsMap: ');
-        //             // console.debug(iconsMap);
-        //             setIconsMap(iconsMap);
-        //         } else {
-        //             console.error(result.code, result.error);
-        //         }
-        //     }).catch(err=>{
-        //         console.error(err);
-        //     });
         get('/publicwebdata/getallnaviconslist')
             .then( res => {
                 const result = res.data;
@@ -475,15 +450,6 @@ const NavIconlibList = () => {
                         </div>
                     </div>
                     <div className='icon-content-wraper'>
-                        {/* <div className='icon-category-aside'>
-                            <ul className='icon-category-wrapper'>
-                                {
-                                    iconsMap && Object.keys(iconsMap).map( categoryId => {
-                                        return <li key={categoryId} className={categoryId === currCategory ? 'icon-category active' : 'icon-category'}><Link to={iconCategoryMap[categoryId].en} onClick={() => onCategoryClick(categoryId)} containerId="icon-list-container" smooth={true} duration={500} >{iconCategoryMap[categoryId].zh}</Link></li>
-                                    })
-                                }
-                            </ul>
-                        </div> */}
                         <div className='icon-list-wrapper' id="icon-list-container">
                             {
                                 iconsMap && renderIconSet(iconsMap)
